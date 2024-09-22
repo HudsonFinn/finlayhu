@@ -5,6 +5,7 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './ErrorPage.tsx'
 import Vault from './Vault.tsx'
+import Landing from './Landing.tsx'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
+      {
+        path: "",
+        element: <Landing />
+      },
       {
         path: "vault",
         element: <Vault />
