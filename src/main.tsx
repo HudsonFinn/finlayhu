@@ -4,12 +4,19 @@ import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ErrorPage from './ErrorPage.tsx'
+import Vault from './Vault.tsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "vault",
+        element: <Vault />
+      }
+    ]
   },
 ])
 
