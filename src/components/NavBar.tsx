@@ -1,13 +1,14 @@
 import "./NavBar.css"
+import NavButton from "./NavButton";
 
 function NavBar() {
     return (
         <nav className="nav" >
             <h1>Finlayhu</h1>
             <ol className="nav-items">
-                <li>Home</li> 
-                <li>Vault</li> 
-                <li>Back</li> 
+                <NavButton title={"Home"} />
+                <NavButton title={"Vault"} />
+                <NavButton title={"About"} />
             </ol>
         </nav>
     )

@@ -1,6 +1,12 @@
-function NavButton() {
+
+type NavButtonProps = {
+    title: string
+}
+
+function NavButton({ title }: NavButtonProps) {
+
     return (
-    <button>Button</button>
+        <button>{title}</button>
     )
 }
 
