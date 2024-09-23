@@ -1,5 +1,5 @@
 
-function Vault() {
+function VaultPage() {
     return (
         <>
             <h1>Vault</h1>
@@ -8,4 +8,4 @@ function Vault() {
     )
 }
 
-export default Vault;
+export default VaultPage;
