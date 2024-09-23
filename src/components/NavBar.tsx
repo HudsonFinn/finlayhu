@@ -1,15 +1,15 @@
-import NavButton from "./NavButton";
+import "./NavBar.css"
 
 function NavBar() {
     return (
-        <div>
+        <nav className="nav" >
             <h1>Finlayhu</h1>
-            <ol>
-                <NavButton />
-                <NavButton />
-                <NavButton />
+            <ol className="nav-items">
+                <li>Home</li> 
+                <li>Vault</li> 
+                <li>Back</li> 
             </ol>
-        </div>
+        </nav>
     )
 }
 
