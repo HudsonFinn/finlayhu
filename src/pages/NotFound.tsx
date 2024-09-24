@@ -1,7 +1,7 @@
 
 function NotFoundPage() {
     return (
-        <h1>Not found</h1>
+        <h1 className="text-3xl font-bold underline">Not found</h1>
     )
 }
 
