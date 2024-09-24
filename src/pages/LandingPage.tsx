@@ -1,10 +1,11 @@
 
 function LandingPage() {
     return (
-        <>
-            <h1>Landing</h1>
-            <p>This is where the user will land on the default route</p>
-        </>
+        <div className="flex flex-col items-center">
+            <div className="">
+                <h1>Welcome</h1>
+            </div>
+        </div>
     )
 }
 
