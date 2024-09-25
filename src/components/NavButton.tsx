@@ -10,7 +10,7 @@ type NavButtonProps = {
 function NavButton({ title, url }: NavButtonProps) {
 
     return (
-        <Link to={url}><button>{title}</button></Link>    
+        <Link to={url}><p>{title}</p></Link>    
     )
 }
 
