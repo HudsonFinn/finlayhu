@@ -7,6 +7,7 @@ import ErrorPage from './pages/ErrorPage.tsx'
 import NotFoundPage from './pages/NotFound.tsx'
 import VaultPage from './pages/VaultPage.tsx'
 import LandingPage from './pages/LandingPage.tsx'
+import "@fontsource/noto-sans-mono";
 
 const router = createBrowserRouter([
   {

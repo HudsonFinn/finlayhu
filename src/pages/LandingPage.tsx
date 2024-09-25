@@ -1,9 +1,12 @@
+import "../App.css"
 
 function LandingPage() {
     return (
-        <div className="flex justify-center">
+        <div className="page">
             <div className="">
-                <h1>Welcome</h1>
+                <h1>
+                    I'm Finn. I write code.
+                </h1>
             </div>
         </div>
     )

@@ -1,7 +1,8 @@
+import "../App.css"
 
 function NotFoundPage() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="page">
             <div>
                 {
                     // There should be a cool thing here
