@@ -6,9 +6,9 @@ function NavBar() {
         <nav className="nav" >
             <h1>Finlayhu</h1>
             <ol className="nav-items">
-                <NavButton title={"Home"} />
-                <NavButton title={"Vault"} />
-                <NavButton title={"About"} />
+                <NavButton title={"Home"} url={''} />
+                <NavButton title={"Vault"} url={'/vault'} />
+                <NavButton title={"About"} url={'/about'} />
             </ol>
         </nav>
     )
