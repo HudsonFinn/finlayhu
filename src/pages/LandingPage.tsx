@@ -1,7 +1,7 @@
 
 function LandingPage() {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex justify-center">
             <div className="">
                 <h1>Welcome</h1>
             </div>
