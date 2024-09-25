@@ -1,3 +1,4 @@
+import DarkModeToggle from "./DarkModeToggle";
 import "./NavBar.css"
 import NavButton from "./NavButton";
 
@@ -10,6 +11,7 @@ function NavBar() {
                 <NavButton title={"Vault"} url={'/vault'} />
                 <NavButton title={"About"} url={'/about'} />
             </ol>
+            <DarkModeToggle />
         </nav>
     )
 }
