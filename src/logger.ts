@@ -3,13 +3,13 @@ export interface LogFn {
 }
 
 export interface Logger {
-    log: LogFn;
+    info: LogFn;
     warn: LogFn;
     error: LogFn;
 }
 
 export class ConsoleLogger implements Logger {
-    log(message?: any, ...optionalParams: any[]): void {
+    info(message?: any, ...optionalParams: any[]): void {
         console.log(message, ...optionalParams)
     }
 

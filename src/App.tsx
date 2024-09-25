@@ -5,7 +5,7 @@ import { ConsoleLogger } from "./logger";
 function App() {
   const logger = new ConsoleLogger();
 
-  logger.log("This is a basic log")
+  logger.info("This is a basic log")
   logger.warn("This is a basic warn")
   logger.error("This is a basic error");
   return (
