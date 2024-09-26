@@ -1,6 +1,4 @@
-
 import { Link } from 'react-router-dom'
-
 
 type NavButtonProps = {
     title: string
@@ -8,10 +6,11 @@ type NavButtonProps = {
 }
 
 function NavButton({ title, url }: NavButtonProps) {
-
     return (
-        <Link to={url}><p>{title}</p></Link>    
+        <Link to={url}>
+            <p>{title}</p>
+        </Link>
     )
 }
 
-export default NavButton;
+export default NavButton

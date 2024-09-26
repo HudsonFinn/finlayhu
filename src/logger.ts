@@ -3,9 +3,9 @@ export interface LogFn {
 }
 
 export interface Logger {
-    info: LogFn;
-    warn: LogFn;
-    error: LogFn;
+    info: LogFn
+    warn: LogFn
+    error: LogFn
 }
 
 export class ConsoleLogger implements Logger {
