@@ -1,9 +1,9 @@
 // https://www.sitepoint.com/react-toggle-switch-reusable-component/
 
 import { useEffect, useState } from 'react';
-import ToggleSwitch from './ToggleSwitch';
-import { ConsoleLogger } from '../logger';
-import { useMediaQuery } from '../utilities/useMediaQuery';
+import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import { ConsoleLogger } from '../../logger';
+import { useMediaQuery } from '../../utilities/useMediaQuery';
 
 function DarkModeToggle() {
 	const [checked, setChecked] = useState(false);

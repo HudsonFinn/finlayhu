@@ -8,8 +8,8 @@ type NavButtonProps = {
 
 function NavButton({ title, url }: NavButtonProps) {
 	return (
-		<Link to={url}>
-			<p className="nav-button">{title}</p>
+		<Link className="nav-button" to={url}>
+			{title}
 		</Link>
 	);
 }

@@ -1,0 +1,21 @@
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 1rem 1rem
+}
+
+.nav-title {
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	font-size: 2.5rem;
+}
+
+.nav-items {
+	list-style: none;
+	padding-inline-start: 0px;
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+	align-content: end;
+}
