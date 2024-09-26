@@ -9,7 +9,10 @@ function NotFoundPage() {
 				}
 			</div>
 			<h1 className="font-bold">Not found</h1>
-			<p>This page isn't implemented at the moment, don't judge me</p>
+			<p>
+				This page isn&apos;t implemented at the moment, don&apos;t judge
+				me
+			</p>
 		</div>
 	);
 }

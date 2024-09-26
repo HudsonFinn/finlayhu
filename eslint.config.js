@@ -4,21 +4,28 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import react from 'eslint-plugin-react';
 
 export default tseslint.config(
 	{ ignores: ['dist'] },
 	{
 		extends: [
 			js.configs.strict,
-			...tseslint.configs.strict,
+			...tseslint.configs.strictTypeChecked,
 			eslintConfigPrettier,
 		],
 		files: ['**/*.{ts,tsx}'],
+		settings: { react: { version: '18.3' } },
 		languageOptions: {
 			ecmaVersion: 2020,
 			globals: globals.browser,
+			parserOptions: {
+				project: ['./tsconfig.node.json', './tsconfig.app.json'],
+				tsconfigRootDir: import.meta.dirname,
+			},
 		},
 		plugins: {
+			react,
 			'react-hooks': reactHooks,
 			'react-refresh': reactRefresh,
 		},
@@ -28,6 +35,8 @@ export default tseslint.config(
 				'warn',
 				{ allowConstantExport: true },
 			],
+			...react.configs.recommended.rules,
+			...react.configs['jsx-runtime'].rules,
 		},
 	}
 );

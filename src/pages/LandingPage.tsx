@@ -4,7 +4,7 @@ function LandingPage() {
 	return (
 		<div className="page">
 			<div className="">
-				<h1>I'm Finn. I write code.</h1>
+				<h1>I&apos;m Finn. I write code.</h1>
 			</div>
 		</div>
 	);

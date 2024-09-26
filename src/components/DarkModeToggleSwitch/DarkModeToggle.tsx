@@ -13,13 +13,13 @@ function DarkModeToggle() {
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const checked = e.currentTarget.checked;
 
-		logger.info(`User manually set dark mode ${checked}`);
+		logger.info(`User manually set dark mode ${String(checked)}`);
 
 		setChecked(checked);
 	};
 
 	const onSystemPreferenceChange = (checked: boolean) => {
-		console.log(`System preference set dark mode ${checked}`);
+		console.log(`System preference set dark mode ${String(checked)}`);
 		setChecked(checked);
 	};
 
