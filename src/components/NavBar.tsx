@@ -1,6 +1,6 @@
-import DarkModeToggle from './DarkModeToggle'
-import './NavBar.css'
-import NavButton from './NavButton'
+import DarkModeToggle from './DarkModeToggle';
+import './NavBar.css';
+import NavButton from './NavButton';
 
 function NavBar() {
     return (
@@ -13,7 +13,7 @@ function NavBar() {
             </ol>
             <DarkModeToggle />
         </nav>
-    )
+    );
 }
 
-export default NavBar
+export default NavBar;

@@ -1,15 +1,15 @@
-import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 function ErrorPage() {
     const error = useRouteError();
 
     let errorMessage: string;
     if (isRouteErrorResponse(error)) {
-        errorMessage = error.statusText
+        errorMessage = error.statusText;
     } else if (error instanceof Error) {
-        errorMessage = error.message
+        errorMessage = error.message;
     } else if (typeof error === 'string') {
-        errorMessage = error
+        errorMessage = error;
     } else {
         errorMessage = 'Unknown error';
     }
@@ -22,7 +22,7 @@ function ErrorPage() {
                 <i>{errorMessage}</i>
             </p>
         </div>
-    )
+    );
 }
 
 export default ErrorPage;

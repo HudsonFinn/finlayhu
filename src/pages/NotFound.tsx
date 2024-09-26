@@ -1,4 +1,4 @@
-import "../App.css"
+import '../App.css';
 
 function NotFoundPage() {
     return (
@@ -11,7 +11,7 @@ function NotFoundPage() {
             <h1 className="font-bold">Not found</h1>
             <p>This page isn't implemented at the moment, don't judge me</p>
         </div>
-    )
+    );
 }
 
 export default NotFoundPage;

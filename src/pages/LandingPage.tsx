@@ -1,15 +1,13 @@
-import "../App.css"
+import '../App.css';
 
 function LandingPage() {
     return (
         <div className="page">
             <div className="">
-                <h1>
-                    I'm Finn. I write code.
-                </h1>
+                <h1>I'm Finn. I write code.</h1>
             </div>
         </div>
-    )
+    );
 }
 
 export default LandingPage;
