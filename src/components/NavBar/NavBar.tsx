@@ -11,6 +11,7 @@ function NavBar() {
 					<NavButton title={'Home'} url={''} />
 					<NavButton title={'Vault'} url={'/vault'} />
 					<NavButton title={'About'} url={'/about'} />
+					<NavButton title={'NewTab'} url={'/new-tab'} />
 				</ol>
 			</nav>
 			<DarkModeToggle />
