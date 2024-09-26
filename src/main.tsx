@@ -11,43 +11,43 @@ import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: '',
-                element: <LandingPage />,
-                errorElement: <ErrorPage />,
-            },
-            {
-                path: 'vault',
-                element: <VaultPage />,
-                errorElement: <ErrorPage />,
-            },
-            {
-                path: 'about',
-                element: <AboutPage />,
-                errorElement: <ErrorPage />,
-            },
-            {
-                path: '*',
-                element: <NotFoundPage />,
-                errorElement: <ErrorPage />,
-            },
-        ],
-    },
+	{
+		path: '/',
+		element: <App />,
+		errorElement: <ErrorPage />,
+		children: [
+			{
+				path: '',
+				element: <LandingPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'vault',
+				element: <VaultPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'about',
+				element: <AboutPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: '*',
+				element: <NotFoundPage />,
+				errorElement: <ErrorPage />,
+			},
+		],
+	},
 ]);
 
 const root = document.getElementById('root');
 
 if (root) {
-    createRoot(root).render(
-        <StrictMode>
-            <RouterProvider router={router} />
-        </StrictMode>
-    );
+	createRoot(root).render(
+		<StrictMode>
+			<RouterProvider router={router} />
+		</StrictMode>
+	);
 } else {
-    console.error('Root element missing');
+	console.error('Root element missing');
 }

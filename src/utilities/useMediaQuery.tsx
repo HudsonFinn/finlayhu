@@ -6,26 +6,26 @@ type MatchesCallback = (matches: boolean) => void;
 
 // https://www.netlify.com/blog/2020/12/05/building-a-custom-react-media-query-hook-for-more-responsive-apps/
 export const useMediaQuery = (query: string, cb: MatchesCallback) => {
-    const [matches, setMatches] = useState(false);
+	const [matches, setMatches] = useState(false);
 
-    console.log('outside effect', matches);
+	console.log('outside effect', matches);
 
-    useEffect(() => {
-        const media = window.matchMedia(query);
-        console.log('effect', matches, media.matches);
+	useEffect(() => {
+		const media = window.matchMedia(query);
+		console.log('effect', matches, media.matches);
 
-        if (media.matches !== matches) {
-            setMatches(media.matches);
-            cb(media.matches);
-        }
+		if (media.matches !== matches) {
+			setMatches(media.matches);
+			cb(media.matches);
+		}
 
-        const listener = () => {
-            setMatches(media.matches);
-            cb(media.matches);
-        };
+		const listener = () => {
+			setMatches(media.matches);
+			cb(media.matches);
+		};
 
-        media.addEventListener('change', listener);
+		media.addEventListener('change', listener);
 
-        return () => media.removeEventListener('change', listener);
-    }, [matches, query, cb]);
+		return () => media.removeEventListener('change', listener);
+	}, [matches, query, cb]);
 };

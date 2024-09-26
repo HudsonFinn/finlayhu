@@ -1,11 +1,11 @@
 body {
-    --color-background: rgb(255, 255, 255);
-    --font-color: rgb(0, 0, 0);
-    font-family: 'Noto Sans Mono';
-    color: var(--font-color);
-    background-color: var(--color-background);
+	--color-background: rgb(255, 255, 255);
+	--font-color: rgb(0, 0, 0);
+	font-family: 'Noto Sans Mono';
+	color: var(--font-color);
+	background-color: var(--color-background);
 }
 body.dark {
-    --color-background: rgb(40, 40, 40);
-    --font-color: rgb(0, 255, 00);
+	--color-background: rgb(40, 40, 40);
+	--font-color: rgb(0, 255, 00);
 }
