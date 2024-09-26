@@ -8,11 +8,8 @@ type MatchesCallback = (matches: boolean) => void;
 export const useMediaQuery = (query: string, cb: MatchesCallback) => {
 	const [matches, setMatches] = useState(false);
 
-	console.log('outside effect', matches);
-
 	useEffect(() => {
 		const media = window.matchMedia(query);
-		console.log('effect', matches, media.matches);
 
 		if (media.matches !== matches) {
 			setMatches(media.matches);
@@ -26,6 +23,8 @@ export const useMediaQuery = (query: string, cb: MatchesCallback) => {
 
 		media.addEventListener('change', listener);
 
-		return () => media.removeEventListener('change', listener);
+		return () => {
+			media.removeEventListener('change', listener);
+		};
 	}, [matches, query, cb]);
 };
