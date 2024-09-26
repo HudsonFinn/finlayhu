@@ -15,7 +15,7 @@ function ErrorPage() {
     }
 
     return (
-        <div>
+        <div className="page">
             <h1>Oops</h1>
             <p>Sorry an unexpected error occoured</p>
             <p>

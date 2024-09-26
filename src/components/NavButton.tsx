@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './NavButton.css';
 
 type NavButtonProps = {
     title: string;
@@ -8,7 +9,7 @@ type NavButtonProps = {
 function NavButton({ title, url }: NavButtonProps) {
     return (
         <Link to={url}>
-            <p>{title}</p>
+            <p className="nav-button">{title}</p>
         </Link>
     );
 }

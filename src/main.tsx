@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFound.tsx';
 import VaultPage from './pages/VaultPage.tsx';
 import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
+import AboutPage from './pages/AboutPage.tsx';
 
 const router = createBrowserRouter([
     {
@@ -18,14 +19,22 @@ const router = createBrowserRouter([
             {
                 path: '',
                 element: <LandingPage />,
+                errorElement: <ErrorPage />,
             },
             {
                 path: 'vault',
                 element: <VaultPage />,
+                errorElement: <ErrorPage />,
+            },
+            {
+                path: 'about',
+                element: <AboutPage />,
+                errorElement: <ErrorPage />,
             },
             {
                 path: '*',
                 element: <NotFoundPage />,
+                errorElement: <ErrorPage />,
             },
         ],
     },
