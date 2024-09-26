@@ -1,5 +1,5 @@
 export interface LogFn {
-    (message?: any, ...optionalParams: any[]): any
+    (message?: unknown, ...optionalParams: unknown[]): void
 }
 
 export interface Logger {
@@ -9,15 +9,15 @@ export interface Logger {
 }
 
 export class ConsoleLogger implements Logger {
-    info(message?: any, ...optionalParams: any[]): void {
+    info(message?: unknown, ...optionalParams: unknown[]): void {
         console.log(message, ...optionalParams)
     }
 
-    warn(message?: any, ...optionalParams: any[]): void {
+    warn(message?: unknown, ...optionalParams: unknown[]): void {
         console.warn(message, ...optionalParams)
     }
 
-    error(message?: any, ...optionalParams: any[]): void {
+    error(message?: unknown, ...optionalParams: unknown[]): void {
         console.error(message, ...optionalParams)
     }
 }
