@@ -18,4 +18,6 @@
 	margin-block-start: 0px;
 	margin-block-end: 0px;
 	align-content: end;
+	display: flex;
+	flex-direction: row
 }

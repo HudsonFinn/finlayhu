@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import './NavButton.css';
 
 type NavButtonProps = {
@@ -7,10 +7,14 @@ type NavButtonProps = {
 };
 
 function NavButton({ title, url }: NavButtonProps) {
+	const resolvedPath = useResolvedPath(url);
+	const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 	return (
-		<Link className="nav-button" to={url}>
-			{title}
-		</Link>
+		<li className={isActive ? 'active' : ''}>
+			<Link className="nav-button" to={url}>
+				{title}
+			</Link>
+		</li>
 	);
 }
 
