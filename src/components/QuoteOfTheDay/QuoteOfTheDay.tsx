@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './QuoteOfTheDay.css';
 
 type Quote = {
 	q: string;
@@ -25,7 +26,7 @@ function QuoteOfTheDay() {
 		});
 	}, []);
 
-	return <p>QOTD: {quote?.q}</p>;
+	return <p className="quote">QOTD: {quote?.q}</p>;
 }
 
 export default QuoteOfTheDay;

@@ -16,10 +16,9 @@ function NewTabPage() {
 						margin: '10px 20px',
 					}}
 				>
-					<h3>Links</h3>
+					<h3>Links 🔗</h3>
 					<p>This is where links will go</p>
 				</div>
-				<hr />
 				<div
 					style={{
 						flexGrow: 1,
@@ -27,7 +26,7 @@ function NewTabPage() {
 						margin: '10px 20px',
 					}}
 				>
-					<h3>Information</h3>
+					<h3>Information 📊</h3>
 					<p>This is where information will go</p>
 				</div>
 			</div>
