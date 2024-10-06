@@ -15,7 +15,9 @@ function QuoteOfTheDay() {
 
 	useEffect(() => {
 		const getQuote = async () => {
-			const response = await fetch('https://zenquotes.io/api/today/');
+			const response = await fetch(
+				'https://5xelzlc0nb.execute-api.eu-west-2.amazonaws.com/prod/'
+			);
 			const json = (await response.json()) as Response;
 			console.log(json);
 			setQuote(json[0]);
