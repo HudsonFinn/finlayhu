@@ -4,7 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage.tsx';
-import NotFoundPage from './pages/NotFound.tsx';
+import NotFoundPage from './pages/NotFoundPage.tsx';
 import VaultPage from './pages/VaultPage.tsx';
 import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
