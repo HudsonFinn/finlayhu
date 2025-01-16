@@ -18,6 +18,7 @@ function NewTabPage() {
 				>
 					<h3>Links 🔗</h3>
 					<p>This is where links will go</p>
+					<a href="obsidian://daily">Obsidian</a>
 				</div>
 				<div
 					style={{
