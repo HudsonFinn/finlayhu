@@ -10,6 +10,7 @@ import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
 import NewTabPage from './pages/NewTabPage.tsx';
+import PlaygroundPage from './pages/PlaygroundPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -23,13 +24,18 @@ const router = createBrowserRouter([
 				errorElement: <ErrorPage />,
 			},
 			{
+				path: 'about',
+				element: <AboutPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
 				path: 'vault',
 				element: <VaultPage />,
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'about',
-				element: <AboutPage />,
+				path: 'playground',
+				element: <PlaygroundPage />,
 				errorElement: <ErrorPage />,
 			},
 			{
