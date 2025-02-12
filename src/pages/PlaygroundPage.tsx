@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './playground.css';
+import './Playground.css';
 import '../App.css';
 import { ConsoleLogger } from '../logger';
 
