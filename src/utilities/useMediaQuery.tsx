@@ -1,30 +1,29 @@
 import { useEffect, useState } from 'react';
 
-type MatchesCallback = (matches: boolean) => void;
-
-// I don't really understand how the below works, I sort of get it but need to understand more about use effect and eventListeners
-
-// https://www.netlify.com/blog/2020/12/05/building-a-custom-react-media-query-hook-for-more-responsive-apps/
-export const useMediaQuery = (query: string, cb: MatchesCallback) => {
+export const useMediaQuery = (query: string) => {
 	const [matches, setMatches] = useState(false);
 
-	useEffect(() => {
-		const media = window.matchMedia(query);
+	const getMatches = (query: string) => {
+		return window.matchMedia(query).matches;
+	};
 
-		if (media.matches !== matches) {
-			setMatches(media.matches);
-			cb(media.matches);
-		}
+	useEffect(() => {
+		const matchMedia = window.matchMedia(query);
+
+		console.log('Initial system dark mode setting:', getMatches(query));
+		setMatches(getMatches(query));
 
 		const listener = () => {
-			setMatches(media.matches);
-			cb(media.matches);
+			console.log('System dark mode setting changed:', getMatches(query));
+			setMatches(getMatches(query));
 		};
 
-		media.addEventListener('change', listener);
+		matchMedia.addEventListener('change', listener);
 
 		return () => {
-			media.removeEventListener('change', listener);
+			matchMedia.removeEventListener('change', listener);
 		};
-	}, [matches, query, cb]);
+	}, [query]);
+
+	return matches;
 };

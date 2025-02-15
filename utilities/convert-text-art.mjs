@@ -1,4 +1,5 @@
 // node convert-text-art.mjs {target file} {destination file}
+// TODO: Can be renamed to convert-text-art.js https://stackoverflow.com/questions/57492546/what-is-the-difference-between-js-and-mjs-files
 import { ok as assert } from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 

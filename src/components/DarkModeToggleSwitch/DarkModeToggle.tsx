@@ -5,8 +5,11 @@ import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { ConsoleLogger } from '../../logger';
 import { useMediaQuery } from '../../utilities/useMediaQuery';
 
+const DARK_MODE_QUERY = '(prefers-color-scheme: dark)';
+
 function DarkModeToggle() {
-	const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState<boolean | undefined>(undefined);
+	const isSystemDarkSetting = useMediaQuery(DARK_MODE_QUERY);
 
 	const logger = new ConsoleLogger();
 
@@ -18,22 +21,17 @@ function DarkModeToggle() {
 		setChecked(checked);
 	};
 
-	const onSystemPreferenceChange = (checked: boolean) => {
-		console.log(`System preference set dark mode ${String(checked)}`);
-		setChecked(checked);
-	};
-
-	useMediaQuery('(prefers-color-scheme: dark)', onSystemPreferenceChange);
+	const darkMode = checked === undefined ? isSystemDarkSetting : checked;
 
 	useEffect(() => {
-		if (checked) {
+		if (darkMode) {
 			document.body.classList.add('dark');
 		} else {
 			document.body.classList.remove('dark');
 		}
 	});
 
-	return <ToggleSwitch checked={checked} onChange={onChange} />;
+	return <ToggleSwitch checked={darkMode} onChange={onChange} />;
 }
 
 export default DarkModeToggle;
