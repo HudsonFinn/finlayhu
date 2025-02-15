@@ -5,6 +5,8 @@ body {
 	--button-color: #b28b44;
 	--button-hover: #c97850;
 	--border-color: #d4af37;
+	--link-color: #8fcc24;
+	--visited-link: #5a8a00;
 	font-family: 'Noto Sans Mono';
 	color: var(--text-color);
 	background-color: var(--bg-color);
@@ -15,7 +17,9 @@ body.dark {
 	--heading-color: #d4af37;
 	--button-color: #c97850;
 	--button-hover: #b28b44;
-	--border-color: #005f5b;
+	--border-color: #5f3400;
+	--link-color: #00b43c;
+	--visited-link: #006221;
 }
 h1,
 h2,
@@ -34,4 +38,24 @@ button {
 
 button:hover {
 	background-color: var(--button-hover);
+}
+
+a {
+	color: var(--link-color);
+	text-decoration-color: var(--link-color);
+	text-decoration: none solid var(--link-color);
+	transition:
+		color 0.3s,
+		text-decoration 0.3s;
+}
+
+a:visited {
+	color: var(--visited-link);
+	text-decoration-color: var(--visited-link);
+}
+
+a:hover {
+	color: var(--button-hover);
+	text-decoration-color: var(--button-hover);
+	text-decoration: underline;
 }
