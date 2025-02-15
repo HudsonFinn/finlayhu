@@ -1,11 +1,37 @@
 body {
-	--color-background: rgb(255, 255, 255);
-	--font-color: rgb(0, 0, 0);
+	--bg-color: #e0c9a6;
+	--text-color: #3d2b1f;
+	--heading-color: #7b2c26;
+	--button-color: #b28b44;
+	--button-hover: #c97850;
+	--border-color: #d4af37;
 	font-family: 'Noto Sans Mono';
-	color: var(--font-color);
-	background-color: var(--color-background);
+	color: var(--text-color);
+	background-color: var(--bg-color);
 }
 body.dark {
-	--color-background: rgb(40, 40, 40);
-	--font-color: rgb(0, 255, 00);
+	--bg-color: #2e2e2e;
+	--text-color: #e0c9a6;
+	--heading-color: #d4af37;
+	--button-color: #c97850;
+	--button-hover: #b28b44;
+	--border-color: #005f5b;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--heading-color);
+}
+
+button {
+	background-color: var(--button-color);
+	border: 2px solid var(--border-color);
+	color: var(--text-color);
+}
+
+button:hover {
+	background-color: var(--button-hover);
 }

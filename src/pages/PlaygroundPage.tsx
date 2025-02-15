@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Playground.css';
 import '../App.css';
 import { ConsoleLogger } from '../logger';
+import Button from '../components/Button/Button';
 
 function PlaygroundPage() {
 	const logger = new ConsoleLogger();
@@ -25,6 +26,13 @@ function PlaygroundPage() {
 				<div className={`fade-in ${isVisible ? 'visible' : ''}`}>
 					This content fades in!
 				</div>
+				<Button
+					onClick={() => {
+						'Button Pressed';
+					}}
+				>
+					This is the button
+				</Button>
 			</div>
 		</div>
 	);
