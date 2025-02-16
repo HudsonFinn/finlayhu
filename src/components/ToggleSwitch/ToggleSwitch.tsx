@@ -1,4 +1,7 @@
 import './ToggleSwitch.css';
+import gearImageUrl from '/public/gear.png';
+import sunImageUrl from '/public/sun.png';
+import moonImageUrl from '/public/moon.png';
 
 type ToggleSwitchProps = {
 	checked: boolean;
@@ -16,13 +19,9 @@ function ToggleSwitch(props: ToggleSwitchProps) {
 				onChange={onChange}
 			></input>
 			<label htmlFor="switch-input" className="slider">
-				<img
-					className="gear-image"
-					src="/public/f44562c2-ba6f-4103-abfd-3413d15ce6e7-removebg-preview.png"
-					alt="gear"
-				/>
-				<img className="sun-image" src="/public/sun.png" alt="sun" />
-				<img className="moon-image" src="/public/moon.png" alt="moon" />
+				<img className="gear-image" src={gearImageUrl} alt="gear" />
+				<img className="sun-image" src={sunImageUrl} alt="sun" />
+				<img className="moon-image" src={moonImageUrl} alt="moon" />
 			</label>
 		</div>
 	);

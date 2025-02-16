@@ -6,6 +6,7 @@
 	border: 5px ridge #fccf3d;
 	transition: all 0.3s ease-in-out;
 	display: flex;
+	/* fix for issue with overflow hidden and trasformations https://stackoverflow.com/questions/16687023/bug-with-transform-scale-and-overflow-hidden-in-chrome */
 	transform: translateZ(0);
 	overflow: hidden;
 }
