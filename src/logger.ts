@@ -21,3 +21,7 @@ export class ConsoleLogger implements Logger {
 		console.error(message, ...optionalParams);
 	}
 }
+
+const logger = new ConsoleLogger();
+
+export default logger;

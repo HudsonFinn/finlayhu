@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import './Playground.css';
 import '../App.css';
-import { ConsoleLogger } from '../logger';
+import logger from '../logger';
 import Button from '../components/Button/Button';
 
 function PlaygroundPage() {
-	const logger = new ConsoleLogger();
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -17,7 +16,7 @@ function PlaygroundPage() {
 		return () => {
 			clearTimeout(timeout);
 		};
-	});
+	}, []);
 
 	return (
 		<div className="page">
