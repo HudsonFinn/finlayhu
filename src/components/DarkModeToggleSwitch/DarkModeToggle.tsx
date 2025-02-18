@@ -1,5 +1,3 @@
-// https://www.sitepoint.com/react-toggle-switch-reusable-component/
-
 import { useEffect, useState } from 'react';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import logger from '../../logger';

@@ -1,0 +1,22 @@
+.photo-gallery {
+	display: grid;
+	width: 50%;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.photo {
+	cursor: pointer;
+	border: 5px solid transparent;
+	transition: border-color 0.3s;
+}
+
+.photo img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.photo.selected {
+	border-color: var(--border-color);
+}
