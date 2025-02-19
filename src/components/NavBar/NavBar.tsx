@@ -4,7 +4,7 @@ import NavButton from '../NavButton/NavButton';
 
 function NavBar() {
 	return (
-		<div className="nav-container">
+		<header className="nav-container">
 			<h1 className="nav-title">Finlayhu</h1>
 			<nav>
 				<ol className="nav-items">
@@ -16,7 +16,7 @@ function NavBar() {
 				</ol>
 			</nav>
 			<DarkModeToggle />
-		</div>
+		</header>
 	);
 }
 

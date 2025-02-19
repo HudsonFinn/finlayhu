@@ -41,7 +41,7 @@ function Vault() {
 					setActivePost={setActivePost}
 				/>
 			</div>
-			<div
+			<main
 				style={{
 					flexGrow: 1,
 					flexBasis: '800px',
@@ -49,7 +49,7 @@ function Vault() {
 				}}
 			>
 				<BlogPost file={activePost.content} />
-			</div>
+			</main>
 		</div>
 	);
 }

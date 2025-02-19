@@ -8,7 +8,7 @@ type PostExplorerProps = {
 
 function PostExplorer({ posts, activePost, setActivePost }: PostExplorerProps) {
 	return (
-		<div>
+		<nav>
 			<h3>Posts</h3>
 			<hr />
 			{posts.map((post) => (
@@ -29,7 +29,7 @@ function PostExplorer({ posts, activePost, setActivePost }: PostExplorerProps) {
 					</div>
 				</div>
 			))}
-		</div>
+		</nav>
 	);
 }
 
