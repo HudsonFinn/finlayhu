@@ -1,4 +1,3 @@
-import './Playground.css';
 import '../App.css';
 import Button from '../components/Button/Button';
 import PhotoGallery from '../components/PhotoGallery/PhotoGallery';
