@@ -1,5 +1,6 @@
 .toggle-switch {
 	width: 80px;
+	min-width: 80px;
 	height: 34px;
 	background-color: var(--border-color);
 	border-radius: 34px;
