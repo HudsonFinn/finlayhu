@@ -10,6 +10,7 @@
 
 -   [x] Add styling for the darkmode toggle
 -   [ ] Add ability to darkmode preference to local storage
+-   [ ] Add API call to get my Oura ring data
 -   [ ] Add way to automatically sync the articles published with my local notes
     -   [ ] Setup articles to be served from S3
     -   [ ] Vault will fetch avaliable articles and serve them to the user
