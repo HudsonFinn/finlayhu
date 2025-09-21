@@ -10,7 +10,7 @@ export default tseslint.config(
 	{ ignores: ['dist'] },
 	{
 		extends: [
-			js.configs.strict,
+			// js.configs.strict,
 			...tseslint.configs.strictTypeChecked,
 			eslintConfigPrettier,
 		],
