@@ -1,3 +1,7 @@
 .blog-section h1 {
 	font-size: 2em;
 }
+
+.blog-section p {
+	margin-bottom: 10px;
+}
