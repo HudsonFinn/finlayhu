@@ -1,4 +1,5 @@
 import '../App.css';
+import OuraData from '../components/OuraData/OuraData';
 import QuoteOfTheDay from '../components/QuoteOfTheDay/QuoteOfTheDay';
 
 function NewTabPage() {
@@ -28,7 +29,7 @@ function NewTabPage() {
 					}}
 				>
 					<h3>Information 📊</h3>
-					<p>This is where information will go</p>
+					<OuraData />
 				</div>
 			</div>
 		</div>

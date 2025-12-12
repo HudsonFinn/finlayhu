@@ -1,15 +1,3 @@
----
-title: 'Comparison is the death of connection - Qin'
-source: 'https://qin.systems/comparison-and-connection/'
-author:
-    - '[[Finlay Hudson]]'
-published: 2024-03-10
-created: 2025-01-02
-description: 'An exploration of why comparison can be destructive in building connection with others, especially in the context of venerable conversations.'
-tags:
-    - 'clippings'
----
-
 # Comparison is the death of connection
 
 > This is a piece about my experience with connection and dealing with others, it is in no way backed by any research and is only my opinion.
