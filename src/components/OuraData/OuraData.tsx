@@ -61,9 +61,9 @@ const OuraData = () => {
 	}, []);
 	return (
 		<div>
-			<p>Readiness: {data?.readiness.score}</p>
-			<p>Sleep: {data?.sleep.score}</p>
-			<p>Activity: {data?.activity.score}</p>
+			<p className="font-bold">Readiness: {data?.readiness.score}</p>
+			<p className="font-bold">Sleep: {data?.sleep.score}</p>
+			<p className="font-bold">Activity: {data?.activity.score}</p>
 		</div>
 	);
 };
