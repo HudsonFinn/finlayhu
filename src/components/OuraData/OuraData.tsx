@@ -140,20 +140,25 @@ const OuraData = (props: OuraDataProps) => {
 		});
 	}, []);
 
-	if (isExpanded) {
-		return (
-			<div className="flex flex-col m-1">
-				<p className="font-bold">Readiness: {data?.readiness?.score}</p>
-				<p className="font-bold">Sleep: {data?.sleep?.score}</p>
-				<p className="font-bold">Activity: {data?.activity?.score}</p>
-			</div>
-		);
-	}
 	return (
 		<div className="flex flex-col m-1">
-			<p className="font-bold">🧬 {data?.readiness?.score}</p>
-			<p className="font-bold">💤 {data?.sleep?.score}</p>
-			<p className="font-bold">🏃 {data?.activity?.score}</p>
+			{isExpanded ? (
+				<>
+					<p className="font-bold">
+						Readiness: {data?.readiness?.score}
+					</p>
+					<p className="font-bold">Sleep: {data?.sleep?.score}</p>
+					<p className="font-bold">
+						Activity: {data?.activity?.score}
+					</p>
+				</>
+			) : (
+				<>
+					<p className="font-bold">🧬 {data?.readiness?.score}</p>
+					<p className="font-bold">💤 {data?.sleep?.score}</p>
+					<p className="font-bold">🏃 {data?.activity?.score}</p>
+				</>
+			)}
 		</div>
 	);
 };
