@@ -29,7 +29,7 @@ function NewTabPage() {
 					}}
 				>
 					<h3>Information 📊</h3>
-					<OuraData />
+					<OuraData isExpanded={true} />
 				</div>
 			</div>
 		</div>
