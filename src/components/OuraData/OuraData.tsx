@@ -108,7 +108,12 @@ type OuraResponse = {
 	};
 };
 
-const OuraData = () => {
+interface OuraDataProps {
+	isExpanded: boolean;
+}
+
+const OuraData = (props: OuraDataProps) => {
+	const { isExpanded } = props;
 	const [data, setData] = useState<OuraData>();
 	useEffect(() => {
 		const getData = async () => {
@@ -134,11 +139,21 @@ const OuraData = () => {
 			});
 		});
 	}, []);
+
+	if (isExpanded) {
+		return (
+			<div className="flex flex-col m-1">
+				<p className="font-bold">Readiness: {data?.readiness?.score}</p>
+				<p className="font-bold">Sleep: {data?.sleep?.score}</p>
+				<p className="font-bold">Activity: {data?.activity?.score}</p>
+			</div>
+		);
+	}
 	return (
-		<div>
-			<p className="font-bold">Readiness: {data?.readiness?.score}</p>
-			<p className="font-bold">Sleep: {data?.sleep?.score}</p>
-			<p className="font-bold">Activity: {data?.activity?.score}</p>
+		<div className="flex flex-col m-1">
+			<p className="font-bold">🧬 {data?.readiness?.score}</p>
+			<p className="font-bold">💤 {data?.sleep?.score}</p>
+			<p className="font-bold">🏃 {data?.activity?.score}</p>
 		</div>
 	);
 };

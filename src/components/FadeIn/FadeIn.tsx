@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logger from '../../logger';
 import './FadeIn.css';
 
 export default function FadeIn({ children }: { children: React.ReactNode }) {
@@ -7,7 +6,6 @@ export default function FadeIn({ children }: { children: React.ReactNode }) {
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
-			logger.info('Setting isVisible to true');
 			setIsVisible(true);
 		}, 0);
 
