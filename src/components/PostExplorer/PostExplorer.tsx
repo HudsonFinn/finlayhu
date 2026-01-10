@@ -21,7 +21,7 @@ function PostExplorer({ posts, activePost, setActivePost }: PostExplorerProps) {
 							cursor: 'pointer',
 						}}
 					>
-						<p>
+						<p className="m-2">
 							{activePost.title === post.title
 								? post.title + ' <'
 								: post.title}
