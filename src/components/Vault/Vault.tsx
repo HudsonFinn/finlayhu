@@ -3,6 +3,7 @@ import PostExplorer from '../PostExplorer/PostExplorer';
 import post from '../../posts/whyQin.md';
 import post2 from '../../posts/Comparison.md';
 import post3 from '../../posts/2025-review.md';
+import post4 from '../../posts/In-This-Economy.md';
 import { useState } from 'react';
 
 export type Post = {
@@ -27,6 +28,11 @@ function Vault() {
 			title: '2025 Review: A year of confusion, anxiety and clarity',
 			date: new Date('2026-01-01'),
 			content: post3,
+		},
+		{
+			title: 'On - In this economy?',
+			date: new Date('2026-01-11'),
+			content: post4,
 		},
 	];
 

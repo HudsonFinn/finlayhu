@@ -5,10 +5,3 @@
 	margin: auto;
 }
 
-hr {
-	border-right: 0;
-	border-left: 0;
-	margin-left: 0;
-	margin-right: 0;
-	border: 1px dashed var(--font-color);
-}
