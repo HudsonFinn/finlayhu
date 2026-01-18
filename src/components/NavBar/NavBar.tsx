@@ -1,4 +1,3 @@
-import DarkModeToggle from '../DarkModeToggleSwitch/DarkModeToggle';
 import NavButton from '../NavButton/NavButton';
 
 function NavBar() {
@@ -14,7 +13,6 @@ function NavBar() {
 					<NavButton title={'NewTab'} url={'/new-tab'} />
 				</ol>
 			</nav>
-			<DarkModeToggle />
 		</header>
 	);
 }
