@@ -1,8 +1,6 @@
-import '../App.css';
-
 function AboutPage() {
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<h1 className="text-3xl text-bold">About me</h1>
 			<p>
 				Hey, I&apos;m Finn a Software Engineer who likes to write and

@@ -1,5 +1,5 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
-import './NavButton.css';
+import { useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
+import { Button } from 'chalkboard-ui';
 
 type NavButtonProps = {
 	title: string;
@@ -7,13 +7,20 @@ type NavButtonProps = {
 };
 
 function NavButton({ title, url }: NavButtonProps) {
+	const navigate = useNavigate();
 	const resolvedPath = useResolvedPath(url);
 	const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+
 	return (
-		<li className={isActive ? 'active' : ''}>
-			<Link className="nav-button" to={url}>
+		<li>
+			<Button
+				variant={isActive ? 'primary' : 'outline'}
+				onClick={() => {
+					navigate(url);
+				}}
+			>
 				{title}
-			</Link>
+			</Button>
 		</li>
 	);
 }

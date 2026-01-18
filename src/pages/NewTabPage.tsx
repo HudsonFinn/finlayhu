@@ -1,10 +1,9 @@
-import '../App.css';
 import OuraData from '../components/OuraData/OuraData';
 import QuoteOfTheDay from '../components/QuoteOfTheDay/QuoteOfTheDay';
 
 function NewTabPage() {
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<h1>NewTab</h1>
 			<hr />
 			<QuoteOfTheDay />

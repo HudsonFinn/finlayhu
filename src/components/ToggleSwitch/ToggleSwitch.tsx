@@ -1,4 +1,3 @@
-import './ToggleSwitch.css';
 import gearImageUrl from '/public/gear.png';
 import sunImageUrl from '/public/sun.png';
 import moonImageUrl from '/public/moon.png';

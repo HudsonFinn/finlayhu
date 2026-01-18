@@ -1,9 +1,8 @@
-import '../App.css';
 import asciiArt from '../ascii/missingPage.art.ts';
 
 function NotFoundPage() {
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<pre>{asciiArt}</pre>
 			<h1 className="font-bold">Not found</h1>
 			<p>

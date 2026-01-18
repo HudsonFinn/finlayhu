@@ -1,5 +1,4 @@
 import DarkModeToggle from '../DarkModeToggleSwitch/DarkModeToggle';
-import './NavBar.css';
 import NavButton from '../NavButton/NavButton';
 
 function NavBar() {

@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import '../App.css';
 import useTypewriter from '../utilities/useTypewriter';
 
 function LandingPage() {
 	const text = useTypewriter(`I'm Finn. I write stuff.`, 100);
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<div className="text-center">
 				<h1 className="text-3xl font-bold">{text}</h1>
 				<div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">

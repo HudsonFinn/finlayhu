@@ -1,5 +1,4 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
-import '../App.css';
 
 function ErrorPage() {
 	const error = useRouteError();
@@ -16,7 +15,7 @@ function ErrorPage() {
 	}
 
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<h1>Oops</h1>
 			<p>Sorry an unexpected error occoured</p>
 			<p>

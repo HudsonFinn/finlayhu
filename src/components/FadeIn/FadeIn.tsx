@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './FadeIn.css';
 
 export default function FadeIn({ children }: { children: React.ReactNode }) {
 	const [isVisible, setIsVisible] = useState<boolean>(false);

@@ -1,11 +1,10 @@
-import '../App.css';
 import Button from '../components/Button/Button';
 import PhotoGallery from '../components/PhotoGallery/PhotoGallery';
 import FadeIn from '../components/FadeIn/FadeIn';
 
 function PlaygroundPage() {
 	return (
-		<div className="page">
+		<div className="flex flex-col max-w-[90%] mx-auto">
 			<h1>Playground</h1>
 			<div className="playground">
 				<h4>Testing out css fade animation</h4>

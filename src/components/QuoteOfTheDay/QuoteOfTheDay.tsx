@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './QuoteOfTheDay.css';
 import Quote from './Quote';
 
 // Documentation: https://docs.zenquotes.io/zenquotes-documentation/#api-structure

@@ -1,6 +1,5 @@
 import { marked } from 'marked';
 import { useEffect, useState } from 'react';
-import './BlogPost.css';
 
 type BlogPostProps = {
 	file: string;

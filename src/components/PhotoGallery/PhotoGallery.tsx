@@ -1,5 +1,4 @@
 import React, { memo, useCallback, useState } from 'react';
-import './PhotoGallery.css';
 import typewriter from '/public/typewriter.png';
 import morseCode from '/public/morse-code.png';
 import sundial from '/public/sundial.png';
