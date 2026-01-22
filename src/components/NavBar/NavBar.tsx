@@ -9,7 +9,6 @@ function NavBar() {
 					<NavButton title={'Home'} url={''} />
 					<NavButton title={'About'} url={'/about'} />
 					<NavButton title={'Vault'} url={'/vault'} />
-					<NavButton title={'Playground'} url={'/playground'} />
 					<NavButton title={'NewTab'} url={'/new-tab'} />
 				</ol>
 			</nav>
