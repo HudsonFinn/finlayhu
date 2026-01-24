@@ -1,18 +1,39 @@
-import NavButton from '../NavButton/NavButton';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Navbar } from 'chalkboard-ui';
 
 function NavBar() {
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	const sections = {
+		'': [
+			{ label: 'Home', href: '/', icon: 'home' as const },
+			{ label: 'About', href: '/about', icon: 'user' as const },
+			{ label: 'Vault', href: '/vault', icon: 'star' as const },
+			{
+				label: 'NewTab',
+				href: '/new-tab',
+				icon: 'external-link' as const,
+			},
+		],
+	};
+
+	const isActive = (href: string) => {
+		if (href === '/') {
+			return location.pathname === '/';
+		}
+		return location.pathname.startsWith(href);
+	};
+
 	return (
-		<header className="nav-container">
-			<h1 className="nav-title">Finlayhu</h1>
-			<nav>
-				<ol className="nav-items">
-					<NavButton title={'Home'} url={''} />
-					<NavButton title={'About'} url={'/about'} />
-					<NavButton title={'Vault'} url={'/vault'} />
-					<NavButton title={'NewTab'} url={'/new-tab'} />
-				</ol>
-			</nav>
-		</header>
+		<Navbar
+			title="Finlayhu"
+			sections={sections}
+			isActive={isActive}
+			onItemClick={(href) => {
+				navigate(href);
+			}}
+		/>
 	);
 }
 
