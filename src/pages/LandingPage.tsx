@@ -1,21 +1,37 @@
 import { Link } from 'react-router-dom';
+import { H1, Preview, PreviewHeader, PreviewDescription } from 'chalkboard-ui';
 import useTypewriter from '../utilities/useTypewriter';
 
 function LandingPage() {
-	const text = useTypewriter(`I'm Finn. I write stuff.`, 100);
+	const { displayText, isComplete } = useTypewriter(
+		`I'm Finn. I write stuff.`,
+		100
+	);
 	return (
-		<div className="flex flex-col max-w-[90%] mx-auto">
-			<div className="text-center">
-				<h1 className="text-3xl font-bold">{text}</h1>
-				<div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-					<Link
-						className="rounded-md bg-gray-700 px-3.5 py-2.5 text-sm font-semibold text-white inset-ring inset-ring-white/5"
-						to={'/vault'}
-					>
-						Vault
-					</Link>
-					<Link to={'/new-tab'}>Data</Link>
-				</div>
+		<div className="mt-[30vh] text-center">
+			<H1>{displayText}</H1>
+			<div
+				style={{
+					transform: isComplete
+						? 'translateY(0)'
+						: 'translateY(2rem)',
+					opacity: isComplete ? 1 : 0,
+					transition: 'all 1s ease-out',
+				}}
+				className="mt-24 flex justify-center gap-8 text-left"
+			>
+				<Preview as={Link} href="/about" className="w-64">
+					<PreviewHeader title="About" />
+					<PreviewDescription>Learn more about me</PreviewDescription>
+				</Preview>
+				<Preview as={Link} href="/vault" className="w-64">
+					<PreviewHeader title="Vault" />
+					<PreviewDescription>My obsidian notes</PreviewDescription>
+				</Preview>
+				<Preview as={Link} href="/new-tab" className="w-64">
+					<PreviewHeader title="New Tab" />
+					<PreviewDescription>Quotes and data</PreviewDescription>
+				</Preview>
 			</div>
 		</div>
 	);

@@ -4,6 +4,7 @@ const useTypewriter = (text: string, speed: number) => {
 	const [index, setIndex] = useState(0);
 
 	const displayText = text.slice(0, index);
+	const isComplete = index >= text.length;
 
 	useEffect(() => {
 		if (index >= text.length) return;
@@ -17,7 +18,7 @@ const useTypewriter = (text: string, speed: number) => {
 		};
 	}, [index, text, speed]);
 
-	return displayText;
+	return { displayText, isComplete };
 };
 
 export default useTypewriter;
