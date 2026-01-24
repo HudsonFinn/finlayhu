@@ -27,7 +27,7 @@ function NavBar() {
 
 	return (
 		<Navbar
-			title="Finlayhu"
+			title="FHudson"
 			sections={sections}
 			isActive={isActive}
 			onItemClick={(href) => {

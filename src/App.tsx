@@ -4,7 +4,7 @@ import SideBar from './components/SideBar/SideBar';
 
 function App() {
 	return (
-		<div className="flex">
+		<div className="flex min-h-screen bg-chalkboard-background">
 			<div className="flex flex-col grow">
 				<NavBar />
 				<Outlet />
