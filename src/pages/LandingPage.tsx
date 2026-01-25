@@ -8,8 +8,8 @@ function LandingPage() {
 		100
 	);
 	return (
-		<div className="mt-[30vh] text-center">
-			<H1>{displayText}</H1>
+		<div className="mt-[30vh] text-center px-4">
+			<H1 className="break-words">{displayText}</H1>
 			<div
 				style={{
 					transform: isComplete
@@ -18,7 +18,7 @@ function LandingPage() {
 					opacity: isComplete ? 1 : 0,
 					transition: 'all 1s ease-out',
 				}}
-				className="mt-24 flex justify-center gap-8 text-left"
+				className="mt-24 flex flex-wrap justify-center gap-8 text-left max-w-5xl mx-auto"
 			>
 				<Preview as={Link} href="/about" className="w-64">
 					<PreviewHeader title="About" />
