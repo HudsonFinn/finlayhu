@@ -1,40 +1,36 @@
+import { useState, useMemo } from 'react';
 import BlogPost from '../BlogPost/BlogPost';
 import PostExplorer from '../PostExplorer/PostExplorer';
-import post from '../../posts/whyQin.md';
-import post2 from '../../posts/Comparison.md';
-import post3 from '../../posts/2025-review.md';
-import post4 from '../../posts/In-This-Economy.md';
-import { useState } from 'react';
+import { parseFrontmatter } from '../../utilities/parseFrontmatter';
+import whyQinRaw from '../../posts/whyQin.md?raw';
+import comparisonRaw from '../../posts/Comparison.md?raw';
+import review2025Raw from '../../posts/2025-review.md?raw';
+import inThisEconomyRaw from '../../posts/In-This-Economy.md?raw';
 
 export type Post = {
 	title: string;
-	date: Date;
+	created: Date;
 	content: string;
 };
 
+function parsePost(raw: string): Post {
+	const { data, content } = parseFrontmatter(raw);
+	return {
+		title: data.title,
+		created: new Date(data.created),
+		content,
+	};
+}
+
 function Vault() {
-	const postList: Post[] = [
-		{
-			title: 'Why Qin?',
-			date: new Date('2021-08-11'),
-			content: post,
-		},
-		{
-			title: 'Comparison is the death of connection',
-			date: new Date('2021-08-11'),
-			content: post2,
-		},
-		{
-			title: '2025 Review: A year of confusion, anxiety and clarity',
-			date: new Date('2026-01-01'),
-			content: post3,
-		},
-		{
-			title: 'On - In this economy?',
-			date: new Date('2026-01-11'),
-			content: post4,
-		},
-	];
+	const postList = useMemo<Post[]>(() => {
+		return [
+			parsePost(whyQinRaw),
+			parsePost(comparisonRaw),
+			parsePost(review2025Raw),
+			parsePost(inThisEconomyRaw),
+		].sort((a, b) => b.created.getTime() - a.created.getTime());
+	}, []);
 
 	const [activePost, setActivePost] = useState(postList[0]);
 
@@ -60,7 +56,7 @@ function Vault() {
 					margin: '10px 20px',
 				}}
 			>
-				<BlogPost file={activePost.content} />
+				<BlogPost content={activePost.content} />
 			</main>
 		</div>
 	);
