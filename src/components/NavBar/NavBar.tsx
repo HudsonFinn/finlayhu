@@ -33,6 +33,7 @@ function NavBar() {
 			onItemClick={(href) => {
 				navigate(href);
 			}}
+			defaultCollapsed
 		/>
 	);
 }
