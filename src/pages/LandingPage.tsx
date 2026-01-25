@@ -8,7 +8,7 @@ function LandingPage() {
 		100
 	);
 	return (
-		<div className="mt-[30vh] text-center px-4">
+		<div className="mt-20 md:mt-[30vh] text-center px-4">
 			<H1 className="break-words">{displayText}</H1>
 			<div
 				style={{
