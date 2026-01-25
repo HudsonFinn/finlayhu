@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
 import VaultPage from './pages/VaultPage.tsx';
+import PostPage from './pages/PostPage.tsx';
 import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
 			{
 				path: 'vault',
 				element: <VaultPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'vault/:slug',
+				element: <PostPage />,
 				errorElement: <ErrorPage />,
 			},
 			{

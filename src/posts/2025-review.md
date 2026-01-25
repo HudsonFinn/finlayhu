@@ -1,4 +1,8 @@
-# A year of confusion, anxiety and clarity
+---
+title: "2025 Review: A year of confusion, anxiety and clarity"
+created: 2026-01-01
+tags: Reviews
+---
 
 2025 started out very well, I was doing well at work, still experiencing the highs of a new relationship and was living in a nice apartment. AI hadn't become the all consuming behemoth it is now and I was generally very happy.
 

@@ -1,4 +1,8 @@
-# Why Qin?
+---
+title: Why Qin?
+created: 2021-08-11
+tags: Projects
+---
 
 > Note: This reasoning is not a fun read, it’s more self indulgent than I would like but I would like to tell the full story.
 

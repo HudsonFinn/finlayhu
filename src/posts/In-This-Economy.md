@@ -1,7 +1,9 @@
-# On - In this Economy?
 ---
-created: 2027-01-11 12:09
+title: "On - In this Economy?"
+created: 2026-01-11
+tags: Books
 ---
+
 [Goodreads](https://www.goodreads.com/book/show/150249560-in-this-economy)
 
 I got the book after enjoying many of Kyla Scanlon's instagram reels which explain economic and political events. This came off the back of reading [[On - Prisoners of Geography|Prisoners of Geography]] and I thought it might be a nice compliment to learn a bit about the how the US economy worked. 

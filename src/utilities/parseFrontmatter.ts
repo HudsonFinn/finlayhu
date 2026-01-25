@@ -2,6 +2,7 @@ type Frontmatter = {
 	title: string;
 	created: string;
 	updated?: string;
+	tags?: string;
 };
 
 type ParsedMarkdown = {

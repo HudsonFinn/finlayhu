@@ -1,4 +1,8 @@
-# Comparison is the death of connection
+---
+title: Comparison is the death of connection
+created: 2021-08-11
+tags: Essays
+---
 
 > This is a piece about my experience with connection and dealing with others, it is in no way backed by any research and is only my opinion.
 
