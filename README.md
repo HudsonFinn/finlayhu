@@ -13,7 +13,8 @@
 -   [ ] Switch landing page animations to use Framer Motion
 -   [ ] Add defaultCollapsed prop to chalkboard-ui Navbar component
 -   [ ] Add blog post versioning with diff viewing
--   [ ] Add API call to get my Oura ring data
+-   [x] Add API call to get my Oura ring data
+-   [ ] Fix OuraData color coding to use Tailwind classes instead of inline styles
 -   [ ] Add way to automatically sync the articles published with my local notes
     -   [ ] Setup articles to be served from S3
     -   [ ] Vault will fetch avaliable articles and serve them to the user

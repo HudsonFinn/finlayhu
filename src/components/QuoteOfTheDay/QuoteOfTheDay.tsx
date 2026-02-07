@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import Quote from './Quote';
+import { Lead, Small } from 'chalkboard-ui';
 
-// Documentation: https://docs.zenquotes.io/zenquotes-documentation/#api-structure
 type Quote = {
-	q: string; // Quote
-	a: string; // Author
-	i?: string; // Author Image
-	c?: number; // Character Count
+	q: string;
+	a: string;
+	i?: string;
+	c?: number;
 };
 
 function QuoteOfTheDay() {
@@ -22,16 +21,21 @@ function QuoteOfTheDay() {
 		getQuote().catch((e: unknown) => {
 			console.log(`Error getting QOTD ${String(e)}`);
 			setQuote({
-				q: 'The struggle itself toward the heights is enough to fill a man’s heart. One must imagine Sisyphus happy.',
+				q: "The struggle itself toward the heights is enough to fill a man's heart. One must imagine Sisyphus happy.",
 				a: 'Albert Camus',
 			});
 		});
 	}, []);
 
+	if (!quote) {
+		return <Small>Loading...</Small>;
+	}
+
 	return (
-		<p className="quote">
-			QOTD: {quote ? <Quote quote={quote.q} author={quote.a} /> : '...'}
-		</p>
+		<div className="max-w-xl mx-auto">
+			<Lead className="italic text-center">&ldquo;{quote.q}&rdquo;</Lead>
+			<Small className="block text-center mt-2">— {quote.a}</Small>
+		</div>
 	);
 }
 

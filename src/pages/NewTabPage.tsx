@@ -1,36 +1,16 @@
+import { H1 } from 'chalkboard-ui';
 import OuraData from '../components/OuraData/OuraData';
 import QuoteOfTheDay from '../components/QuoteOfTheDay/QuoteOfTheDay';
 
 function NewTabPage() {
 	return (
-		<div className="flex flex-col max-w-[90%] mx-auto">
-			<h1>NewTab</h1>
-			<hr />
-			<QuoteOfTheDay />
-			<hr />
-			<div style={{ display: 'flex', flexWrap: 'wrap' }}>
-				<div
-					style={{
-						flexGrow: 1,
-						flexBasis: '400px',
-						margin: '10px 20px',
-					}}
-				>
-					<h3>Links 🔗</h3>
-					<p>This is where links will go</p>
-					<a href="obsidian://daily">Obsidian</a>
-				</div>
-				<div
-					style={{
-						flexGrow: 1,
-						flexBasis: '400px',
-						margin: '10px 20px',
-					}}
-				>
-					<h3>Information 📊</h3>
-					<OuraData isExpanded={true} />
-				</div>
-			</div>
+		<div className="max-w-4xl mx-auto px-6 py-12">
+			<header className="text-center mb-12">
+				<H1 className="mb-4">Good Morning</H1>
+				<QuoteOfTheDay />
+			</header>
+
+			<OuraData />
 		</div>
 	);
 }

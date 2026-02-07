@@ -14,7 +14,7 @@
 	"dependencies": {
 		"@fontsource/noto-sans-mono": "^5.2.10",
 		"@tailwindcss/vite": "^4.1.18",
-		"chalkboard-ui": "0.0.6",
+		"chalkboard-ui": "0.0.7",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"react-markdown": "^10.1.0",

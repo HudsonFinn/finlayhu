@@ -1,4 +1,12 @@
 import { useEffect, useState } from 'react';
+import {
+	LineChart,
+	P,
+	Small,
+	Preview,
+	PreviewHeader,
+	PreviewContent,
+} from 'chalkboard-ui';
 
 type ReadinessContributors = {
 	activity_balance: number;
@@ -9,17 +17,6 @@ type ReadinessContributors = {
 	recovery_index: number;
 	resting_heart_rate: number;
 	sleep_balance: number;
-	sleep_regularity: number;
-};
-
-type ReadinessData = {
-	id: string;
-	contributors: ReadinessContributors;
-	day: string;
-	score: number;
-	temperature_deviation: number;
-	temperature_trend_deviation: number;
-	timestamp: string;
 };
 
 type SleepContributors = {
@@ -32,14 +29,6 @@ type SleepContributors = {
 	total_sleep: number;
 };
 
-type SleepData = {
-	id: string;
-	contributors: SleepContributors;
-	day: string;
-	score: number;
-	timestamp: string;
-};
-
 type ActivityContributors = {
 	meet_daily_targets: number;
 	move_every_hour: number;
@@ -49,115 +38,288 @@ type ActivityContributors = {
 	training_volume: number;
 };
 
-type MetData = {
-	interval: number;
-	items: number[];
-	timestamp: string;
+type OuraRangeResponse = {
+	start: string;
+	end: string;
+	dates: Record<
+		string,
+		{
+			readiness?: {
+				data: { score: number; contributors: ReadinessContributors }[];
+			};
+			sleep?: {
+				data: { score: number; contributors: SleepContributors }[];
+			};
+			activity?: {
+				data: { score: number; contributors: ActivityContributors }[];
+			};
+		}
+	>;
 };
 
-type ActivityData = {
-	id: string;
-	active_calories: number;
-	average_met_minutes: number;
-	class_5_min: string;
-	contributors: ActivityContributors;
-	day: string;
-	equivalent_walking_distance: number;
-	high_activity_met_minutes: number;
-	high_activity_time: number;
-	inactivity_alerts: number;
-	low_activity_met_minutes: number;
-	low_activity_time: number;
-	medium_activity_met_minutes: number;
-	medium_activity_time: number;
-	met: MetData;
-	meters_to_target: number;
-	non_wear_time: number;
-	resting_time: number;
-	score: number;
-	sedentary_met_minutes: number;
-	sedentary_time: number;
-	steps: number;
-	target_calories: number;
-	target_meters: number;
-	timestamp: string;
-	total_calories: number;
+type ChartData = {
+	label: string;
+	value: number;
 };
 
-type OuraData = {
-	readiness: ReadinessData | null;
-	sleep: SleepData | null;
-	activity: ActivityData | null;
+type OuraChartData = {
+	readiness: ChartData[];
+	sleep: ChartData[];
+	activity: ChartData[];
+	latestReadinessContributors: ReadinessContributors | null;
+	latestSleepContributors: SleepContributors | null;
+	latestActivityContributors: ActivityContributors | null;
 };
 
-type OuraResponse = {
-	date: string;
-	data: {
-		readiness: {
-			data: ReadinessData[];
-			next_token: string | null;
-		};
-		sleep: {
-			data: SleepData[];
-			next_token: string | null;
-		};
-		activity: {
-			data: ActivityData[];
-			next_token: string | null;
-		};
+type MetricType = 'readiness' | 'sleep' | 'activity';
+
+const formatDate = (dateStr: string): string => {
+	const date = new Date(dateStr);
+	return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+
+const formatLabel = (key: string): string => {
+	return key
+		.split('_')
+		.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+		.join(' ');
+};
+
+const getScoreColor = (value: number): string => {
+	if (value < 60) return '#ef4444'; // red
+	if (value < 70) return '#f59e0b'; // amber
+	if (value < 85) return '#10b981'; // emerald
+	return '#22c55e'; // green
+};
+
+const getDateRange = (): { start: string; end: string } => {
+	const end = new Date();
+	const start = new Date();
+	start.setDate(start.getDate() - 7);
+
+	const formatYYYYMMDD = (d: Date) => d.toISOString().split('T')[0];
+	return {
+		start: formatYYYYMMDD(start),
+		end: formatYYYYMMDD(end),
 	};
 };
 
-interface OuraDataProps {
-	isExpanded: boolean;
-}
+const MetricItem = ({ label, value }: { label: string; value: number }) => (
+	<div className="flex justify-between items-center py-1">
+		<Small>{label}</Small>
+		<Small
+			className="font-semibold"
+			style={{ color: getScoreColor(value) }}
+		>
+			{value}
+		</Small>
+	</div>
+);
 
-const OuraData = (props: OuraDataProps) => {
-	const { isExpanded } = props;
-	const [data, setData] = useState<OuraData>();
+const OuraData = () => {
+	const [data, setData] = useState<OuraChartData | null>(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+	const [expanded, setExpanded] = useState<MetricType | null>(null);
+
 	useEffect(() => {
-		const getData = async () => {
-			const response = await fetch('https://fhudson.com/api/oura');
-			const json = (await response.json()) as OuraResponse;
+		const fetchData = async () => {
+			const { start, end } = getDateRange();
+			const response = await fetch(
+				`https://fhudson.com/api/oura?start=${start}&end=${end}`
+			);
 
-			const readiness = json.data.readiness.data[0];
-			const sleep = json.data.sleep.data[0];
-			const activity = json.data.activity.data[0];
+			if (!response.ok) {
+				throw new Error('Failed to fetch Oura data');
+			}
+
+			const json = (await response.json()) as OuraRangeResponse;
+
+			const sortedDates = Object.keys(json.dates).sort();
+
+			const readiness: ChartData[] = [];
+			const sleep: ChartData[] = [];
+			const activity: ChartData[] = [];
+
+			let latestReadinessContributors: ReadinessContributors | null =
+				null;
+			let latestSleepContributors: SleepContributors | null = null;
+			let latestActivityContributors: ActivityContributors | null = null;
+
+			for (const date of sortedDates) {
+				const dayData = json.dates[date];
+				const label = formatDate(date);
+
+				const readinessData = dayData.readiness?.data[0];
+				const sleepData = dayData.sleep?.data[0];
+				const activityData = dayData.activity?.data[0];
+
+				if (readinessData?.score) {
+					readiness.push({ label, value: readinessData.score });
+					latestReadinessContributors = readinessData.contributors;
+				}
+				if (sleepData?.score) {
+					sleep.push({ label, value: sleepData.score });
+					latestSleepContributors = sleepData.contributors;
+				}
+				if (activityData?.score) {
+					activity.push({ label, value: activityData.score });
+					latestActivityContributors = activityData.contributors;
+				}
+			}
+
 			setData({
 				readiness,
 				sleep,
 				activity,
+				latestReadinessContributors,
+				latestSleepContributors,
+				latestActivityContributors,
 			});
+			setLoading(false);
 		};
 
-		getData().catch((e: unknown) => {
-			console.log(`Error getting Oura data ${String(e)}`);
-			setData({
-				readiness: null,
-				sleep: null,
-				activity: null,
-			});
+		fetchData().catch((e: unknown) => {
+			console.error('Error fetching Oura data:', e);
+			setError('Failed to load health data');
+			setLoading(false);
 		});
 	}, []);
 
+	if (loading) {
+		return <P className="text-center">Loading health data...</P>;
+	}
+
+	if (error || !data) {
+		return <P className="text-center">{error || 'No data available'}</P>;
+	}
+
+	const latestReadiness = data.readiness[data.readiness.length - 1]?.value;
+	const latestSleep = data.sleep[data.sleep.length - 1]?.value;
+	const latestActivity = data.activity[data.activity.length - 1]?.value;
+
+	const toggleExpanded = (metric: MetricType) => {
+		setExpanded(expanded === metric ? null : metric);
+	};
+
+	const renderContributors = () => {
+		if (!expanded) return null;
+
+		let contributors: Record<string, number> | null = null;
+
+		if (expanded === 'readiness' && data.latestReadinessContributors) {
+			contributors = data.latestReadinessContributors;
+		} else if (expanded === 'sleep' && data.latestSleepContributors) {
+			contributors = data.latestSleepContributors;
+		} else if (expanded === 'activity' && data.latestActivityContributors) {
+			contributors = data.latestActivityContributors;
+		}
+
+		if (!contributors) return null;
+
+		const entries = Object.entries(contributors);
+		const midpoint = Math.ceil(entries.length / 2);
+		const leftColumn = entries.slice(0, midpoint);
+		const rightColumn = entries.slice(midpoint);
+
+		return (
+			<div className="grid grid-cols-2 gap-x-8 gap-y-1 mt-4 pt-4 border-t border-chalkboard-border">
+				<div>
+					{leftColumn.map(([key, value]) => (
+						<MetricItem
+							key={key}
+							label={formatLabel(key)}
+							value={value}
+						/>
+					))}
+				</div>
+				<div>
+					{rightColumn.map(([key, value]) => (
+						<MetricItem
+							key={key}
+							label={formatLabel(key)}
+							value={value}
+						/>
+					))}
+				</div>
+			</div>
+		);
+	};
+
 	return (
-		<div className="flex flex-col m-1">
-			{isExpanded ? (
-				<>
-					<p className="font-bold">
-						Readiness: {data?.readiness?.score}
-					</p>
-					<p className="font-bold">Sleep: {data?.sleep?.score}</p>
-					<p className="font-bold">
-						Activity: {data?.activity?.score}
-					</p>
-				</>
-			) : (
-				<>
-					<p className="font-bold">🧬 {data?.readiness?.score}</p>
-					<p className="font-bold">💤 {data?.sleep?.score}</p>
-					<p className="font-bold">🏃 {data?.activity?.score}</p>
-				</>
+		<div className="flex flex-col gap-6">
+			<div className="grid grid-cols-3 gap-4">
+				<Preview
+					onClick={() => {
+						toggleExpanded('readiness');
+					}}
+				>
+					<PreviewHeader title="Readiness" showArrow={false} />
+					<PreviewContent>
+						<P
+							className="text-3xl font-bold"
+							style={{
+								color: latestReadiness
+									? getScoreColor(latestReadiness)
+									: undefined,
+							}}
+						>
+							{latestReadiness}
+						</P>
+					</PreviewContent>
+				</Preview>
+
+				<Preview
+					onClick={() => {
+						toggleExpanded('sleep');
+					}}
+				>
+					<PreviewHeader title="Sleep" showArrow={false} />
+					<PreviewContent>
+						<P
+							className="text-3xl font-bold"
+							style={{
+								color: latestSleep
+									? getScoreColor(latestSleep)
+									: undefined,
+							}}
+						>
+							{latestSleep}
+						</P>
+					</PreviewContent>
+				</Preview>
+
+				<Preview
+					onClick={() => {
+						toggleExpanded('activity');
+					}}
+				>
+					<PreviewHeader title="Activity" showArrow={false} />
+					<PreviewContent>
+						<P
+							className="text-3xl font-bold"
+							style={{
+								color: latestActivity
+									? getScoreColor(latestActivity)
+									: undefined,
+							}}
+						>
+							{latestActivity}
+						</P>
+					</PreviewContent>
+				</Preview>
+			</div>
+
+			{expanded && (
+				<div className="border border-chalkboard-border rounded-lg p-6">
+					<LineChart
+						data={data[expanded]}
+						height={200}
+						smooth
+						showArea
+					/>
+					{renderContributors()}
+				</div>
 			)}
 		</div>
 	);
