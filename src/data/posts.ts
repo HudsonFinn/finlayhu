@@ -3,6 +3,7 @@ import whyQinRaw from '../posts/whyQin.md?raw';
 import comparisonRaw from '../posts/Comparison.md?raw';
 import review2025Raw from '../posts/2025-review.md?raw';
 import inThisEconomyRaw from '../posts/In-This-Economy.md?raw';
+import jan2026ReviewRaw from '../posts/jan-2026-review.md?raw';
 
 export type Post = {
 	slug: string;
@@ -29,6 +30,7 @@ export const posts: Post[] = [
 	parsePost(comparisonRaw, 'comparison'),
 	parsePost(review2025Raw, '2025-review'),
 	parsePost(inThisEconomyRaw, 'in-this-economy'),
+	parsePost(jan2026ReviewRaw, 'jan-2026-review'),
 ].sort((a, b) => b.created.getTime() - a.created.getTime());
 
 export function getPostBySlug(slug: string): Post | undefined {
