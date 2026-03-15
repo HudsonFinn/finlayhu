@@ -1,6 +1,8 @@
-import { H1 } from 'chalkboard-ui';
+import { Link } from 'react-router-dom';
+import { H1, H2, List, ListItem } from 'chalkboard-ui';
 import OuraData from '../components/OuraData/OuraData';
 import QuoteOfTheDay from '../components/QuoteOfTheDay/QuoteOfTheDay';
+import { principles } from '../data/posts';
 
 const getGreeting = (): string => {
 	const hour = new Date().getHours();
@@ -19,6 +21,22 @@ function NewTabPage() {
 			</header>
 
 			<OuraData />
+
+			<section className="mt-12">
+				<H2 className="mb-4">Principles</H2>
+				<List>
+					{principles.map((p) => (
+						<ListItem key={p.slug}>
+							<Link
+								to={`/vault/${p.slug}`}
+								className="hover:text-chalkboard-accent transition-colors"
+							>
+								{p.title}
+							</Link>
+						</ListItem>
+					))}
+				</List>
+			</section>
 		</div>
 	);
 }
