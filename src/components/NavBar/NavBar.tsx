@@ -15,6 +15,11 @@ function NavBar() {
 				href: '/new-tab',
 				icon: 'external-link' as const,
 			},
+			{
+				label: 'Projects',
+				href: '/projects',
+				icon: 'link' as const,
+			},
 		],
 	};
 

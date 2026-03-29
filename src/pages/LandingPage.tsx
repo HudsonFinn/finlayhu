@@ -32,6 +32,12 @@ function LandingPage() {
 					<PreviewHeader title="New Tab" />
 					<PreviewDescription>Quotes and data</PreviewDescription>
 				</Preview>
+				<Preview as={Link} href="/projects" className="w-64">
+					<PreviewHeader title="Projects" />
+					<PreviewDescription>
+						Things I am building
+					</PreviewDescription>
+				</Preview>
 			</div>
 		</div>
 	);

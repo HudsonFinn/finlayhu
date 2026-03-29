@@ -12,6 +12,7 @@ import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
 import NewTabPage from './pages/NewTabPage.tsx';
+import ProjectsPage from './pages/ProjectsPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
 			{
 				path: 'new-tab',
 				element: <NewTabPage />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: 'projects',
+				element: <ProjectsPage />,
 				errorElement: <ErrorPage />,
 			},
 			{
