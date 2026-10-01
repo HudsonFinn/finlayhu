@@ -44,3 +44,17 @@
 		linear-gradient(90deg, var(--sl-grid) 1px, transparent 1px);
 	background-size: var(--sl-grid-size) var(--sl-grid-size);
 }
+
+/* Motion */
+@theme {
+	--animate-node-travel: node-travel 0.9s ease-in-out infinite alternate;
+
+	@keyframes node-travel {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(var(--travel, 1.75rem));
+		}
+	}
+}

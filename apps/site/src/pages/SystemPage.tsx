@@ -14,6 +14,7 @@ import {
 } from '@fhudson/ui';
 import { TypeAndActions } from './system/TypeAndActions';
 import { Structure } from './system/Structure';
+import { Data } from './system/Data';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -398,6 +399,7 @@ function SystemPage() {
 					</header>
 					<TypeAndActions />
 					<Structure />
+					<Data />
 				</section>
 
 				<TitleBlock
