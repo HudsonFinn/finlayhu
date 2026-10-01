@@ -28,5 +28,5 @@ export * from './components/EmptyState';
 export * from './components/Spinner';
 export * from './components/Checkbox';
 export * from './components/Table';
-export * from './components/LineChart';
+export * from './components/Chart';
 export * from './components/Symbols';

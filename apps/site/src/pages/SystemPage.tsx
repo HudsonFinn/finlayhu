@@ -16,6 +16,7 @@ import { TypeAndActions } from './system/TypeAndActions';
 import { Structure } from './system/Structure';
 import { Data } from './system/Data';
 import { Symbols } from './system/Symbols';
+import { Charts } from './system/Charts';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -401,6 +402,7 @@ function SystemPage() {
 					<TypeAndActions />
 					<Structure />
 					<Data />
+					<Charts />
 					<Symbols />
 				</section>
 

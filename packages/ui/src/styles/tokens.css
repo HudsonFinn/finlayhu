@@ -16,6 +16,36 @@
 	--sl-grid: rgb(20 32 30 / 5.5%);
 	--sl-color-scheme: light;
 
+	/*
+	 * Data colours. Series slots are assigned in this order and never cycled; past six,
+	 * fold into "Other" or use small multiples. Validated with the dataviz six-checks
+	 * validator against paper: worst adjacent CVD ΔE 13.1, normal-vision ΔE 21.7, all
+	 * >= 3:1. Slots 1-3 also pass all-pairs (scatter): CVD ΔE 8.5. Amber and fault are
+	 * status colours and are never used for series.
+	 */
+	--sl-series-1: #028f73; /* verdigris */
+	--sl-series-2: #285cc2; /* cobalt */
+	--sl-series-3: #dd5f9d; /* magenta */
+	--sl-series-4: #548c03; /* olive */
+	--sl-series-5: #6b37a5; /* violet */
+	--sl-series-6: #0394bc; /* sky */
+	/* Sequential (magnitude), verdigris light -> dark. Ordinal use starts at step 4. */
+	--sl-seq-1: #d8f2e9;
+	--sl-seq-2: #ade2d0;
+	--sl-seq-3: #7bceb4;
+	--sl-seq-4: #3fb596;
+	--sl-seq-5: #08997b;
+	--sl-seq-6: #007b62;
+	--sl-seq-7: #015e4a;
+	/* Diverging: verdigris (below) <-> neutral <-> magenta (above) */
+	--sl-div-1: #04755d;
+	--sl-div-2: #45a68b;
+	--sl-div-3: #9dd1c0;
+	--sl-div-4: #e5e9e7;
+	--sl-div-5: #e4b5c8;
+	--sl-div-6: #c17899;
+	--sl-div-7: #95426a;
+
 	--sl-font-display: 'Michroma', 'Eurostile', 'Arial', sans-serif;
 	--sl-font-body: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial,
 		sans-serif;
@@ -60,6 +90,28 @@
 		--sl-fault: #f07a70;
 		--sl-grid: rgb(143 179 173 / 7%);
 		--sl-color-scheme: dark;
+
+		--sl-series-1: #028f73;
+		--sl-series-2: #568ef9;
+		--sl-series-3: #d6649f;
+		--sl-series-4: #5d9a07;
+		--sl-series-5: #824fbf;
+		--sl-series-6: #01a1cd;
+		/* Sequential flips in dark: near the surface for low values, bright for high */
+		--sl-seq-1: #0e2d24;
+		--sl-seq-2: #0f4537;
+		--sl-seq-3: #10614d;
+		--sl-seq-4: #0c7e65;
+		--sl-seq-5: #1f9f81;
+		--sl-seq-6: #43c09f;
+		--sl-seq-7: #74dfbf;
+		--sl-div-1: #3fbd9c;
+		--sl-div-2: #278d73;
+		--sl-div-3: #205f4e;
+		--sl-div-4: #2a2f2d;
+		--sl-div-5: #704257;
+		--sl-div-6: #a76080;
+		--sl-div-7: #de84ac;
 	}
 }
 
@@ -75,4 +127,26 @@
 	--sl-fault: #f07a70;
 	--sl-grid: rgb(143 179 173 / 7%);
 	--sl-color-scheme: dark;
+
+	--sl-series-1: #028f73;
+	--sl-series-2: #568ef9;
+	--sl-series-3: #d6649f;
+	--sl-series-4: #5d9a07;
+	--sl-series-5: #824fbf;
+	--sl-series-6: #01a1cd;
+	/* Sequential flips in dark: near the surface for low values, bright for high */
+	--sl-seq-1: #0e2d24;
+	--sl-seq-2: #0f4537;
+	--sl-seq-3: #10614d;
+	--sl-seq-4: #0c7e65;
+	--sl-seq-5: #1f9f81;
+	--sl-seq-6: #43c09f;
+	--sl-seq-7: #74dfbf;
+	--sl-div-1: #3fbd9c;
+	--sl-div-2: #278d73;
+	--sl-div-3: #205f4e;
+	--sl-div-4: #2a2f2d;
+	--sl-div-5: #704257;
+	--sl-div-6: #a76080;
+	--sl-div-7: #de84ac;
 }

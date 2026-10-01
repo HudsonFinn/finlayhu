@@ -6,7 +6,6 @@ import {
 	Column,
 	ColumnResizer,
 	EmptyState,
-	LineChart,
 	Link,
 	List,
 	ListItem,
@@ -27,18 +26,6 @@ import {
 import { useMemo, useState } from 'react';
 import { posts } from '../../data/posts';
 import { Demo, Example } from './Demo';
-
-// Real readiness scores from the Oura API, 24 Sep to 1 Oct 2026. null = ring not worn.
-const readiness = [
-	{ label: '24 Sep', value: 75 },
-	{ label: '25 Sep', value: 73 },
-	{ label: '26 Sep', value: null },
-	{ label: '27 Sep', value: 88 },
-	{ label: '28 Sep', value: 80 },
-	{ label: '29 Sep', value: null },
-	{ label: '30 Sep', value: null },
-	{ label: '1 Oct', value: null },
-];
 
 // Illustrative only: invented substations in the shape of an LTDS table
 const substations = [
@@ -286,22 +273,6 @@ export function Data() {
 					<Stat label="Demand" value="27.4" unit="GW" />
 					<Stat label="Carbon" value={142} unit="g/kWh" />
 				</div>
-			</Demo>
-
-			<Demo
-				name="LineChart"
-				summary="A line over time, with gaps where data is missing."
-			>
-				<LineChart
-					data={readiness}
-					label="Readiness, last 8 days"
-					yDomain={[50, 100]}
-					showArea
-				/>
-				<Text variant="small" tone="muted">
-					Your real readiness scores. Crosses on the axis mark days
-					the ring wasn&rsquo;t worn.
-				</Text>
 			</Demo>
 
 			<Demo

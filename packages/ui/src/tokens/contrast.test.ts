@@ -15,7 +15,7 @@ function readBlock(selector: string): Record<string, string> {
 	);
 	const values: Record<string, string> = {};
 	for (const [, name, value] of body.matchAll(
-		/--sl-([a-z-]+):\s*(#[0-9a-f]{6})/gi
+		/--sl-([a-z0-9-]+):\s*(#[0-9a-f]{6})/gi
 	)) {
 		values[name] = value;
 	}
@@ -42,4 +42,17 @@ describe.each(Object.entries(themes))('%s theme', (_, colors) => {
 
 test('the system-preference dark block matches the data-theme dark block', () => {
 	expect(readBlock(":root:not([data-theme='light'])")).toEqual(themes.dark);
+});
+
+describe.each(Object.entries(themes))('%s theme data colours', (_, colors) => {
+	test.each([1, 2, 3, 4, 5, 6])(
+		'series %d is at least 3:1 against paper',
+		(slot) => {
+			const color = colors[`series-${String(slot)}`];
+			expect(color).toBeDefined();
+			expect(contrastRatio(color, colors.paper)).toBeGreaterThanOrEqual(
+				3
+			);
+		}
+	);
 });

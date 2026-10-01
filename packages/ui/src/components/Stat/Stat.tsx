@@ -5,6 +5,7 @@ import {
 } from 'react';
 import { cn } from '../../lib/cn';
 import { stateText, type State } from '../../lib/state';
+import { Sparkline } from '../Chart/Sparkline';
 
 export interface StatProps extends ComponentPropsWithoutRef<'div'> {
 	label: ReactNode;
@@ -14,11 +15,13 @@ export interface StatProps extends ComponentPropsWithoutRef<'div'> {
 	note?: ReactNode;
 	/** Colours the value. */
 	state?: State;
+	/** Recent values, drawn as a sparkline under the reading. */
+	trend?: (number | null)[];
 }
 
 /** One number with its label: a reading from an instrument. */
 export const Stat = forwardRef<HTMLDivElement, StatProps>(function Stat(
-	{ label, value, unit, note, state, className, ...props },
+	{ label, value, unit, note, state, trend, className, ...props },
 	ref
 ) {
 	const missing = value === null;
@@ -57,6 +60,14 @@ export const Stat = forwardRef<HTMLDivElement, StatProps>(function Stat(
 				<span className="font-data text-label text-ink-muted">
 					{note}
 				</span>
+			)}
+			{trend && trend.length > 1 && (
+				<Sparkline
+					values={trend}
+					label={
+						typeof label === 'string' ? `${label} trend` : 'Trend'
+					}
+				/>
 			)}
 		</div>
 	);

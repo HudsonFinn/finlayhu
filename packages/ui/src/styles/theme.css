@@ -13,6 +13,12 @@
 	--color-on-verdigris: var(--sl-on-verdigris);
 	--color-amber: var(--sl-amber);
 	--color-fault: var(--sl-fault);
+	--color-series-1: var(--sl-series-1);
+	--color-series-2: var(--sl-series-2);
+	--color-series-3: var(--sl-series-3);
+	--color-series-4: var(--sl-series-4);
+	--color-series-5: var(--sl-series-5);
+	--color-series-6: var(--sl-series-6);
 
 	--font-display: var(--sl-font-display);
 	--font-body: var(--sl-font-body);

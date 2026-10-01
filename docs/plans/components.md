@@ -485,6 +485,43 @@ interface BusbarProps extends SymbolProps {
 
 ---
 
+## Charts
+
+Built ahead of need, following the dataviz method: pick the form from the data's job, colour
+by role, validate the palette, hover by default, and keep every value readable without hover.
+
+| Chart          | For                                                           | Notes                                                                                                                                                                  |
+| -------------- | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `LineChart`    | Trends over time                                              | One series (`data`) or up to six (`categories` + `series`). `curve="step"` for prices and settlement periods. Gaps for missing values, marked with a cross on the axis |
+| `AreaChart`    | How a total splits into parts over time                       | Stacked, with a 2px surface gap between bands and a total in the tooltip                                                                                               |
+| `BarChart`     | Comparing values                                              | Vertical or horizontal, grouped or stacked, values below zero. Square ends, at most 24px thick                                                                         |
+| `Heatmap`      | A value over two dimensions, such as settlement period by day | Seven-step verdigris ramp, with a scale legend                                                                                                                         |
+| `ScatterChart` | Two measures against each other                               | Up to three series, each with its own marker shape                                                                                                                     |
+| `Sparkline`    | A small trend inside Stat or a table                          | Not interactive; its accessible name carries first, last, low and high                                                                                                 |
+| `Meter`        | One value against a limit                                     | `role="meter"`; the fill carries the state                                                                                                                             |
+
+Shared behaviour:
+
+-   **Hover and keyboard.** Every plot is one focusable area. Pointer or arrow keys move a crosshair
+    (lines, areas), a band (bars) or a cell (heatmap); the tooltip lists every series, value first.
+    Keyboard reading is announced through a live region.
+-   **Data table.** Every chart has a "Show table" toggle. The table is always available to screen
+    readers, so no value is only reachable by hovering.
+-   **Real pixel size.** Charts measure their container and draw at that width, so 10px labels stay
+    10px on phones. Category labels that don't fit their band are shortened.
+-   **No dual axes, ever.** Two measures with different scales get two charts.
+
+Colour (tokens in `tokens.css`, validated with the dataviz six-checks validator):
+
+-   **Series:** six slots in a fixed order, never cycled: verdigris, cobalt, magenta, olive, violet,
+    sky. Worst adjacent CVD ΔE 13.1 and normal-vision ΔE 21.7 in both themes. Slots 1–3 also pass
+    all-pairs, which is why scatter is capped at three series.
+-   **Status colours stay reserved.** Amber and fault never colour a series.
+-   **Sequential:** `--sl-seq-1` to `--sl-seq-7`, verdigris, flipped for dark mode.
+-   **Diverging:** `--sl-div-1` to `--sl-div-7`, verdigris to magenta through a neutral midpoint.
+-   Brand verdigris (`#0c6157`) fails the series chroma floor, so series slot 1 is a brighter
+    verdigris (`#028f73`).
+
 ## Tier 2 · build when first needed
 
 ### Forms
