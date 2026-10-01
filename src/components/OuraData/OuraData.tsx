@@ -66,15 +66,21 @@ type OuraChartData = {
 	readiness: ChartData[];
 	sleep: ChartData[];
 	activity: ChartData[];
-	latestReadinessContributors: ReadinessContributors | null;
-	latestSleepContributors: SleepContributors | null;
-	latestActivityContributors: ActivityContributors | null;
+	// Tiles only show today's scores, so a day without the ring reads as empty
+	todayReadiness: number | null;
+	todaySleep: number | null;
+	todayActivity: number | null;
+	todayReadinessContributors: ReadinessContributors | null;
+	todaySleepContributors: SleepContributors | null;
+	todayActivityContributors: ActivityContributors | null;
 };
 
 type MetricType = 'readiness' | 'sleep' | 'activity';
 
+// Parse YYYY-MM-DD as a local date; new Date('YYYY-MM-DD') is UTC and can shift a day
 const formatDate = (dateStr: string): string => {
-	const date = new Date(dateStr);
+	const [year, month, day] = dateStr.split('-').map(Number);
+	const date = new Date(year, month - 1, day);
 	return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 };
 
@@ -92,12 +98,18 @@ const getScoreColor = (value: number): string => {
 	return '#22c55e'; // green
 };
 
+const formatYYYYMMDD = (d: Date): string =>
+	[
+		d.getFullYear(),
+		String(d.getMonth() + 1).padStart(2, '0'),
+		String(d.getDate()).padStart(2, '0'),
+	].join('-');
+
 const getDateRange = (): { start: string; end: string } => {
 	const end = new Date();
 	const start = new Date();
 	start.setDate(start.getDate() - 7);
 
-	const formatYYYYMMDD = (d: Date) => d.toISOString().split('T')[0];
 	return {
 		start: formatYYYYMMDD(start),
 		end: formatYYYYMMDD(end),
@@ -133,7 +145,13 @@ const OuraData = () => {
 				throw new Error('Failed to fetch Oura data');
 			}
 
-			const json = (await response.json()) as OuraRangeResponse;
+			const json = (await response.json()) as Partial<OuraRangeResponse>;
+
+			if (!json.dates || typeof json.dates !== 'object') {
+				throw new Error(
+					'Unexpected Oura response shape: missing "dates" (are query params reaching the API?)'
+				);
+			}
 
 			const sortedDates = Object.keys(json.dates).sort();
 
@@ -141,10 +159,14 @@ const OuraData = () => {
 			const sleep: ChartData[] = [];
 			const activity: ChartData[] = [];
 
-			let latestReadinessContributors: ReadinessContributors | null =
-				null;
-			let latestSleepContributors: SleepContributors | null = null;
-			let latestActivityContributors: ActivityContributors | null = null;
+			const today = formatYYYYMMDD(new Date());
+			// No entry for today when the ring hasn't synced yet
+			const todayData = json.dates[today] as
+				| OuraRangeResponse['dates'][string]
+				| undefined;
+			const todayReadinessData = todayData?.readiness?.data[0];
+			const todaySleepData = todayData?.sleep?.data[0];
+			const todayActivityData = todayData?.activity?.data[0];
 
 			for (const date of sortedDates) {
 				const dayData = json.dates[date];
@@ -156,15 +178,12 @@ const OuraData = () => {
 
 				if (readinessData?.score) {
 					readiness.push({ label, value: readinessData.score });
-					latestReadinessContributors = readinessData.contributors;
 				}
 				if (sleepData?.score) {
 					sleep.push({ label, value: sleepData.score });
-					latestSleepContributors = sleepData.contributors;
 				}
 				if (activityData?.score) {
 					activity.push({ label, value: activityData.score });
-					latestActivityContributors = activityData.contributors;
 				}
 			}
 
@@ -172,9 +191,14 @@ const OuraData = () => {
 				readiness,
 				sleep,
 				activity,
-				latestReadinessContributors,
-				latestSleepContributors,
-				latestActivityContributors,
+				todayReadiness: todayReadinessData?.score ?? null,
+				todaySleep: todaySleepData?.score ?? null,
+				todayActivity: todayActivityData?.score ?? null,
+				todayReadinessContributors:
+					todayReadinessData?.contributors ?? null,
+				todaySleepContributors: todaySleepData?.contributors ?? null,
+				todayActivityContributors:
+					todayActivityData?.contributors ?? null,
 			});
 			setLoading(false);
 		};
@@ -194,9 +218,13 @@ const OuraData = () => {
 		return <P className="text-center">{error || 'No data available'}</P>;
 	}
 
-	const latestReadiness = data.readiness[data.readiness.length - 1]?.value;
-	const latestSleep = data.sleep[data.sleep.length - 1]?.value;
-	const latestActivity = data.activity[data.activity.length - 1]?.value;
+	if (
+		data.readiness.length === 0 &&
+		data.sleep.length === 0 &&
+		data.activity.length === 0
+	) {
+		return <P className="text-center">No health data in the last week</P>;
+	}
 
 	const toggleExpanded = (metric: MetricType) => {
 		setExpanded(expanded === metric ? null : metric);
@@ -207,12 +235,12 @@ const OuraData = () => {
 
 		let contributors: Record<string, number> | null = null;
 
-		if (expanded === 'readiness' && data.latestReadinessContributors) {
-			contributors = data.latestReadinessContributors;
-		} else if (expanded === 'sleep' && data.latestSleepContributors) {
-			contributors = data.latestSleepContributors;
-		} else if (expanded === 'activity' && data.latestActivityContributors) {
-			contributors = data.latestActivityContributors;
+		if (expanded === 'readiness' && data.todayReadinessContributors) {
+			contributors = data.todayReadinessContributors;
+		} else if (expanded === 'sleep' && data.todaySleepContributors) {
+			contributors = data.todaySleepContributors;
+		} else if (expanded === 'activity' && data.todayActivityContributors) {
+			contributors = data.todayActivityContributors;
 		}
 
 		if (!contributors) return null;
@@ -259,12 +287,12 @@ const OuraData = () => {
 						<P
 							className="text-3xl font-bold"
 							style={{
-								color: latestReadiness
-									? getScoreColor(latestReadiness)
+								color: data.todayReadiness
+									? getScoreColor(data.todayReadiness)
 									: undefined,
 							}}
 						>
-							{latestReadiness}
+							{data.todayReadiness ?? '–'}
 						</P>
 					</PreviewContent>
 				</Preview>
@@ -279,12 +307,12 @@ const OuraData = () => {
 						<P
 							className="text-3xl font-bold"
 							style={{
-								color: latestSleep
-									? getScoreColor(latestSleep)
+								color: data.todaySleep
+									? getScoreColor(data.todaySleep)
 									: undefined,
 							}}
 						>
-							{latestSleep}
+							{data.todaySleep ?? '–'}
 						</P>
 					</PreviewContent>
 				</Preview>
@@ -299,12 +327,12 @@ const OuraData = () => {
 						<P
 							className="text-3xl font-bold"
 							style={{
-								color: latestActivity
-									? getScoreColor(latestActivity)
+								color: data.todayActivity
+									? getScoreColor(data.todayActivity)
 									: undefined,
 							}}
 						>
-							{latestActivity}
+							{data.todayActivity ?? '–'}
 						</P>
 					</PreviewContent>
 				</Preview>
