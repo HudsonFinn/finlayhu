@@ -105,7 +105,9 @@ export function TableHeader<T extends object>({
 			{selectionBehavior === 'toggle' && (
 				<RACColumn width={44} minWidth={44} className="px-3 py-2.5">
 					{selectionMode === 'multiple' && (
-						<Checkbox slot="selection" />
+						<div className="flex items-center">
+							<Checkbox slot="selection" />
+						</div>
 					)}
 				</RACColumn>
 			)}
@@ -174,8 +176,10 @@ export function ColumnResizer({ className, ...props }: ColumnResizerProps) {
 		<RACColumnResizer
 			className={composeRenderProps(className, (className) =>
 				cn(
-					'absolute top-1 right-0 bottom-1 w-1.5 cursor-col-resize border-r-[1.5px] border-hairline outline-none',
-					'data-hovered:border-ink data-resizing:border-verdigris data-focus-visible:border-verdigris',
+					// The hit area straddles the column boundary, so the visible line is in its middle
+					'absolute top-0 -right-1.5 bottom-0 z-20 w-3 cursor-col-resize touch-none outline-none',
+					'before:absolute before:inset-y-1.5 before:left-[calc(50%-0.75px)] before:w-[1.5px] before:bg-hairline',
+					'data-hovered:before:bg-ink data-resizing:before:bg-verdigris data-focus-visible:before:bg-verdigris',
 					className
 				)
 			)}
@@ -214,8 +218,7 @@ export function Row<T extends object>({
 					'border-b border-hairline outline-none transition-colors',
 					'data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
 					'data-href:cursor-pointer data-hovered:bg-sheet',
-					// A verdigris rule on the leading edge of a selected row. Drawn with a pseudo-element:
-					// Chrome doesn't paint box-shadow on cells in a border-collapse table.
+					// A verdigris rule on the leading edge of a selected row
 					'data-selected:bg-sheet [&>td:first-child]:relative [&>td:first-child]:before:absolute [&>td:first-child]:before:inset-y-0 [&>td:first-child]:before:left-0 [&>td:first-child]:before:w-[3px] data-selected:[&>td:first-child]:before:bg-verdigris',
 					className
 				)
@@ -224,7 +227,10 @@ export function Row<T extends object>({
 		>
 			{selectionBehavior === 'toggle' && (
 				<Cell>
-					<Checkbox slot="selection" />
+					{/* A flex box, so the row keeps its height when the tick appears */}
+					<div className="flex items-center">
+						<Checkbox slot="selection" />
+					</div>
 				</Cell>
 			)}
 			<Collection items={columns}>{children}</Collection>

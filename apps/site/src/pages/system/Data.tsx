@@ -299,8 +299,8 @@ export function Data() {
 					showArea
 				/>
 				<Text variant="small" tone="muted">
-					Your real readiness scores. Ticks on the axis mark days the
-					ring wasn&rsquo;t worn.
+					Your real readiness scores. Crosses on the axis mark days
+					the ring wasn&rsquo;t worn.
 				</Text>
 			</Demo>
 

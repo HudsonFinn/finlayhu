@@ -17,7 +17,11 @@ test('breaks the line at missing values', () => {
 		'path[stroke="var(--sl-verdigris)"]'
 	);
 	expect(lines).toHaveLength(2);
-	expect(container.querySelectorAll('circle')).toHaveLength(4);
+	// Square points for the four readings, and a cross for each of the two gaps
+	expect(container.querySelectorAll('rect')).toHaveLength(4);
+	expect(
+		container.querySelectorAll('path[stroke="var(--sl-ink-muted)"]')
+	).toHaveLength(2);
 });
 
 test('gives screen readers a table of the values', () => {

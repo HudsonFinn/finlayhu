@@ -54,8 +54,18 @@ export function TypeAndActions() {
 					Each LTDS circuit has a <Code>circuitId</Code> that should
 					be stable between releases.
 				</Text>
-				<CodeBlock language="TypeScript">{`const circuits = await loadLtds('NPg', '2026-Q3');
-console.log(circuits.length); // 4812`}</CodeBlock>
+				<CodeBlock language="TypeScript">{`// Load one network operator's LTDS release and count overloaded circuits
+interface Circuit {
+	id: string;
+	ratingMva: number;
+	peakMva: number;
+}
+
+export async function overloaded(operator: string): Promise<Circuit[]> {
+	const circuits = await loadLtds(operator, '2026-Q3');
+	return circuits.filter((c) => c.peakMva > c.ratingMva * 0.95);
+}`}</CodeBlock>
+				<CodeBlock language="JSON">{`{ "substation": "Dunmore", "voltage": "33/11", "firmMva": 12, "constrained": true }`}</CodeBlock>
 			</Demo>
 
 			<Demo
