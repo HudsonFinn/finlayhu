@@ -59,7 +59,8 @@ type OuraRangeResponse = {
 
 type ChartData = {
 	label: string;
-	value: number;
+	// null for days without a score, so the chart shows the gap
+	value: number | null;
 };
 
 type OuraChartData = {
@@ -153,8 +154,6 @@ const OuraData = () => {
 				);
 			}
 
-			const sortedDates = Object.keys(json.dates).sort();
-
 			const readiness: ChartData[] = [];
 			const sleep: ChartData[] = [];
 			const activity: ChartData[] = [];
@@ -168,23 +167,28 @@ const OuraData = () => {
 			const todaySleepData = todayData?.sleep?.data[0];
 			const todayActivityData = todayData?.activity?.data[0];
 
-			for (const date of sortedDates) {
-				const dayData = json.dates[date];
+			// Walk every day in the range, not just the dates the API returned
+			const day = new Date(`${start}T00:00:00`);
+			for (let date = start; date <= end; date = formatYYYYMMDD(day)) {
+				const dayData = json.dates[date] as
+					| OuraRangeResponse['dates'][string]
+					| undefined;
 				const label = formatDate(date);
 
-				const readinessData = dayData.readiness?.data[0];
-				const sleepData = dayData.sleep?.data[0];
-				const activityData = dayData.activity?.data[0];
+				readiness.push({
+					label,
+					value: dayData?.readiness?.data[0]?.score ?? null,
+				});
+				sleep.push({
+					label,
+					value: dayData?.sleep?.data[0]?.score ?? null,
+				});
+				activity.push({
+					label,
+					value: dayData?.activity?.data[0]?.score ?? null,
+				});
 
-				if (readinessData?.score) {
-					readiness.push({ label, value: readinessData.score });
-				}
-				if (sleepData?.score) {
-					sleep.push({ label, value: sleepData.score });
-				}
-				if (activityData?.score) {
-					activity.push({ label, value: activityData.score });
-				}
+				day.setDate(day.getDate() + 1);
 			}
 
 			setData({
@@ -218,10 +222,13 @@ const OuraData = () => {
 		return <P className="text-center">{error || 'No data available'}</P>;
 	}
 
+	const hasNoScores = (points: ChartData[]) =>
+		points.every((point) => point.value === null);
+
 	if (
-		data.readiness.length === 0 &&
-		data.sleep.length === 0 &&
-		data.activity.length === 0
+		hasNoScores(data.readiness) &&
+		hasNoScores(data.sleep) &&
+		hasNoScores(data.activity)
 	) {
 		return <P className="text-center">No health data in the last week</P>;
 	}
