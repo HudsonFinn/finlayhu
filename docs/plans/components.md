@@ -1,6 +1,6 @@
 # Single Line components
 
-Status: draft for review · 1 October 2026
+Status: Tier 1 built · 1 October 2026
 
 The component spec for `@fhudson/ui`. It covers Tier 1 (what the site needs to leave
 Chalkboard) and Tier 2 (the standard set most design systems have, built when first needed).
@@ -9,6 +9,25 @@ Tier 3 is listed at the end and not specified.
 Decisions this builds on: interactive behaviour comes from **React Aria Components**, names
 follow **common design-system usage** (checked against component.gallery and Open UI), and the
 written format for each component follows **GOV.UK Design System** pages.
+
+## Changes made during the Tier 1 build
+
+The entries below describe the components as built. Where the build differed from the first
+draft of this spec:
+
+-   **Checkbox** is built on React Aria's `CheckboxField` and `CheckboxButton`. React Aria 1.21
+    deprecated its single `Checkbox` component. The props are unchanged.
+-   **Table** adds `TableContainer` (scrolling wrapper with a sticky header), a styled
+    `ColumnResizer`, and a `TableLoadMoreItem` that shows a Spinner. `ResizableTableContainer`,
+    `Virtualizer` and `TableLayout` are re-exported from React Aria, along with the `Key`,
+    `Selection` and `SortDescriptor` types, so apps never import React Aria directly.
+-   **PanelHeader** takes an `href` that makes the whole panel a link.
+-   **SiteHeader**'s phone menu is a React Aria `Button` with `aria-expanded`, not a Disclosure:
+    the list must always be visible on wider screens, which Disclosure doesn't allow.
+-   **Type sizes** live in `tokens.css` as `--sl-text-*`, so CSS such as Prose can use them.
+    `lead` (22px) and `h4` (17px) were added to the scale.
+-   **Shared isolation:** while chalkboard-ui is still loaded, `isolation.css` stops its unlayered
+    reset overriding Single Line inside `.sl-page`. It is deleted in Phase 4.
 
 ## Conventions
 

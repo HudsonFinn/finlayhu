@@ -1,6 +1,6 @@
 # Plan: fhudson monorepo and the Single Line design system
 
-Status: approved · 1 October 2026 · Phases 1 and 2 done
+Status: approved · 1 October 2026 · Phases 1 and 2 done, Phase 3 Tier 1 built
 
 ## Goal
 

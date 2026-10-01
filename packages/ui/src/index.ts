@@ -29,3 +29,4 @@ export * from './components/Spinner';
 export * from './components/Checkbox';
 export * from './components/Table';
 export * from './components/LineChart';
+export * from './components/Symbols';

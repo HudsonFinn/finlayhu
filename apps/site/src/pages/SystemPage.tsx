@@ -15,6 +15,7 @@ import {
 import { TypeAndActions } from './system/TypeAndActions';
 import { Structure } from './system/Structure';
 import { Data } from './system/Data';
+import { Symbols } from './system/Symbols';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -388,18 +389,19 @@ function SystemPage() {
 				>
 					<header className="flex flex-col gap-2">
 						<p className="font-data text-label uppercase tracking-widest text-ink-muted">
-							Components · Tier 1, in progress
+							Components · Tier 1
 						</p>
 						<h2
 							id="components"
 							className="font-display text-h3 uppercase tracking-wide text-balance"
 						>
-							Built so far
+							Tier 1 components
 						</h2>
 					</header>
 					<TypeAndActions />
 					<Structure />
 					<Data />
+					<Symbols />
 				</section>
 
 				<TitleBlock
