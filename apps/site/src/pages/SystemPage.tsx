@@ -8,9 +8,12 @@ import {
 	typeFaces,
 	typeScale,
 	useTheme,
+	NodeMark,
+	TitleBlock,
 	type ThemeChoice,
 } from '@fhudson/ui';
 import { TypeAndActions } from './system/TypeAndActions';
+import { Structure } from './system/Structure';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -47,26 +50,6 @@ function useTokenValues(choice: ThemeChoice) {
 	}, [choice]);
 
 	return { values, isDark };
-}
-
-function NodeMark({ className = '' }: { className?: string }) {
-	return (
-		<svg viewBox="0 0 48 20" className={className} aria-hidden="true">
-			<path
-				d="M2 10H17M31 10H46"
-				stroke="var(--sl-ink)"
-				strokeWidth="var(--sl-stroke-busbar)"
-			/>
-			<circle
-				cx="24"
-				cy="10"
-				r="6"
-				fill="var(--sl-paper)"
-				stroke="var(--sl-verdigris)"
-				strokeWidth="var(--sl-stroke-busbar)"
-			/>
-		</svg>
-	);
 }
 
 function Section({
@@ -125,7 +108,10 @@ function SystemPage() {
 
 	return (
 		<div className="sl-page min-h-screen">
-			<main className="mx-auto flex max-w-5xl flex-col gap-14 px-4 py-12 sm:px-8">
+			<main
+				id="main"
+				className="mx-auto flex max-w-5xl flex-col gap-14 px-4 py-12 sm:px-8"
+			>
 				<header className="flex flex-col gap-6">
 					<div className="flex items-center gap-3">
 						<NodeMark className="h-5 w-12" />
@@ -411,26 +397,17 @@ function SystemPage() {
 						</h2>
 					</header>
 					<TypeAndActions />
+					<Structure />
 				</section>
 
-				<footer className="grid grid-cols-2 border border-ink font-data text-label sm:grid-cols-4">
-					{[
-						['Drawing', 'FH-SYS-001'],
-						['Phase', '3 · Components'],
-						['Rev', 'A'],
-						['Date', '01.10.26'],
-					].map(([key, value]) => (
-						<div
-							key={key}
-							className="flex flex-col gap-1 border-hairline px-3 py-2 not-last:border-r"
-						>
-							<span className="uppercase tracking-widest text-ink-muted">
-								{key}
-							</span>
-							<span>{value}</span>
-						</div>
-					))}
-				</footer>
+				<TitleBlock
+					fields={[
+						{ label: 'Drawing', value: 'FH-SYS-001' },
+						{ label: 'Phase', value: '3 · Components' },
+						{ label: 'Rev', value: 'B' },
+						{ label: 'Date', value: '01.10.26' },
+					]}
+				/>
 			</main>
 		</div>
 	);

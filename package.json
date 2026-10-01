@@ -10,6 +10,7 @@
 		"dev": "bun run --filter @fhudson/site dev",
 		"build": "bun run --filter './apps/*' build",
 		"test": "bun run --filter './packages/*' test",
+		"typecheck": "bun run --filter './packages/*' typecheck",
 		"preview": "bun run --filter @fhudson/site preview",
 		"lint": "eslint . --fix --max-warnings=0",
 		"format": "prettier . --write",
