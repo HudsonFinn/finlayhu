@@ -1,0 +1,26 @@
+# fhudson.com
+
+### Setup
+
+From the repo root:
+
+-   bun install
+-   bun run dev
+
+### TODO:
+
+-   [x] Add styling for the darkmode toggle
+-   [ ] Add ability to darkmode preference to local storage
+-   [ ] Switch landing page animations to use Framer Motion
+-   [ ] Add defaultCollapsed prop to chalkboard-ui Navbar component
+-   [ ] Add blog post versioning with diff viewing
+-   [x] Add API call to get my Oura ring data
+-   [ ] Fix OuraData color coding to use Tailwind classes instead of inline styles
+-   [ ] Add way to automatically sync the articles published with my local notes
+    -   [ ] Setup articles to be served from S3
+    -   [ ] Vault will fetch avaliable articles and serve them to the user
+-   [ ] Add login
+    -   [ ] Expose specific endpoints only to logged in users
+        -   [ ] Personal LLM
+        -   [ ] Personal notes
+-   [ ] Setup email list

@@ -7,7 +7,7 @@ import eslintConfigPrettier from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 
 export default tseslint.config(
-	{ ignores: ['dist'] },
+	{ ignores: ['**/dist', '**/node_modules'] },
 	{
 		extends: [
 			// js.configs.strict,
@@ -20,7 +20,8 @@ export default tseslint.config(
 			ecmaVersion: 2020,
 			globals: globals.browser,
 			parserOptions: {
-				project: ['./tsconfig.node.json', './tsconfig.app.json'],
+				// Finds the nearest tsconfig for each file, so every workspace is covered
+				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},

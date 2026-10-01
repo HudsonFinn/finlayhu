@@ -4,6 +4,14 @@ on:
     push:
         branches:
             - main
+        paths:
+            - 'apps/site/**'
+            - 'packages/**'
+            - 'package.json'
+            - 'bun.lock'
+            - 'tsconfig.base.json'
+            - 'eslint.config.js'
+            - '.github/workflows/deploy-site.yml'
 
     workflow_dispatch:
 
@@ -21,11 +29,11 @@ jobs:
             - name: Run lint
               run: bun run lint
             - name: Build
-              run: bun run build
+              run: bun run --filter @fhudson/site build
             - name: Upload to S3
               uses: jakejarvis/s3-sync-action@master
               env:
-                  SOURCE_DIR: dist/
+                  SOURCE_DIR: apps/site/dist/
                   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
                   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
