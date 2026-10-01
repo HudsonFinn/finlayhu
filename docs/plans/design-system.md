@@ -1,6 +1,6 @@
 # Plan: fhudson monorepo and the Single Line design system
 
-Status: approved · 1 October 2026 · Phase 1 done
+Status: approved · 1 October 2026 · Phases 1 and 2 done
 
 ## Goal
 
@@ -104,17 +104,17 @@ packages/ui/
 
 Colour, both themes. Light is paper; dark is the night print.
 
-| Token       | Light       | Dark           | Use                                       |
-| ----------- | ----------- | -------------- | ----------------------------------------- |
-| `paper`     | #F1F3F2     | #0D1615        | Page background                           |
-| `sheet`     | #FBFCFB     | #121D1C        | Panels, inputs                            |
-| `ink`       | #14201E     | #E3ECEA        | Text, strong rules                        |
-| `ink-muted` | #556361     | #8DA5A1        | Secondary text, labels                    |
-| `hairline`  | #C3CCC9     | #26403C        | Dividers, panel borders                   |
-| `verdigris` | #0C6157     | #4FBFAE        | Accent, links, live signals, "in service" |
-| `amber`     | #A8650B     | #E7AE55        | Warning, "isolated"                       |
-| `fault`     | #B3322A     | #F07A70        | Errors, "fault"                           |
-| `grid`      | ink at 5.5% | hairline at 7% | Drawing grid                              |
+| Token       | Light       | Dark           | Use                                                                        |
+| ----------- | ----------- | -------------- | -------------------------------------------------------------------------- |
+| `paper`     | #F1F3F2     | #0D1615        | Page background                                                            |
+| `sheet`     | #FBFCFB     | #121D1C        | Panels, inputs                                                             |
+| `ink`       | #14201E     | #E3ECEA        | Text, strong rules                                                         |
+| `ink-muted` | #556361     | #8DA5A1        | Secondary text, labels                                                     |
+| `hairline`  | #C3CCC9     | #26403C        | Dividers, panel borders                                                    |
+| `verdigris` | #0C6157     | #4FBFAE        | Accent, links, live signals, "in service"                                  |
+| `amber`     | #95590A     | #E7AE55        | Warning, "isolated". Darkened from #A8650B, which was only 4.16:1 on paper |
+| `fault`     | #B3322A     | #F07A70        | Errors, "fault"                                                            |
+| `grid`      | ink at 5.5% | hairline at 7% | Drawing grid                                                               |
 
 Every pair is checked for WCAG AA contrast before Phase 2 is done.
 
@@ -146,25 +146,25 @@ which are pills. Strokes: 1px hairline, 1.5px rule, 3px busbar.
 Phase 3 builds everything the site uses today. Each item is listed against the Chalkboard
 component it replaces, so the migration is mechanical.
 
-| Single Line                                    | Replaces (Chalkboard) | Notes                                               |
-| ---------------------------------------------- | --------------------- | --------------------------------------------------- |
-| `Heading` (levels 1–6)                         | `H1`–`H6`             | Michroma for 1–2, Hanken bold for 3–6               |
-| `Text`, `Lead`, `Small`                        | `P`, `Lead`, `Small`  |                                                     |
-| `Prose`                                        | BlogPost's mapping    | Styles rendered markdown in one wrapper             |
-| `Code`, `Pre`, `Blockquote`                    | same                  |                                                     |
-| `Button` (primary, ghost)                      | `Button`              |                                                     |
-| `Input`                                        | `Input`               | Label always visible                                |
-| `Panel` (+ header label and meta)              | `Preview*`            | Borrowed from Control Room                          |
-| `Navbar`                                       | `Navbar`              | Mono links, verdigris underline on the active page  |
-| `Status` (in service / isolated / fault)       | `Tag` (for states)    | Lamp dot plus label                                 |
-| `Tag`                                          | `Tag` (for topics)    |                                                     |
-| `Table`                                        | `Table`               | Tabular figures, hairline rows                      |
-| `List`, `ListItem`                             | same                  |                                                     |
-| `LineChart`                                    | `LineChart`           | Keeps the null-gap support from chalkboard-ui 0.0.9 |
-| `StatTile`                                     | OuraData's tiles      |                                                     |
-| `TitleBlock`                                   | new                   | Post and page metadata                              |
-| `NodeMark`, `Busbar`, `Transformer`, `Breaker` | `Icon` (partly)       | Single-line symbols as SVG components               |
-| `HazardBand`, `Plate`                          | new                   | Borrowed from Nameplate; use sparingly              |
+| Single Line                                    | Replaces (Chalkboard) | Notes                                                                                                                                          |
+| ---------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Heading` (levels 1–6)                         | `H1`–`H6`             | Michroma for 1–2, Hanken bold for 3–6. Michroma at 40px fits about 9 characters per word on a phone, so level 1 steps down to 30px below 640px |
+| `Text`, `Lead`, `Small`                        | `P`, `Lead`, `Small`  |                                                                                                                                                |
+| `Prose`                                        | BlogPost's mapping    | Styles rendered markdown in one wrapper                                                                                                        |
+| `Code`, `Pre`, `Blockquote`                    | same                  |                                                                                                                                                |
+| `Button` (primary, ghost)                      | `Button`              |                                                                                                                                                |
+| `Input`                                        | `Input`               | Label always visible                                                                                                                           |
+| `Panel` (+ header label and meta)              | `Preview*`            | Borrowed from Control Room                                                                                                                     |
+| `Navbar`                                       | `Navbar`              | Mono links, verdigris underline on the active page                                                                                             |
+| `Status` (in service / isolated / fault)       | `Tag` (for states)    | Lamp dot plus label                                                                                                                            |
+| `Tag`                                          | `Tag` (for topics)    |                                                                                                                                                |
+| `Table`                                        | `Table`               | Tabular figures, hairline rows                                                                                                                 |
+| `List`, `ListItem`                             | same                  |                                                                                                                                                |
+| `LineChart`                                    | `LineChart`           | Keeps the null-gap support from chalkboard-ui 0.0.9                                                                                            |
+| `StatTile`                                     | OuraData's tiles      |                                                                                                                                                |
+| `TitleBlock`                                   | new                   | Post and page metadata                                                                                                                         |
+| `NodeMark`, `Busbar`, `Transformer`, `Breaker` | `Icon` (partly)       | Single-line symbols as SVG components                                                                                                          |
+| `HazardBand`, `Plate`                          | new                   | Borrowed from Nameplate; use sparingly                                                                                                         |
 
 ### Docs and review
 

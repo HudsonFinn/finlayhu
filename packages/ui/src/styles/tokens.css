@@ -1,0 +1,57 @@
+/*
+ * Single Line tokens. Light is paper, dark is the night print.
+ * Dark mode follows the system setting; data-theme="light|dark" on <html> overrides it.
+ * Values are checked for WCAG contrast in src/tokens/contrast.test.ts.
+ */
+:root {
+	--sl-paper: #f1f3f2;
+	--sl-sheet: #fbfcfb;
+	--sl-ink: #14201e;
+	--sl-ink-muted: #556361;
+	--sl-hairline: #c3ccc9;
+	--sl-verdigris: #0c6157;
+	--sl-on-verdigris: #f1f3f2;
+	--sl-amber: #95590a;
+	--sl-fault: #b3322a;
+	--sl-grid: rgb(20 32 30 / 5.5%);
+	--sl-color-scheme: light;
+
+	--sl-font-display: 'Michroma', 'Eurostile', 'Arial', sans-serif;
+	--sl-font-body: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
+	--sl-font-data: 'JetBrains Mono Variable', ui-monospace, Menlo, monospace;
+
+	--sl-stroke-hairline: 1px;
+	--sl-stroke-rule: 1.5px;
+	--sl-stroke-busbar: 3px;
+	--sl-grid-size: 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--sl-paper: #0d1615;
+		--sl-sheet: #121d1c;
+		--sl-ink: #e3ecea;
+		--sl-ink-muted: #8da5a1;
+		--sl-hairline: #26403c;
+		--sl-verdigris: #4fbfae;
+		--sl-on-verdigris: #0d1615;
+		--sl-amber: #e7ae55;
+		--sl-fault: #f07a70;
+		--sl-grid: rgb(143 179 173 / 7%);
+		--sl-color-scheme: dark;
+	}
+}
+
+:root[data-theme='dark'] {
+	--sl-paper: #0d1615;
+	--sl-sheet: #121d1c;
+	--sl-ink: #e3ecea;
+	--sl-ink-muted: #8da5a1;
+	--sl-hairline: #26403c;
+	--sl-verdigris: #4fbfae;
+	--sl-on-verdigris: #0d1615;
+	--sl-amber: #e7ae55;
+	--sl-fault: #f07a70;
+	--sl-grid: rgb(143 179 173 / 7%);
+	--sl-color-scheme: dark;
+}

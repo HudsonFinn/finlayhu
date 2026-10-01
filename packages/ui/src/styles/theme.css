@@ -1,0 +1,43 @@
+/*
+ * Maps Single Line tokens into Tailwind v4, so apps can write bg-paper, text-ink,
+ * border-hairline, font-display, text-body and so on. `inline` keeps the utilities
+ * pointing at the CSS variables, so they follow dark mode.
+ */
+@theme inline {
+	--color-paper: var(--sl-paper);
+	--color-sheet: var(--sl-sheet);
+	--color-ink: var(--sl-ink);
+	--color-ink-muted: var(--sl-ink-muted);
+	--color-hairline: var(--sl-hairline);
+	--color-verdigris: var(--sl-verdigris);
+	--color-on-verdigris: var(--sl-on-verdigris);
+	--color-amber: var(--sl-amber);
+	--color-fault: var(--sl-fault);
+
+	--font-display: var(--sl-font-display);
+	--font-body: var(--sl-font-body);
+	--font-data: var(--sl-font-data);
+
+	--text-label: 11px;
+	--text-label--line-height: 1.3;
+	--text-small: 13px;
+	--text-small--line-height: 1.45;
+	--text-ui: 15px;
+	--text-ui--line-height: 1.55;
+	--text-body: 17px;
+	--text-body--line-height: 1.65;
+	--text-h3: 22px;
+	--text-h3--line-height: 1.3;
+	--text-h2: 30px;
+	--text-h2--line-height: 1.2;
+	--text-h1: 40px;
+	--text-h1--line-height: 1.1;
+}
+
+/* The faint drawing grid that sits behind sheets */
+@utility drawing-grid {
+	background-image:
+		linear-gradient(var(--sl-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--sl-grid) 1px, transparent 1px);
+	background-size: var(--sl-grid-size) var(--sl-grid-size);
+}

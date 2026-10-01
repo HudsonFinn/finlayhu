@@ -13,8 +13,15 @@ import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
 import NewTabPage from './pages/NewTabPage.tsx';
 import ProjectsPage from './pages/ProjectsPage.tsx';
+import SystemPage from './pages/SystemPage.tsx';
 
 const router = createBrowserRouter([
+	// Unlisted: the Single Line design system reference, outside the Chalkboard layout
+	{
+		path: '/system',
+		element: <SystemPage />,
+		errorElement: <ErrorPage />,
+	},
 	{
 		path: '/',
 		element: <App />,

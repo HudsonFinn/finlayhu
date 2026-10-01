@@ -1,0 +1,24 @@
+/*
+ * TEMPORARY, remove in Phase 4 along with chalkboard-ui.
+ *
+ * chalkboard-ui ships Tailwind v3's preflight unlayered (h1 { font-size: inherit },
+ * button { background-color: transparent }, ...). Unlayered styles beat every cascade
+ * layer, so they override Single Line's utilities. Inside .sl-page, revert-layer cancels
+ * unlayered declarations and hands each property back to the layered styles
+ * (Tailwind v4 preflight, Single Line base and utilities). Inline styles still apply.
+ * `html` raises specificity above Chalkboard's element and single-class rules.
+ */
+html .sl-page,
+html .sl-page *,
+html .sl-page *::before,
+html .sl-page *::after {
+	all: revert-layer;
+}
+
+/*
+ * Chalkboard's components use a `font-display` class that its own CSS never defines,
+ * so it used to inherit. Keep it that way outside Single Line pages.
+ */
+.font-display:not(.sl-page, .sl-page *) {
+	font-family: inherit;
+}
