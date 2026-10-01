@@ -143,6 +143,8 @@ which are pills. Strokes: 1px hairline, 1.5px rule, 3px busbar.
 
 ### Components
 
+The full spec, with every component's interface, is in [components.md](components.md).
+
 Phase 3 builds everything the site uses today. Each item is listed against the Chalkboard
 component it replaces, so the migration is mechanical.
 
