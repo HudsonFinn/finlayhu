@@ -1,21 +1,22 @@
 ---
-title: "On - In this Economy?"
+title: 'On - In this Economy?'
 created: 2026-01-11
 tags: Books
 ---
 
 [Goodreads](https://www.goodreads.com/book/show/150249560-in-this-economy)
 
-I got the book after enjoying many of Kyla Scanlon's instagram reels which explain economic and political events. This came off the back of reading [[On - Prisoners of Geography|Prisoners of Geography]] and I thought it might be a nice compliment to learn a bit about the how the US economy worked. 
+I got the book after enjoying many of Kyla Scanlon's instagram reels which explain economic and political events. This came off the back of reading [[On - Prisoners of Geography|Prisoners of Geography]] and I thought it might be a nice compliment to learn a bit about the how the US economy worked.
 
 ## The bad
 
 The first three quarters of the book it spent explaining the many different parts of the economy from supply and demand to fiscal and monetary policy. There are quite a few insights here, especially understanding more about how the federal reserve works which I doubt many people have a concrete grasp of.
 
-However, the explanations in each section often seemed to lack depth and were occasionally confusingly written. Unless I misunderstood something some sections seemed to contain overt mistakes. Specifically in the section on repo agreements, the book seems to switch between talking about repo agreements and reverse repo agreements within it's explanation without distinguishing them. 
+However, the explanations in each section often seemed to lack depth and were occasionally confusingly written. Unless I misunderstood something some sections seemed to contain overt mistakes. Specifically in the section on repo agreements, the book seems to switch between talking about repo agreements and reverse repo agreements within it's explanation without distinguishing them.
 
 Additionally in the GDP calculation net exports are defined as:
-> This is the dollar value of the products that we buy from other countries (imports) minus the dollar value of products that other countries buy from us (exports). 
+
+> This is the dollar value of the products that we buy from other countries (imports) minus the dollar value of products that other countries buy from us (exports).
 
 This is just wrong.
 

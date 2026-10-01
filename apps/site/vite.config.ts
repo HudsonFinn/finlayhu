@@ -6,4 +6,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
 	assetsInclude: ['**/*.md', '88/*.webp'],
+	// One React for the app and the workspace packages it imports
+	resolve: { dedupe: ['react', 'react-dom'] },
 });

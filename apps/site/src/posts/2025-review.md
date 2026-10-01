@@ -1,5 +1,5 @@
 ---
-title: "2025 Review: A year of confusion, anxiety and clarity"
+title: '2025 Review: A year of confusion, anxiety and clarity'
 created: 2026-01-01
 tags: Reviews
 ---
@@ -49,13 +49,14 @@ I genuinely believe that this bubble does exist even though I believe that the t
 I've always held all of my investments, time in the market beats timing the market every time so the saying goes. I'm now getting fomo on the idea that maybe the bubble won't burst for multiple years and I'll miss out on all of the gains that may be made in that time. By the end of the year I'll likely look at going back in with around 2/3rds of my portfolio but will balance it differently with a large amount weighted into smaller index trackers outside of the S&P and in emerging markets that don't rely so heavily on it. I will still invest around 20% of my portfolio in the S&P to take advantage of the gains as there are still companies there which are delivering huge amounts of value.
 
 Essentially most of my anxiety this year has been caused by AI, when this will end I do not know.
+
 ## Clarity
 
 I decided to do the next house hunt properly, allocated more of my income to rent and accepted that I would have to move further away from work to find somewhere that was comfortable. This time I viewed 4 different apartments across different areas of London and ended up finding a 1 bedroom basement flat in Stepney Green. It was spacious, was on a lovely street and the agent showing the flat was lovely (shoutout to Base Properties).
 
 The move was great, no stress like the last time as I booked it for the morning before Brick lane got busy and the new area was quiet. The whole thing took less than an hour. It took me a while to unpack everything but once it was done everything was so much cleaner than the previous place and I felt very happy.
 
-Just after I had moved into the new flat I went on a Holiday to Greece with some work friends. I had a lovely first few days in the Capital Athens and then we took a boat to Naxos. Naxos was an interesting time as I was definitely the odd one out in the group and I get tired if I'm around others too long, it made for some awkward exchanges and I was exhausted by the end of the trip and was definitely coming down with some type of illness.  I still had a wonderful time in Athens and Naxos was beautiful. I would love to go back to Greece with a smaller group of closer friends, definitely to do some Greek Island hopping!
+Just after I had moved into the new flat I went on a Holiday to Greece with some work friends. I had a lovely first few days in the Capital Athens and then we took a boat to Naxos. Naxos was an interesting time as I was definitely the odd one out in the group and I get tired if I'm around others too long, it made for some awkward exchanges and I was exhausted by the end of the trip and was definitely coming down with some type of illness. I still had a wonderful time in Athens and Naxos was beautiful. I would love to go back to Greece with a smaller group of closer friends, definitely to do some Greek Island hopping!
 
 At some point around this time my thoughts also changed on drinking. I realised that my drinking was more problematic than I had previously thought and that it was eating up so much of my life and decided to reduce how much I was doing it. This started in about October where I attempted to just stop drinking completely a few times, none of these times worked and I would end up getting through something like 4 days and then would be at the pub again.
 
@@ -77,12 +78,12 @@ I think I need a change in my career, whether that is inside or outside Amazon I
 
 This year I've read
 
-- The terminal man
-- The tools
-- Invisible cities
-- Superfrog Saves Tokyo
-- Mr Bridge
-- Prisoners of Geography
+-   The terminal man
+-   The tools
+-   Invisible cities
+-   Superfrog Saves Tokyo
+-   Mr Bridge
+-   Prisoners of Geography
 
 Not my best year from reading but I've done most of that in the last few months. The best book this year was Prisoners of Geography, I'm finally starting to understand what's going on in Geopolitics, which has been my aim since I started learning about countries last year. The worst was Invisible Cities which I thought was going to be great with explorations of imaginary cities but was instead a repetitive boring book which had very little depth. The terminal man is an exceptional book that when looked at from its 1996 publication date is an incredible look into the possibly disastrous future of Brain Computer Interfaces.
 
@@ -104,19 +105,20 @@ I'm looking forward to 2026. I think it's going to be an interesting year with p
 
 Some things I would like to Achieve in 2026:
 
-- Continue rock climbing at least once a week year
-- Improve my sleep score average by 5 points
-- Decorate my apartment
-- Be able to run a 5k in less than 40 minutes.
-- Be able to name all the countries in the world on a map
-- Read 12 books
-- Drink less (I'm not sure how to measure this right now)
-- Learn 10 new recipes
-- Max out my ISA and LISA
-- Make VIM my default editor
+-   Continue rock climbing at least once a week year
+-   Improve my sleep score average by 5 points
+-   Decorate my apartment
+-   Be able to run a 5k in less than 40 minutes.
+-   Be able to name all the countries in the world on a map
+-   Read 12 books
+-   Drink less (I'm not sure how to measure this right now)
+-   Learn 10 new recipes
+-   Max out my ISA and LISA
+-   Make VIM my default editor
 
 Things I'm excited for:
-- Coffee!
-- Going to Montenegro
+
+-   Coffee!
+-   Going to Montenegro
 
 I think I'll aim to do a monthly review on the last day of the month each month to see how I'm progressing. Sort of like a monthly diary entry, I've added it to my calendar.

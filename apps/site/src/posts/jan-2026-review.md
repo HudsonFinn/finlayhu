@@ -1,5 +1,5 @@
 ---
-title: "January 2026 Review"
+title: 'January 2026 Review'
 created: 2026-01-31
 tags: Reviews
 ---
@@ -32,15 +32,15 @@ Personally I've had a bit of an AI revolution. I've built [chalkboard.fhudson.co
 
 ## 2026 goal progress
 
-- I've climbed twice a week every week
-- 73 sleep score
-- Ran 9 times out of 12
-- Read 2 books
-- Had about 7 pints all month
-- Made 3 new recipes
-	- Baked Gnocci
-	- Enchiladas
-	- Baked chicken and potatoes
+-   I've climbed twice a week every week
+-   73 sleep score
+-   Ran 9 times out of 12
+-   Read 2 books
+-   Had about 7 pints all month
+-   Made 3 new recipes
+    -   Baked Gnocci
+    -   Enchiladas
+    -   Baked chicken and potatoes
 
 ---
 

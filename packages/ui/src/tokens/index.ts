@@ -82,6 +82,8 @@ export const typeScale = [
 	{ token: 'h1', px: 40, use: 'Page titles' },
 	{ token: 'h2', px: 30, use: 'Section titles' },
 	{ token: 'h3', px: 22, use: 'Sub-sections' },
+	{ token: 'lead', px: 22, use: 'Intro paragraphs' },
+	{ token: 'h4', px: 17, use: 'Minor headings' },
 	{ token: 'body', px: 17, use: 'Post text' },
 	{ token: 'ui', px: 15, use: 'Interface text' },
 	{ token: 'small', px: 13, use: 'Secondary text' },

@@ -1,0 +1,131 @@
+/* Styles for rendered Markdown inside <Prose>. :where() keeps specificity at zero, so
+   classes on individual elements still win. */
+@layer components {
+	.sl-prose {
+		max-width: 68ch;
+		font-size: var(--sl-text-body);
+		line-height: var(--sl-text-body-leading);
+		color: var(--sl-ink);
+	}
+	.sl-prose :where(* + *) {
+		margin-top: 1em;
+	}
+	.sl-prose :where(h1, h2) {
+		font-family: var(--sl-font-display);
+		text-transform: uppercase;
+		letter-spacing: 0.025em;
+		line-height: 1.2;
+		text-wrap: balance;
+		margin-top: 2em;
+	}
+	.sl-prose :where(h1) {
+		font-size: var(--sl-text-h2);
+	}
+	.sl-prose :where(h2) {
+		font-size: var(--sl-text-h3);
+	}
+	.sl-prose :where(h3, h4, h5, h6) {
+		font-weight: 600;
+		line-height: 1.35;
+		margin-top: 1.6em;
+	}
+	.sl-prose :where(h3) {
+		font-size: var(--sl-text-h3);
+	}
+	.sl-prose :where(h4, h5, h6) {
+		font-size: var(--sl-text-h4);
+	}
+	.sl-prose :where(h1, h2, h3, h4, h5, h6) + * {
+		margin-top: 0.6em;
+	}
+	.sl-prose > :where(:first-child) {
+		margin-top: 0;
+	}
+	.sl-prose :where(a) {
+		color: var(--sl-verdigris);
+		text-decoration: underline;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 3px;
+	}
+	.sl-prose :where(a:hover) {
+		text-decoration-thickness: 3px;
+	}
+	.sl-prose :where(strong) {
+		font-weight: 600;
+	}
+	.sl-prose :where(ul, ol) {
+		padding-left: 1.4em;
+	}
+	.sl-prose :where(ul) {
+		list-style: square;
+	}
+	.sl-prose :where(ol) {
+		list-style: decimal;
+	}
+	.sl-prose :where(li + li) {
+		margin-top: 0.35em;
+	}
+	.sl-prose :where(li)::marker {
+		color: var(--sl-verdigris);
+	}
+	.sl-prose :where(code) {
+		font-family: var(--sl-font-data);
+		font-size: 0.88em;
+		background: var(--sl-sheet);
+		border: 1px solid var(--sl-hairline);
+		padding: 0.05em 0.3em;
+	}
+	.sl-prose :where(pre) {
+		font-family: var(--sl-font-data);
+		font-size: var(--sl-text-small);
+		line-height: 1.6;
+		background: var(--sl-sheet);
+		border: 1px solid var(--sl-hairline);
+		padding: 0.75rem 1rem;
+		overflow-x: auto;
+	}
+	.sl-prose :where(pre code) {
+		background: none;
+		border: 0;
+		padding: 0;
+		font-size: inherit;
+	}
+	.sl-prose :where(blockquote) {
+		border-left: 3px solid var(--sl-verdigris);
+		padding-left: 1rem;
+		color: var(--sl-ink-muted);
+	}
+	.sl-prose :where(hr) {
+		border: 0;
+		border-top: 1px solid var(--sl-hairline);
+		margin-block: 2em;
+	}
+	.sl-prose :where(img) {
+		max-width: 100%;
+		height: auto;
+		border: 1px solid var(--sl-hairline);
+	}
+	.sl-prose :where(table) {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--sl-text-small);
+		display: block;
+		overflow-x: auto;
+	}
+	.sl-prose :where(th) {
+		font-family: var(--sl-font-data);
+		font-size: var(--sl-text-label);
+		font-weight: 400;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--sl-ink-muted);
+		text-align: left;
+		border-bottom: 1.5px solid var(--sl-ink);
+		padding: 0.5rem 0.75rem 0.5rem 0;
+	}
+	.sl-prose :where(td) {
+		border-bottom: 1px solid var(--sl-hairline);
+		padding: 0.5rem 0.75rem 0.5rem 0;
+		vertical-align: top;
+	}
+}

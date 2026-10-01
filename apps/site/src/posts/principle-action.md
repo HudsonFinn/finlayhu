@@ -4,4 +4,4 @@ created: 2026-03-15
 tags: Principles
 ---
 
-*Coming soon.*
+_Coming soon._

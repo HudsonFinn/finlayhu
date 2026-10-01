@@ -18,26 +18,29 @@
 	--font-body: var(--sl-font-body);
 	--font-data: var(--sl-font-data);
 
-	--text-label: 11px;
-	--text-label--line-height: 1.3;
-	--text-small: 13px;
-	--text-small--line-height: 1.45;
-	--text-ui: 15px;
-	--text-ui--line-height: 1.55;
-	--text-body: 17px;
-	--text-body--line-height: 1.65;
-	--text-h3: 22px;
-	--text-h3--line-height: 1.3;
-	--text-h2: 30px;
-	--text-h2--line-height: 1.2;
-	--text-h1: 40px;
-	--text-h1--line-height: 1.1;
+	--text-label: var(--sl-text-label);
+	--text-label--line-height: var(--sl-text-label-leading);
+	--text-small: var(--sl-text-small);
+	--text-small--line-height: var(--sl-text-small-leading);
+	--text-ui: var(--sl-text-ui);
+	--text-ui--line-height: var(--sl-text-ui-leading);
+	--text-body: var(--sl-text-body);
+	--text-body--line-height: var(--sl-text-body-leading);
+	--text-h4: var(--sl-text-h4);
+	--text-h4--line-height: var(--sl-text-h4-leading);
+	--text-lead: var(--sl-text-lead);
+	--text-lead--line-height: var(--sl-text-lead-leading);
+	--text-h3: var(--sl-text-h3);
+	--text-h3--line-height: var(--sl-text-h3-leading);
+	--text-h2: var(--sl-text-h2);
+	--text-h2--line-height: var(--sl-text-h2-leading);
+	--text-h1: var(--sl-text-h1);
+	--text-h1--line-height: var(--sl-text-h1-leading);
 }
 
 /* The faint drawing grid that sits behind sheets */
 @utility drawing-grid {
-	background-image:
-		linear-gradient(var(--sl-grid) 1px, transparent 1px),
+	background-image: linear-gradient(var(--sl-grid) 1px, transparent 1px),
 		linear-gradient(90deg, var(--sl-grid) 1px, transparent 1px);
 	background-size: var(--sl-grid-size) var(--sl-grid-size);
 }

@@ -17,8 +17,29 @@
 	--sl-color-scheme: light;
 
 	--sl-font-display: 'Michroma', 'Eurostile', 'Arial', sans-serif;
-	--sl-font-body: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
+	--sl-font-body: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial,
+		sans-serif;
 	--sl-font-data: 'JetBrains Mono Variable', ui-monospace, Menlo, monospace;
+
+	/* Type scale (px) and line heights */
+	--sl-text-label: 11px;
+	--sl-text-label-leading: 1.3;
+	--sl-text-small: 13px;
+	--sl-text-small-leading: 1.45;
+	--sl-text-ui: 15px;
+	--sl-text-ui-leading: 1.55;
+	--sl-text-body: 17px;
+	--sl-text-body-leading: 1.65;
+	--sl-text-h4: 17px;
+	--sl-text-h4-leading: 1.4;
+	--sl-text-lead: 22px;
+	--sl-text-lead-leading: 1.45;
+	--sl-text-h3: 22px;
+	--sl-text-h3-leading: 1.3;
+	--sl-text-h2: 30px;
+	--sl-text-h2-leading: 1.2;
+	--sl-text-h1: 40px;
+	--sl-text-h1-leading: 1.1;
 
 	--sl-stroke-hairline: 1px;
 	--sl-stroke-rule: 1.5px;

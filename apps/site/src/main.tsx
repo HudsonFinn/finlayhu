@@ -14,53 +14,60 @@ import AboutPage from './pages/AboutPage.tsx';
 import NewTabPage from './pages/NewTabPage.tsx';
 import ProjectsPage from './pages/ProjectsPage.tsx';
 import SystemPage from './pages/SystemPage.tsx';
+import AriaRouter from './components/AriaRouter/AriaRouter.tsx';
 
 const router = createBrowserRouter([
-	// Unlisted: the Single Line design system reference, outside the Chalkboard layout
 	{
-		path: '/system',
-		element: <SystemPage />,
-		errorElement: <ErrorPage />,
-	},
-	{
-		path: '/',
-		element: <App />,
+		element: <AriaRouter />,
 		errorElement: <ErrorPage />,
 		children: [
+			// Unlisted: the Single Line design system reference, outside the Chalkboard layout
 			{
-				path: '',
-				element: <LandingPage />,
+				path: '/system',
+				element: <SystemPage />,
 				errorElement: <ErrorPage />,
 			},
 			{
-				path: 'about',
-				element: <AboutPage />,
+				path: '/',
+				element: <App />,
 				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'vault',
-				element: <VaultPage />,
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'vault/:slug',
-				element: <PostPage />,
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'new-tab',
-				element: <NewTabPage />,
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: 'projects',
-				element: <ProjectsPage />,
-				errorElement: <ErrorPage />,
-			},
-			{
-				path: '*',
-				element: <NotFoundPage />,
-				errorElement: <ErrorPage />,
+				children: [
+					{
+						path: '',
+						element: <LandingPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: 'about',
+						element: <AboutPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: 'vault',
+						element: <VaultPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: 'vault/:slug',
+						element: <PostPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: 'new-tab',
+						element: <NewTabPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: 'projects',
+						element: <ProjectsPage />,
+						errorElement: <ErrorPage />,
+					},
+					{
+						path: '*',
+						element: <NotFoundPage />,
+						errorElement: <ErrorPage />,
+					},
+				],
 			},
 		],
 	},

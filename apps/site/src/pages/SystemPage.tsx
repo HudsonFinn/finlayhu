@@ -10,6 +10,7 @@ import {
 	useTheme,
 	type ThemeChoice,
 } from '@fhudson/ui';
+import { TypeAndActions } from './system/TypeAndActions';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -129,7 +130,7 @@ function SystemPage() {
 					<div className="flex items-center gap-3">
 						<NodeMark className="h-5 w-12" />
 						<span className="font-data text-label uppercase tracking-widest text-ink-muted">
-							@fhudson/ui · Foundations
+							@fhudson/ui · Single Line
 						</span>
 					</div>
 					<h1 className="font-display text-h2 uppercase tracking-wide text-balance sm:text-h1">
@@ -394,10 +395,28 @@ function SystemPage() {
 					</div>
 				</Section>
 
+				<section
+					aria-labelledby="components"
+					className="flex flex-col border-t border-ink pt-6"
+				>
+					<header className="flex flex-col gap-2">
+						<p className="font-data text-label uppercase tracking-widest text-ink-muted">
+							Components · Tier 1, in progress
+						</p>
+						<h2
+							id="components"
+							className="font-display text-h3 uppercase tracking-wide text-balance"
+						>
+							Built so far
+						</h2>
+					</header>
+					<TypeAndActions />
+				</section>
+
 				<footer className="grid grid-cols-2 border border-ink font-data text-label sm:grid-cols-4">
 					{[
 						['Drawing', 'FH-SYS-001'],
-						['Phase', '2 · Foundations'],
+						['Phase', '3 · Components'],
 						['Rev', 'A'],
 						['Date', '01.10.26'],
 					].map(([key, value]) => (
