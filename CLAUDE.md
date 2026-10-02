@@ -16,24 +16,9 @@ Run scripts from the root (`bun run lint`, `bun run build`), or one workspace wi
 
 -   Never name Finn's employer anywhere on the site, in copy, metadata or examples.
 
-## UI Components
+## UI components
 
-The site still uses `chalkboard-ui` until it is migrated to Single Line (see the plan). Until then, always prefer using components from `chalkboard-ui` library when available. The library includes:
-
--   Typography: `H1`, `H2`, `H3`, `H4`, `H5`, `H6`, `P`, `Lead`, `Small`, `Blockquote`, `Code`, `Pre`
--   Components: `Button`, `Input`, `Icon`, `Tag`, `Message`
--   Navigation: `Navbar`
--   Preview cards: `Preview`, `PreviewHeader`, `PreviewDescription`, `PreviewContent`
--   Dropdown: `DropdownMenu`, `DropdownMenuTrigger`, `DropdownMenuContent`, `DropdownMenuItem`
-
-Import from `chalkboard-ui`:
-
-```tsx
-import {
-	H1,
-	Button,
-	Preview,
-	PreviewHeader,
-	PreviewDescription,
-} from 'chalkboard-ui';
-```
+Build with Single Line (`@fhudson/ui`); see `packages/ui/README.md` and the live reference at
+`/system`. Live GB grid data comes from `@fhudson/grid`. Don't reach for React Aria directly in
+apps: if a component is missing, add it to `@fhudson/ui`. The component spec is
+`docs/plans/components.md`.

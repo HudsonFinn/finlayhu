@@ -14,7 +14,7 @@ function TripPage() {
 			: 'Unknown error';
 
 	return (
-		<div className="sl-page drawing-grid min-h-screen">
+		<div className="drawing-grid min-h-screen">
 			<main
 				id="main"
 				className="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-16 sm:px-8"

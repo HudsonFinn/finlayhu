@@ -110,7 +110,7 @@ function SystemPage() {
 	const showing = isDark ? 'dark' : 'light';
 
 	return (
-		<div className="sl-page min-h-screen">
+		<div className="min-h-screen">
 			<main
 				id="main"
 				className="mx-auto flex max-w-5xl flex-col gap-14 px-4 py-12 sm:px-8"

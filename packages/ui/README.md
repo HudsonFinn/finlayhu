@@ -13,8 +13,7 @@ See [the plan](../../docs/plans/design-system.md) for the principles and roadmap
 @source '<relative path to>/packages/ui/src';
 ```
 
-Wrap Single Line pages in `.sl-page` (it sets the paper background, ink text, body font and
-focus ring). After the Chalkboard migration this moves to `<html>`.
+The base styles set the page background, ink, body font and focus ring on `html` and `body`.
 
 ```tsx
 import { useTheme } from '@fhudson/ui';
@@ -40,9 +39,3 @@ Dark mode follows the system setting. `data-theme="light"` or `"dark"` on `<html
 `bun test` checks every text colour pair against WCAG AA in both themes, reading the values
 straight from `tokens.css`. Add a pair to `contrastPairs` in `src/tokens/index.ts` whenever a
 new foreground/background combination appears.
-
-## Temporary: Chalkboard isolation
-
-`src/styles/isolation.css` stops chalkboard-ui's unlayered reset from overriding Single Line
-inside `.sl-page`, and stops Single Line's `font-display` from restyling Chalkboard
-components. Delete it when chalkboard-ui is removed (Phase 4).

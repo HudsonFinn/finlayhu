@@ -1,10 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="/src/style.css" rel="stylesheet">
-		<title>FHudson</title>
+		<meta name="description" content="Finlay Hudson: a software engineer who writes Boundary Node, the electricity system's data, explained." />
+		<title>Finlay Hudson</title>
+		<script>
+			// Apply the saved theme before first paint, so the page never flashes the wrong one.
+			// Night is the default until the visitor picks (see ThemeSwitch).
+			try {
+				var choice = localStorage.getItem('sl-theme') || 'dark';
+				if (choice !== 'system') document.documentElement.setAttribute('data-theme', choice);
+			} catch (e) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
 	</head>
 	<body>
 		<div id="root"></div>

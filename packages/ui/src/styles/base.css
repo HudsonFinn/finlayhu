@@ -1,20 +1,20 @@
-/*
- * Base styles for pages built with Single Line. Scoped to .sl-page while the site
- * still runs Chalkboard; once the migration is done this moves to html/body.
- */
+/* Base styles for apps built with Single Line. */
 @layer base {
-	.sl-page {
+	html {
 		background: var(--sl-paper);
 		color: var(--sl-ink);
-		font-family: var(--sl-font-body);
-		font-size: 15px;
-		line-height: 1.55;
-		-webkit-font-smoothing: antialiased;
-		/* Scoped here, not on :root, so Chalkboard pages keep light form controls */
 		color-scheme: var(--sl-color-scheme);
+		-webkit-font-smoothing: antialiased;
 	}
 
-	.sl-page :focus-visible {
+	/* On body, not html, so rem-based spacing stays at the browser's 16px */
+	body {
+		font-family: var(--sl-font-body);
+		font-size: var(--sl-text-ui);
+		line-height: var(--sl-text-ui-leading);
+	}
+
+	:focus-visible {
 		outline: var(--sl-stroke-rule) solid var(--sl-verdigris);
 		outline-offset: 2px;
 	}

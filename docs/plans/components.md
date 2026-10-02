@@ -26,8 +26,8 @@ draft of this spec:
     the list must always be visible on wider screens, which Disclosure doesn't allow.
 -   **Type sizes** live in `tokens.css` as `--sl-text-*`, so CSS such as Prose can use them.
     `lead` (22px) and `h4` (17px) were added to the scale.
--   **Shared isolation:** while chalkboard-ui is still loaded, `isolation.css` stops its unlayered
-    reset overriding Single Line inside `.sl-page`. It is deleted in Phase 4.
+-   **Shared isolation** with chalkboard-ui was needed during the migration and has been
+    removed, along with chalkboard-ui itself.
 
 ## Conventions
 

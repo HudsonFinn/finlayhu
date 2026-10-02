@@ -25,7 +25,7 @@ function ControlRoomLayout() {
 
 	return (
 		<GridProvider>
-			<div className="sl-page flex min-h-screen flex-col">
+			<div className="flex min-h-screen flex-col">
 				<SkipLink />
 				<SiteHeader
 					title="Finlay Hudson"
