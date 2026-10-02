@@ -1,0 +1,15 @@
+{
+	"metadata": {
+		"datasets": ["FREQ"]
+	},
+	"data": [
+		{
+			"measurementTime": "2026-10-01T23:49:30Z",
+			"frequency": 49.9
+		},
+		{
+			"measurementTime": "2026-10-01T23:49:45Z",
+			"frequency": 49.93
+		}
+	]
+}

@@ -2,9 +2,9 @@
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
 		"target": "ES2022",
-		"useDefineForClassFields": true,
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
-		"jsx": "react-jsx"
+		"jsx": "react-jsx",
+		"types": ["bun"]
 	},
-	"include": ["src", "src/globals.d.ts"]
+	"include": ["src"]
 }

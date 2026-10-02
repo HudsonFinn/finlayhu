@@ -9,6 +9,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@fhudson/grid": "workspace:*",
 		"@fhudson/ui": "workspace:*",
 		"@fontsource/noto-sans-mono": "^5.2.10",
 		"@tailwindcss/vite": "^4.1.18",
@@ -20,6 +21,7 @@
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {
+		"@types/node": "^26.6.4",
 		"@types/react": "^18.3.27",
 		"@types/react-dom": "^18.3.7",
 		"@vitejs/plugin-react": "^4.7.0",

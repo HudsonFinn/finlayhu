@@ -1,0 +1,17 @@
+[
+	{
+		"recordType": "VD",
+		"startTime": "2026-10-01T23:35:00Z",
+		"demand": 25946
+	},
+	{
+		"recordType": "VD",
+		"startTime": "2026-10-01T23:40:00Z",
+		"demand": 25867
+	},
+	{
+		"recordType": "VD",
+		"startTime": "2026-10-01T23:45:00Z",
+		"demand": 25692
+	}
+]

@@ -1,0 +1,31 @@
+{
+	"data": [
+		{
+			"from": "2026-10-01T21:30Z",
+			"to": "2026-10-01T22:00Z",
+			"intensity": {
+				"forecast": 181,
+				"actual": 169,
+				"index": "moderate"
+			}
+		},
+		{
+			"from": "2026-10-01T22:00Z",
+			"to": "2026-10-01T22:30Z",
+			"intensity": {
+				"forecast": 175,
+				"actual": 160,
+				"index": "moderate"
+			}
+		},
+		{
+			"from": "2026-10-01T22:30Z",
+			"to": "2026-10-01T23:00Z",
+			"intensity": {
+				"forecast": 167,
+				"actual": 156,
+				"index": "moderate"
+			}
+		}
+	]
+}

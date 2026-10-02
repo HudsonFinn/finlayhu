@@ -18,6 +18,8 @@ export interface LinkProps extends RACLinkProps {
 	/** Appearance when variant is 'button'. */
 	buttonVariant?: ButtonVariant;
 	buttonSize?: ButtonSize;
+	/** The arrow after external links. Turn off for block-shaped links that place their own. */
+	externalIcon?: boolean;
 }
 
 const variantClasses: Record<Exclude<LinkVariant, 'button'>, string> = {
@@ -35,6 +37,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 		variant = 'inline',
 		buttonVariant,
 		buttonSize,
+		externalIcon = true,
 		className,
 		children,
 		rel,
@@ -64,7 +67,7 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(
 			{composeRenderProps(children, (children) => (
 				<>
 					{children}
-					{external && (
+					{external && externalIcon && (
 						<span
 							aria-hidden="true"
 							className="ml-0.5 inline-block no-underline"

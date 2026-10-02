@@ -24,6 +24,8 @@ export interface SiteHeaderProps
 	currentHref: string;
 	/** Accessible name for the navigation. */
 	navLabel?: string;
+	/** Controls shown at the end of the bar, such as a ThemeSwitch. */
+	actions?: ReactNode;
 }
 
 function isCurrent(href: string, currentHref: string) {
@@ -37,7 +39,15 @@ const itemClasses =
 /** The site's top bar: its name and main navigation. Collapses behind a menu button on phones. */
 export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
 	function SiteHeader(
-		{ title, items, currentHref, navLabel = 'Main', className, ...props },
+		{
+			title,
+			items,
+			currentHref,
+			navLabel = 'Main',
+			actions,
+			className,
+			...props
+		},
 		ref
 	) {
 		const [open, setOpen] = useState(false);
@@ -62,16 +72,19 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
 						<NodeMark className="h-4 w-10" />
 						{title}
 					</Link>
-					<Button
-						aria-expanded={open}
-						aria-controls={listId}
-						onPress={() => {
-							setOpen((value) => !value);
-						}}
-						className="cursor-pointer border-[1.5px] border-ink px-3 py-2 font-data text-label uppercase tracking-widest text-ink data-hovered:bg-sheet sm:hidden"
-					>
-						{open ? 'Close' : 'Menu'}
-					</Button>
+					<div className="ml-auto flex items-center gap-3 sm:order-last sm:ml-0">
+						{actions}
+						<Button
+							aria-expanded={open}
+							aria-controls={listId}
+							onPress={() => {
+								setOpen((value) => !value);
+							}}
+							className="cursor-pointer border-[1.5px] border-ink px-3 py-2 font-data text-label uppercase tracking-widest text-ink data-hovered:bg-sheet sm:hidden"
+						>
+							{open ? 'Close' : 'Menu'}
+						</Button>
+					</div>
 					<nav
 						aria-label={navLabel}
 						className={cn(

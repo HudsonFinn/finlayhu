@@ -71,29 +71,34 @@ export function CategoryAxis({
 }) {
 	return (
 		<g>
-			{labels.map((label, i) => (
-				<g key={`${label}-${String(i)}`}>
-					<line
-						x1={px(x(i))}
-						x2={px(x(i))}
-						y1={px(base)}
-						y2={px(base + 5)}
-						stroke={INK}
-						strokeWidth="1"
-					/>
-					{(i % stride === 0 || i === labels.length - 1) && (
-						<text
-							x={px(x(i))}
-							y={px(height - 6)}
-							textAnchor="middle"
-							fill={MUTED}
-							style={LABEL_FONT}
-						>
-							{label}
-						</text>
-					)}
-				</g>
-			))}
+			{labels.map((label, i) => {
+				const labelled = i % stride === 0 || i === labels.length - 1;
+				// Dense axes only tick where they're labelled
+				if (labels.length > 32 && !labelled) return null;
+				return (
+					<g key={`${label}-${String(i)}`}>
+						<line
+							x1={px(x(i))}
+							x2={px(x(i))}
+							y1={px(base)}
+							y2={px(base + 5)}
+							stroke={INK}
+							strokeWidth="1"
+						/>
+						{labelled && (
+							<text
+								x={px(x(i))}
+								y={px(height - 6)}
+								textAnchor="middle"
+								fill={MUTED}
+								style={LABEL_FONT}
+							>
+								{label}
+							</text>
+						)}
+					</g>
+				);
+			})}
 		</g>
 	);
 }

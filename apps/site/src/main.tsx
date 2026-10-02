@@ -8,13 +8,14 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
 import VaultPage from './pages/VaultPage.tsx';
 import PostPage from './pages/PostPage.tsx';
-import LandingPage from './pages/LandingPage.tsx';
 import '@fontsource/noto-sans-mono';
 import AboutPage from './pages/AboutPage.tsx';
 import NewTabPage from './pages/NewTabPage.tsx';
 import ProjectsPage from './pages/ProjectsPage.tsx';
 import SystemPage from './pages/SystemPage.tsx';
 import AriaRouter from './components/AriaRouter/AriaRouter.tsx';
+import ControlRoomLayout from './controlRoom/ControlRoomLayout.tsx';
+import BoardPage from './pages/board/BoardPage.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -27,16 +28,24 @@ const router = createBrowserRouter([
 				element: <SystemPage />,
 				errorElement: <ErrorPage />,
 			},
+			// Redesigned pages, in the control-room shell. Pages move here as they're rebuilt.
+			{
+				element: <ControlRoomLayout />,
+				errorElement: <ErrorPage />,
+				children: [
+					{
+						path: '/',
+						element: <BoardPage />,
+						errorElement: <ErrorPage />,
+					},
+				],
+			},
+			// Pages not yet rebuilt, still on Chalkboard
 			{
 				path: '/',
 				element: <App />,
 				errorElement: <ErrorPage />,
 				children: [
-					{
-						path: '',
-						element: <LandingPage />,
-						errorElement: <ErrorPage />,
-					},
 					{
 						path: 'about',
 						element: <AboutPage />,
