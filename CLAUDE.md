@@ -12,6 +12,10 @@ Run scripts from the root (`bun run lint`, `bun run build`), or one workspace wi
 `bun run --filter @fhudson/site <script>`. Shared config lives at the root: `tsconfig.base.json`,
 `eslint.config.js`, `.prettierrc.json`.
 
+## Content rules
+
+-   Never name Finn's employer anywhere on the site, in copy, metadata or examples.
+
 ## UI Components
 
 The site still uses `chalkboard-ui` until it is migrated to Single Line (see the plan). Until then, always prefer using components from `chalkboard-ui` library when available. The library includes:

@@ -28,9 +28,8 @@ function BoardPage() {
 				<Text variant="label">PNL 01 · Board</Text>
 				<Heading level={1}>Building AI for the grid</Heading>
 				<Text variant="lead" className="max-w-[56ch]">
-					I&rsquo;m Finn, founding engineer at Squid Energy. I write
-					Boundary Node: the electricity system&rsquo;s data,
-					explained by a software engineer.
+					I&rsquo;m Finn, a software engineer. I write Boundary Node:
+					the electricity system&rsquo;s data, explained.
 				</Text>
 				<div className="flex flex-wrap gap-3">
 					<Link variant="button" href="https://finlayhu.substack.com">
