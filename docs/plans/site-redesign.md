@@ -87,15 +87,15 @@ URLs stay as they are, so links keep working. Only the visible names change.
 
 ## Build order
 
-| Phase                 | Work                                                                                                                  | Done when                                                                    |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| 0 · Mock              | A clickable mock of the Board and one inner page, as an artifact, to settle the look before code                      | You've approved the look                                                     |
-| 1 · Shell             | New root layout: header, status strip (static at first), theme switch, footer title block, skip link. Dark by default | Every route renders inside the new shell                                     |
-| 2 · Grid data         | The `grid/` hooks, with tests against recorded responses; live status strip                                           | Strip shows live readings and goes amber or red when a feed is stale or down |
-| 3 · Board             | Homepage: ident, live grid panel, site mimic diagram, latest post                                                     | Board complete in both themes and at phone width                             |
-| 4 · Pages             | Log and log entry, Register, Operator desk, Operator, error pages                                                     | Every page rebuilt; no Chalkboard imports left                               |
-| 5 · Remove Chalkboard | Delete `chalkboard-ui`, `isolation.css`; move `.sl-page` base styles to `html`                                        | Site builds with no Chalkboard; CSS shrinks                                  |
-| 6 · Ship              | Accessibility and performance pass, review on the dev server, merge to `main`, deploy                                 | Live on fhudson.com                                                          |
+| Phase                 | Work                                                                                                                                                | Done when                                                                    |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 0 · Mock              | Built in the site rather than as an artifact (artifacts can't fetch live data): the shell, live data layer and Board, for review before other pages | You've approved the look                                                     |
+| 1 · Shell             | New root layout: header, status strip (static at first), theme switch, footer title block, skip link. Dark by default                               | Every route renders inside the new shell                                     |
+| 2 · Grid data         | The `grid/` hooks, with tests against recorded responses; live status strip                                                                         | Strip shows live readings and goes amber or red when a feed is stale or down |
+| 3 · Board             | Homepage: ident, live grid panel, site mimic diagram, latest post                                                                                   | Board complete in both themes and at phone width                             |
+| 4 · Pages             | Log and log entry, Register, Operator desk, Operator, error pages                                                                                   | Every page rebuilt; no Chalkboard imports left                               |
+| 5 · Remove Chalkboard | Delete `chalkboard-ui`, `isolation.css`; move `.sl-page` base styles to `html`                                                                      | Site builds with no Chalkboard; CSS shrinks                                  |
+| 6 · Ship              | Accessibility and performance pass, review on the dev server, merge to `main`, deploy                                                               | Live on fhudson.com                                                          |
 
 New components this needs, added to `@fhudson/ui` as they come up: a `StatusStrip` (or a compact
 `Reading`), a `Mimic` layout for the busbar-and-breaker navigation, and `Select` (Tier 2) for the
