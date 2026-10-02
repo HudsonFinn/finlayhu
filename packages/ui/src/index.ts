@@ -31,3 +31,4 @@ export * from './components/Table';
 export * from './components/Chart';
 export * from './components/Symbols';
 export * from './components/ThemeSwitch';
+export * from './components/Chip';
