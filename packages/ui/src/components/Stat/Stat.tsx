@@ -50,8 +50,9 @@ export const Stat = forwardRef<HTMLDivElement, StatProps>(function Stat(
 				>
 					{missing ? '–' : value}
 				</span>
+				{/* Tight line height, so the unit appearing doesn't make the reading taller */}
 				{unit && !missing && (
-					<span className="font-data text-small text-ink-muted">
+					<span className="font-data text-small leading-none text-ink-muted">
 						{unit}
 					</span>
 				)}
@@ -61,14 +62,20 @@ export const Stat = forwardRef<HTMLDivElement, StatProps>(function Stat(
 					{note}
 				</span>
 			)}
-			{trend && trend.length > 1 && (
-				<Sparkline
-					values={trend}
-					label={
-						typeof label === 'string' ? `${label} trend` : 'Trend'
-					}
-				/>
-			)}
+			{/* An empty trend still reserves the sparkline's row, so it can arrive later without a jump */}
+			{trend &&
+				(trend.length > 1 ? (
+					<Sparkline
+						values={trend}
+						label={
+							typeof label === 'string'
+								? `${label} trend`
+								: 'Trend'
+						}
+					/>
+				) : (
+					<div aria-hidden="true" className="h-7" />
+				))}
 		</div>
 	);
 });

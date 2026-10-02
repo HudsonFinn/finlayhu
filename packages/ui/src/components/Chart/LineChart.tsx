@@ -2,6 +2,7 @@ import { type PointerEvent } from 'react';
 import { cn } from '../../lib/cn';
 import { AxisFrame, CategoryAxis, ValueAxis } from './axes';
 import { ChartFrame, PlotArea } from './ChartFrame';
+import { ChartPlaceholder } from './ChartPlaceholder';
 import { ChartTooltip } from './ChartTooltip';
 import { INK, LABEL_FONT, MUTED, PAPER, seriesColor } from './colors';
 import { Marker } from './Marker';
@@ -36,6 +37,8 @@ export interface LineChartProps {
 	formatValue?: (value: number) => string;
 	/** Header for the category column of the data table. */
 	categoryLabel?: string;
+	/** Draws the frame at its full size, with a placeholder plot, while data loads. */
+	loading?: boolean;
 	className?: string;
 }
 
@@ -58,6 +61,7 @@ export function LineChart({
 	height = 200,
 	formatValue = defaultFormat,
 	categoryLabel = 'Label',
+	loading = false,
 	className,
 }: LineChartProps) {
 	const { categories, series } = normaliseSeries({
@@ -66,10 +70,33 @@ export function LineChart({
 		series: seriesProp,
 		label,
 	});
-	const [ref, width] = useChartWidth<HTMLDivElement>();
+	const [ref, width] = useChartWidth();
 	const { active, fromKeyboard, point, focusProps } = useChartFocus({
 		count: categories.length,
 	});
+
+	// While loading, keep the chart's final footprint so the page doesn't move when data arrives
+	if (loading) {
+		return (
+			<ChartFrame
+				label={label}
+				legend={
+					series.length > 1
+						? series.map((s, i) => ({
+								label: s.label,
+								color: seriesColor(i),
+								kind: 'line' as const,
+							}))
+						: undefined
+				}
+				table={{ columns: [], rows: [] }}
+				loading
+				className={className}
+			>
+				<ChartPlaceholder height={height} label={label} />
+			</ChartFrame>
+		);
+	}
 	const values = finite(series.flatMap((s) => s.values));
 	const multi = series.length > 1;
 

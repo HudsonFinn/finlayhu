@@ -27,7 +27,7 @@ export function Sparkline({
 	className,
 	...props
 }: SparklineProps) {
-	const [ref, width] = useChartWidth<HTMLDivElement>(120);
+	const [ref, width] = useChartWidth(120);
 	const nums = finite(values);
 	const lo = Math.min(...nums),
 		hi = Math.max(...nums);

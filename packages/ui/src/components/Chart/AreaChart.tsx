@@ -1,6 +1,7 @@
 import { type PointerEvent } from 'react';
 import { AxisFrame, CategoryAxis, ValueAxis } from './axes';
 import { ChartFrame, PlotArea } from './ChartFrame';
+import { ChartPlaceholder } from './ChartPlaceholder';
 import { ChartTooltip } from './ChartTooltip';
 import { MUTED, PAPER, seriesColor } from './colors';
 import { labelStride, linear, niceTicks, px, runs } from './scale';
@@ -16,6 +17,8 @@ export interface AreaChartProps {
 	height?: number;
 	formatValue?: (value: number) => string;
 	categoryLabel?: string;
+	/** Draws the frame at its full size, with a placeholder plot, while data loads. */
+	loading?: boolean;
 	className?: string;
 }
 
@@ -32,12 +35,32 @@ export function AreaChart({
 	height = 220,
 	formatValue = defaultFormat,
 	categoryLabel = 'Label',
+	loading = false,
 	className,
 }: AreaChartProps) {
-	const [ref, width] = useChartWidth<HTMLDivElement>();
+	const [ref, width] = useChartWidth();
 	const { active, fromKeyboard, point, focusProps } = useChartFocus({
 		count: categories.length,
 	});
+
+	// While loading, keep the chart's final footprint so the page doesn't move when data arrives
+	if (loading) {
+		return (
+			<ChartFrame
+				label={label}
+				legend={series.map((s, i) => ({
+					label: s.label,
+					color: seriesColor(i),
+					kind: 'square' as const,
+				}))}
+				table={{ columns: [], rows: [] }}
+				loading
+				className={className}
+			>
+				<ChartPlaceholder height={height} label={label} />
+			</ChartFrame>
+		);
+	}
 
 	// Cumulative tops per series; a category where every series is missing is a gap
 	const totals = categories.map((_, i) =>

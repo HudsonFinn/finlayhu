@@ -55,7 +55,7 @@ export function ScatterChart({
 	formatY = defaultFormat,
 	className,
 }: ScatterChartProps) {
-	const [ref, width] = useChartWidth<HTMLDivElement>();
+	const [ref, width] = useChartWidth();
 	// Keyboard order: every point, left to right
 	const flat = series
 		.slice(0, 3)

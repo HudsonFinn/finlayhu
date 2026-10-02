@@ -69,7 +69,8 @@ function LogEntryPage() {
 					]}
 				/>
 			</header>
-			<Prose>
+			{/* Full width, so the text lines up with the title block above it */}
+			<Prose className="max-w-none">
 				<ReactMarkdown
 					components={{
 						// Fenced code goes through CodeBlock for highlighting; inline code stays as <code>

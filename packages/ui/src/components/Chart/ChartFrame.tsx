@@ -30,10 +30,13 @@ export function ChartFrame({
 	legend,
 	table,
 	liveText,
+	loading = false,
 	className,
 	children,
 }: {
 	label: string;
+	/** Keeps the frame's full size while data loads; the table toggle is disabled. */
+	loading?: boolean;
 	legend?: LegendItem[];
 	table: ChartTableData;
 	liveText?: string;
@@ -75,6 +78,7 @@ export function ChartFrame({
 					size="sm"
 					aria-expanded={showTable}
 					aria-controls={tableId}
+					isDisabled={loading}
 					onPress={() => {
 						setShowTable((v) => !v);
 					}}

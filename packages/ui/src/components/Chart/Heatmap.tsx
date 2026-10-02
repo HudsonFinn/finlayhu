@@ -36,7 +36,7 @@ export function Heatmap({
 	formatValue = defaultFormat,
 	className,
 }: HeatmapProps) {
-	const [ref, width] = useChartWidth<HTMLDivElement>();
+	const [ref, width] = useChartWidth();
 	const { active, fromKeyboard, point, focusProps } = useChartFocus({
 		count: columns.length,
 		rows: rows.length,

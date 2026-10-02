@@ -1,5 +1,6 @@
 import { type PointerEvent } from 'react';
 import { ChartFrame, PlotArea } from './ChartFrame';
+import { ChartPlaceholder } from './ChartPlaceholder';
 import { ChartTooltip } from './ChartTooltip';
 import { HAIRLINE, INK, LABEL_FONT, MUTED, seriesColor } from './colors';
 import { linear, niceTicks, px } from './scale';
@@ -27,6 +28,8 @@ export interface BarChartProps {
 	height?: number;
 	formatValue?: (value: number) => string;
 	categoryLabel?: string;
+	/** Draws the frame at its full size, with a placeholder plot, while data loads. */
+	loading?: boolean;
 	className?: string;
 }
 
@@ -45,6 +48,7 @@ export function BarChart({
 	height: heightProp,
 	formatValue = defaultFormat,
 	categoryLabel = 'Label',
+	loading = false,
 	className,
 }: BarChartProps) {
 	const { categories, series } = normaliseSeries({
@@ -53,10 +57,33 @@ export function BarChart({
 		series: seriesProp,
 		label,
 	});
-	const [ref, width] = useChartWidth<HTMLDivElement>();
+	const [ref, width] = useChartWidth();
 	const { active, fromKeyboard, point, focusProps } = useChartFocus({
 		count: categories.length,
 	});
+
+	// While loading, keep the chart's final footprint so the page doesn't move when data arrives
+	if (loading) {
+		return (
+			<ChartFrame
+				label={label}
+				legend={
+					series.length > 1
+						? series.map((s, i) => ({
+								label: s.label,
+								color: seriesColor(i),
+								kind: 'square' as const,
+							}))
+						: undefined
+				}
+				table={{ columns: [], rows: [] }}
+				loading
+				className={className}
+			>
+				<ChartPlaceholder height={heightProp ?? 220} label={label} />
+			</ChartFrame>
+		);
+	}
 	const horizontal = orientation === 'horizontal';
 	const stacked = layout === 'stacked' && series.length > 1;
 	const n = categories.length;

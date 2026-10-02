@@ -27,7 +27,13 @@ const carbonState = (index: string) =>
 		? ('isolated' as const)
 		: ('in-service' as const);
 
-/** Live GB grid readings: frequency, demand, carbon intensity and the generation mix. */
+/** Fixed, so the chart is the same size whatever the number of fuels generating. */
+const MIX_HEIGHT = 230;
+
+/**
+ * Live GB grid readings: frequency, demand, carbon intensity and the generation mix. Everything
+ * renders at its final size while loading, so nothing moves when the data arrives.
+ */
 export function GridPanel() {
 	const { frequency, demand, carbon, mix } = useGrid();
 	const f = frequency.data?.at(-1);
@@ -67,7 +73,7 @@ export function GridPanel() {
 						note={
 							d ? `At ${hhmm(d.time)} UTC` : 'Waiting for Elexon'
 						}
-						trend={demand.data?.map((r) => r.value)}
+						trend={demand.data?.map((r) => r.value) ?? []}
 					/>
 					<Stat
 						label="Carbon intensity"
@@ -79,61 +85,52 @@ export function GridPanel() {
 								? `${capitalise(c.index)} · today`
 								: 'Waiting for NESO'
 						}
-						trend={carbon.data?.map((r) => r.value)}
+						trend={carbon.data?.map((r) => r.value) ?? []}
 					/>
 				</div>
 				<div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
 					<div className="flex min-w-0 flex-col gap-2">
 						<Text variant="label">Frequency, last hour</Text>
-						{frequency.data ? (
-							<LineChart
-								label="System frequency, last hour, Hz"
-								categories={frequency.data.map((r) =>
-									hhmm(r.time)
-								)}
-								series={[
-									{
-										id: 'hz',
-										label: 'Frequency',
-										values: frequency.data.map(
-											(r) => r.value
-										),
-									},
-								]}
-								yDomain={[49.8, 50.2]}
-								formatValue={(v) => v.toFixed(2)}
-								showPoints={false}
-								categoryLabel="Time (UTC)"
-								height={190}
-							/>
-						) : (
-							<Text variant="small" tone="muted">
-								Loading frequency…
-							</Text>
-						)}
+						<LineChart
+							label="System frequency, last hour, Hz"
+							loading={!frequency.data}
+							categories={
+								frequency.data?.map((r) => hhmm(r.time)) ?? []
+							}
+							series={[
+								{
+									id: 'hz',
+									label: 'Frequency',
+									values:
+										frequency.data?.map((r) => r.value) ??
+										[],
+								},
+							]}
+							yDomain={[49.8, 50.2]}
+							formatValue={(v) => v.toFixed(2)}
+							showPoints={false}
+							categoryLabel="Time (UTC)"
+							height={MIX_HEIGHT}
+						/>
 					</div>
 					<div className="flex min-w-0 flex-col gap-2">
 						<Text variant="label">
 							Generation mix, this half hour
 						</Text>
-						{mix.data ? (
-							<BarChart
-								label="Generation mix, percent"
-								orientation="horizontal"
-								data={mix.data.mix
-									.filter((m) => m.percent > 0)
-									.map((m) => ({
-										label: capitalise(m.fuel),
-										value: m.percent,
-									}))}
-								formatValue={(v) => `${String(v)}%`}
-								categoryLabel="Fuel"
-							/>
-						) : (
-							<Text variant="small" tone="muted">
-								Loading mix…
-							</Text>
-						)}
+						<BarChart
+							label="Generation mix, percent"
+							loading={!mix.data}
+							orientation="horizontal"
+							data={(mix.data?.mix ?? [])
+								.filter((m) => m.percent > 0)
+								.map((m) => ({
+									label: capitalise(m.fuel),
+									value: m.percent,
+								}))}
+							formatValue={(v) => `${String(v)}%`}
+							categoryLabel="Fuel"
+							height={MIX_HEIGHT}
+						/>
 					</div>
 				</div>
 			</PanelBody>
