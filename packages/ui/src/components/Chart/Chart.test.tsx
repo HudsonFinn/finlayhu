@@ -18,8 +18,11 @@ const readiness = [
 	{ label: '29 Sep', value: null },
 ];
 
+// The chart's own live region, inside its figure. Not the first aria-live element on the page:
+// React Aria appends a page-wide announcer to <body> (used by Table) that outlives its tests,
+// and on slower CI runners it exists before these tests run.
 const live = () =>
-	document.querySelector('[aria-live="polite"]')?.textContent ?? '';
+	document.querySelector('figure [aria-live="polite"]')?.textContent ?? '';
 
 describe('LineChart', () => {
 	test('breaks the line at gaps and marks them on the axis', () => {
