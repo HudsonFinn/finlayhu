@@ -4,6 +4,9 @@
 	"version": "0.0.0",
 	"description": "Single Line, the fhudson design system",
 	"type": "module",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"exports": {
 		".": "./src/index.ts",
 		"./styles.css": "./src/styles/index.css"

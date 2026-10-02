@@ -1,18 +1,16 @@
-import { StrictMode } from 'react';
+import { StrictMode, type ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import AriaRouter from './components/AriaRouter/AriaRouter.tsx';
 import ControlRoomLayout from './controlRoom/ControlRoomLayout.tsx';
 import BoardPage from './pages/board/BoardPage.tsx';
-import OpenCircuitPage from './pages/faults/OpenCircuitPage.tsx';
 import TripPage from './pages/faults/TripPage.tsx';
-import LogEntryPage from './pages/log/LogEntryPage.tsx';
-import LogPage from './pages/log/LogPage.tsx';
-import OperatorDeskPage from './pages/operator/OperatorDeskPage.tsx';
-import OperatorPage from './pages/operator/OperatorPage.tsx';
-import RegisterPage from './pages/register/RegisterPage.tsx';
-import SystemPage from './pages/SystemPage.tsx';
+
+// Every page except the Board loads its code on demand, so the landing page stays light
+const page = (load: () => Promise<{ default: ComponentType }>) => async () => ({
+	Component: (await load()).default,
+});
 
 const router = createBrowserRouter([
 	{
@@ -20,18 +18,50 @@ const router = createBrowserRouter([
 		errorElement: <TripPage />,
 		children: [
 			// Unlisted: the Single Line design system reference
-			{ path: '/system', element: <SystemPage /> },
+			{
+				path: '/system',
+				lazy: page(() => import('./pages/SystemPage.tsx')),
+			},
 			{
 				element: <ControlRoomLayout />,
 				errorElement: <TripPage />,
 				children: [
 					{ path: '/', element: <BoardPage /> },
-					{ path: '/vault', element: <LogPage /> },
-					{ path: '/vault/:slug', element: <LogEntryPage /> },
-					{ path: '/projects', element: <RegisterPage /> },
-					{ path: '/new-tab', element: <OperatorDeskPage /> },
-					{ path: '/about', element: <OperatorPage /> },
-					{ path: '*', element: <OpenCircuitPage /> },
+					{
+						path: '/vault',
+						lazy: page(() => import('./pages/log/LogPage.tsx')),
+					},
+					{
+						path: '/vault/:slug',
+						lazy: page(
+							() => import('./pages/log/LogEntryPage.tsx')
+						),
+					},
+					{
+						path: '/projects',
+						lazy: page(
+							() => import('./pages/register/RegisterPage.tsx')
+						),
+					},
+					{
+						path: '/new-tab',
+						lazy: page(
+							() =>
+								import('./pages/operator/OperatorDeskPage.tsx')
+						),
+					},
+					{
+						path: '/about',
+						lazy: page(
+							() => import('./pages/operator/OperatorPage.tsx')
+						),
+					},
+					{
+						path: '*',
+						lazy: page(
+							() => import('./pages/faults/OpenCircuitPage.tsx')
+						),
+					},
 				],
 			},
 		],

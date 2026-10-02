@@ -1,4 +1,4 @@
-import { Breaker, Busbar, CodeBlock, Heading, Link, Text } from '@fhudson/ui';
+import { Breaker, Busbar, Heading, Link, Text } from '@fhudson/ui';
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 /**
@@ -36,7 +36,10 @@ function TripPage() {
 					Something on this page failed, so it tripped before it could
 					do more damage. Reloading usually resets it.
 				</Text>
-				<CodeBlock language="Fault">{detail}</CodeBlock>
+				{/* Plain, not CodeBlock: this page loads up front, and highlighting would pull Prism with it */}
+				<pre className="overflow-x-auto border border-hairline bg-sheet px-4 py-3 font-data text-small">
+					{detail}
+				</pre>
 				<div className="flex flex-wrap gap-3">
 					<Link variant="button" href="/">
 						Back to the Board
