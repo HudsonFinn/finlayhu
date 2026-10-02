@@ -226,3 +226,8 @@ test('count bars get whole-number ticks', () => {
 	expect(ticks).not.toContain('0.5');
 	expect(ticks).not.toContain('1.5');
 });
+
+test('Meter is named by its visible label', () => {
+	render(<Meter label="Dunmore loading" value={12.6} max={12} unit="MVA" />);
+	expect(screen.getByRole('meter', { name: 'Dunmore loading' })).toBeTruthy();
+});

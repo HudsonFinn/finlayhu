@@ -37,8 +37,8 @@ export function Chip({ className, ...props }: ChipProps) {
 		<ToggleButton
 			className={composeRenderProps(className, (className) =>
 				cn(
-					'cursor-pointer border border-hairline px-2 py-1 font-data text-label uppercase leading-none tracking-wider text-ink-muted outline-none transition-colors',
-					'data-focus-visible:outline-[1.5px] data-focus-visible:outline-offset-2 data-focus-visible:outline-verdigris',
+					'cursor-pointer border border-hairline px-2 py-1 font-data text-label uppercase leading-none tracking-wider text-ink-muted outline-hidden transition-colors',
+					'data-focus-visible:outline-solid data-focus-visible:outline-[1.5px] data-focus-visible:outline-offset-2 data-focus-visible:outline-verdigris',
 					'data-hovered:border-ink data-hovered:text-ink',
 					'data-selected:border-verdigris data-selected:bg-verdigris data-selected:text-on-verdigris',
 					className

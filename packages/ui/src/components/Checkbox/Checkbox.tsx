@@ -35,7 +35,7 @@ export const Checkbox = forwardRef<HTMLDivElement, CheckboxProps>(
 								aria-hidden="true"
 								className={cn(
 									'flex size-4 shrink-0 items-center justify-center border-[1.5px] border-ink bg-sheet text-on-verdigris transition-colors',
-									'group-data-focus-visible:outline-[1.5px] group-data-focus-visible:outline-offset-2 group-data-focus-visible:outline-verdigris',
+									'group-data-focus-visible:outline-solid group-data-focus-visible:outline-[1.5px] group-data-focus-visible:outline-offset-2 group-data-focus-visible:outline-verdigris',
 									'group-data-invalid:border-fault',
 									(isSelected || isIndeterminate) &&
 										'border-verdigris bg-verdigris'

@@ -72,23 +72,21 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
 						<NodeMark className="h-4 w-10" />
 						{title}
 					</Link>
-					<div className="ml-auto flex items-center gap-3 sm:order-last sm:ml-0">
-						{actions}
-						<Button
-							aria-expanded={open}
-							aria-controls={listId}
-							onPress={() => {
-								setOpen((value) => !value);
-							}}
-							className="cursor-pointer border-[1.5px] border-ink px-3 py-2 font-data text-label uppercase tracking-widest text-ink data-hovered:bg-sheet sm:hidden"
-						>
-							{open ? 'Close' : 'Menu'}
-						</Button>
-					</div>
+					{/* DOM order follows the desktop layout, so keyboard focus matches what's on screen */}
+					<Button
+						aria-expanded={open}
+						aria-controls={listId}
+						onPress={() => {
+							setOpen((value) => !value);
+						}}
+						className="cursor-pointer border-[1.5px] border-ink px-3 py-2 font-data text-label uppercase tracking-widest text-ink data-hovered:bg-sheet max-sm:order-2 sm:hidden"
+					>
+						{open ? 'Close' : 'Menu'}
+					</Button>
 					<nav
 						aria-label={navLabel}
 						className={cn(
-							'w-full sm:block sm:w-auto',
+							'w-full max-sm:order-3 sm:block sm:w-auto',
 							!open && 'hidden'
 						)}
 					>
@@ -113,6 +111,9 @@ export const SiteHeader = forwardRef<HTMLElement, SiteHeaderProps>(
 							))}
 						</ul>
 					</nav>
+					<div className="ml-auto flex items-center gap-3 max-sm:order-1">
+						{actions}
+					</div>
 				</div>
 			</header>
 		);

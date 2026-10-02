@@ -161,7 +161,7 @@ export function PlotArea({
 			ref={plotRef}
 			role="group"
 			aria-label={`${label}. Use the arrow keys to read values.`}
-			className="relative min-w-0 outline-none focus-visible:outline-[1.5px] focus-visible:outline-offset-4 focus-visible:outline-verdigris"
+			className="relative min-w-0 outline-hidden focus-visible:outline-solid focus-visible:outline-[1.5px] focus-visible:outline-offset-4 focus-visible:outline-verdigris"
 			onPointerLeave={onPointerLeave}
 			{...focusProps}
 		>

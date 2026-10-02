@@ -39,7 +39,7 @@ export function ThemeSwitch({
 				<ToggleButton
 					key={option.id}
 					id={option.id}
-					className="cursor-pointer px-2.5 py-1.5 font-data text-label uppercase tracking-wider text-ink-muted outline-none data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris data-hovered:text-ink data-selected:bg-ink data-selected:text-paper"
+					className="cursor-pointer px-2.5 py-1.5 font-data text-label uppercase tracking-wider text-ink-muted outline-hidden data-focus-visible:outline-solid data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris data-hovered:text-ink data-selected:bg-ink data-selected:text-paper"
 				>
 					{option.label}
 				</ToggleButton>

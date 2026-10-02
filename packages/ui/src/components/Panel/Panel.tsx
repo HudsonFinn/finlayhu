@@ -96,7 +96,7 @@ export const PanelHeader = forwardRef<HTMLDivElement, PanelHeaderProps>(
 						href={href}
 						id={context?.labelId}
 						data-panel-link=""
-						className="inline-flex items-center gap-2 text-ink outline-none after:absolute after:inset-0 data-focus-visible:after:outline-[1.5px] data-focus-visible:after:outline-offset-2 data-focus-visible:after:outline-verdigris data-hovered:text-verdigris"
+						className="inline-flex items-center gap-2 text-ink outline-hidden after:absolute after:inset-0 data-focus-visible:after:outline-solid data-focus-visible:after:outline-[1.5px] data-focus-visible:after:outline-offset-2 data-focus-visible:after:outline-verdigris data-hovered:text-verdigris"
 					>
 						{labelContent}
 					</Link>

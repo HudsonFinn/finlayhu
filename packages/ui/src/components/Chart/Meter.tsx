@@ -1,5 +1,6 @@
 import {
 	forwardRef,
+	useId,
 	type ComponentPropsWithoutRef,
 	type ReactNode,
 } from 'react';
@@ -34,6 +35,7 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
 	},
 	ref
 ) {
+	const labelId = useId();
 	const pct = Math.min(
 		100,
 		Math.max(0, ((value - min) / (max - min || 1)) * 100)
@@ -43,6 +45,7 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
 		<div
 			ref={ref}
 			role="meter"
+			aria-labelledby={labelId}
 			aria-valuenow={value}
 			aria-valuemin={min}
 			aria-valuemax={max}
@@ -51,7 +54,10 @@ export const Meter = forwardRef<HTMLDivElement, MeterProps>(function Meter(
 			{...props}
 		>
 			<div className="flex items-baseline justify-between gap-4">
-				<span className="font-data text-label uppercase tracking-widest text-ink-muted">
+				<span
+					id={labelId}
+					className="font-data text-label uppercase tracking-widest text-ink-muted"
+				>
 					{label}
 				</span>
 				<span className="font-data text-small text-ink">

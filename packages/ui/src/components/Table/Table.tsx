@@ -131,8 +131,8 @@ export function Column({
 		<RACColumn
 			className={composeRenderProps(className, (className) =>
 				cn(
-					'group relative px-3 py-2.5 font-data text-label font-normal uppercase tracking-widest whitespace-nowrap text-ink-muted outline-none',
-					'data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
+					'group relative px-3 py-2.5 font-data text-label font-normal uppercase tracking-widest whitespace-nowrap text-ink-muted outline-hidden',
+					'data-focus-visible:outline-solid data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
 					'data-allows-sorting:cursor-pointer data-hovered:text-ink',
 					align === 'end' && 'text-right',
 					className
@@ -177,7 +177,7 @@ export function ColumnResizer({ className, ...props }: ColumnResizerProps) {
 			className={composeRenderProps(className, (className) =>
 				cn(
 					// The hit area straddles the column boundary, so the visible line is in its middle
-					'absolute top-0 -right-1.5 bottom-0 z-20 w-3 cursor-col-resize touch-none outline-none',
+					'absolute top-0 -right-1.5 bottom-0 z-20 w-3 cursor-col-resize touch-none outline-hidden',
 					'before:absolute before:inset-y-1.5 before:left-[calc(50%-0.75px)] before:w-[1.5px] before:bg-hairline',
 					'data-hovered:before:bg-ink data-resizing:before:bg-verdigris data-focus-visible:before:bg-verdigris',
 					className
@@ -215,8 +215,8 @@ export function Row<T extends object>({
 			id={id}
 			className={composeRenderProps(className, (className) =>
 				cn(
-					'border-b border-hairline outline-none transition-colors',
-					'data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
+					'border-b border-hairline outline-hidden transition-colors',
+					'data-focus-visible:outline-solid data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
 					'data-href:cursor-pointer data-hovered:bg-sheet',
 					// A verdigris rule on the leading edge of a selected row
 					'data-selected:bg-sheet [&>td:first-child]:relative [&>td:first-child]:before:absolute [&>td:first-child]:before:inset-y-0 [&>td:first-child]:before:left-0 [&>td:first-child]:before:w-[3px] data-selected:[&>td:first-child]:before:bg-verdigris',
@@ -255,9 +255,9 @@ export function Cell({
 		<RACCell
 			className={composeRenderProps(className, (className) =>
 				cn(
-					'px-3 align-top outline-none',
+					'px-3 align-top outline-hidden',
 					density === 'compact' ? 'py-1.5 text-small' : 'py-2.5',
-					'data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
+					'data-focus-visible:outline-solid data-focus-visible:outline-[1.5px] data-focus-visible:-outline-offset-2 data-focus-visible:outline-verdigris',
 					(numeric || align === 'end') && 'text-right',
 					numeric && 'font-data tabular-nums',
 					className

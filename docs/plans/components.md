@@ -59,6 +59,10 @@ These apply to every component. A component that breaks one says why in its entr
    `data-*:` variants. Static components add `data-state` where relevant.
 7. **Accessibility is part of done.** Visible focus (1.5px verdigris outline, 2px offset),
    keyboard operation, and a label for every control. Every text pairing is in the contrast tests.
+   Focus rings: hide the default outline with `outline-hidden`, and on focus set both the style
+   and the width (`data-focus-visible:outline-solid data-focus-visible:outline-[1.5px]`). In
+   Tailwind v4, `outline-hidden` and `outline-none` set the outline style to none through the
+   same variable the width utilities read, so a width alone draws nothing.
 
 ### Shared types
 

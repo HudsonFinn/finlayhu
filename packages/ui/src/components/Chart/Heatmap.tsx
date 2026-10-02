@@ -11,6 +11,8 @@ export interface HeatmapProps {
 	label: string;
 	rows: string[];
 	columns: string[];
+	/** Header for the row labels in the data table. */
+	rowLabel?: string;
 	/** values[row][column]. null is a missing reading. */
 	values: (number | null)[][];
 	/** Defaults to the data's range. */
@@ -28,6 +30,7 @@ export function Heatmap({
 	rows,
 	columns,
 	values,
+	rowLabel = 'Row',
 	domain,
 	cellHeight = 18,
 	formatValue = defaultFormat,
@@ -89,7 +92,7 @@ export function Heatmap({
 			: formatValue(activeValue);
 	const liveText = fromKeyboard && a ? `${title}: ${valueText}` : '';
 	const table = {
-		columns: ['', ...columns],
+		columns: [rowLabel, ...columns],
 		rows: rows.map((r, ri) => ({
 			key: `${r}-${String(ri)}`,
 			cells: [
