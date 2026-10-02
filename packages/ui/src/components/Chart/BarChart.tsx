@@ -70,7 +70,9 @@ export function BarChart({
 	const all = series.flatMap((s) => s.values.map((v) => v ?? 0));
 	const lo = stacked ? 0 : Math.min(0, ...all);
 	const hi = stacked ? Math.max(0, ...sums) : Math.max(0, ...all);
-	const ticks = niceTicks(lo, hi || 1);
+	// Counts get whole-number ticks
+	const integer = all.every((v) => Number.isInteger(v));
+	const ticks = niceTicks(lo, hi || 1, 4, integer);
 	const v0 = ticks[0] ?? 0;
 	const v1 = ticks[ticks.length - 1] ?? 1;
 

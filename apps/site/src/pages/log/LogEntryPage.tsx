@@ -105,7 +105,7 @@ function LogEntryPage() {
 						<span className="font-data text-label uppercase tracking-widest text-ink-muted">
 							← Older
 						</span>
-						<span className="text-ui font-semibold">
+						<span className="font-body text-ui font-semibold">
 							{older.title}
 						</span>
 					</Link>
@@ -121,7 +121,7 @@ function LogEntryPage() {
 						<span className="font-data text-label uppercase tracking-widest text-ink-muted">
 							Newer →
 						</span>
-						<span className="text-ui font-semibold">
+						<span className="font-body text-ui font-semibold">
 							{newer.title}
 						</span>
 					</Link>

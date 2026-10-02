@@ -10,7 +10,7 @@ export const drawings: Record<string, { number: string; title: string }> = {
 export function drawingFor(pathname: string) {
 	if (pathname.startsWith('/vault/'))
 		return { number: 'FH-LOG-100', title: 'Log entry' };
-	return drawings[pathname] ?? { number: 'FH-000', title: 'Unknown' };
+	return drawings[pathname] ?? { number: 'FH-404', title: 'Open circuit' };
 }
 
 export const navItems = [

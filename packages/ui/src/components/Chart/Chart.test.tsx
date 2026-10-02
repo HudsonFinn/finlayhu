@@ -209,3 +209,20 @@ test('Meter exposes its value as a meter', () => {
 		'19.4 MVA of 24 MVA'
 	);
 });
+
+test('count bars get whole-number ticks', () => {
+	const { container } = render(
+		<BarChart
+			label="Activities"
+			data={[
+				{ label: 'Hike', value: 2 },
+				{ label: 'Swim', value: 1 },
+			]}
+		/>
+	);
+	const ticks = [...container.querySelectorAll('svg text')].map(
+		(t) => t.textContent
+	);
+	expect(ticks).not.toContain('0.5');
+	expect(ticks).not.toContain('1.5');
+});

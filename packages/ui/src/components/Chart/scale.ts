@@ -8,7 +8,13 @@ export function linear(d0: number, d1: number, r0: number, r1: number) {
 }
 
 /** About `count` evenly spaced, human-friendly ticks covering [min, max]. */
-export function niceTicks(min: number, max: number, count = 4): number[] {
+/** `integer` keeps every step whole, for counts. */
+export function niceTicks(
+	min: number,
+	max: number,
+	count = 4,
+	integer = false
+): number[] {
 	if (min === max) {
 		const pad = Math.abs(min) || 1;
 		min -= pad;
@@ -16,9 +22,10 @@ export function niceTicks(min: number, max: number, count = 4): number[] {
 	}
 	const rough = (max - min) / count;
 	const power = 10 ** Math.floor(Math.log10(rough));
-	const step =
+	const nice =
 		[1, 2, 2.5, 5, 10].map((m) => m * power).find((s) => s >= rough) ??
 		10 * power;
+	const step = integer ? Math.max(1, Math.ceil(nice)) : nice;
 	const start = Math.floor(min / step) * step;
 	const end = Math.ceil(max / step) * step;
 	const ticks: number[] = [];

@@ -306,6 +306,7 @@ export function LineChart({
 							)
 						)}
 
+					{/* End labels with a dotted leader: never in the series colour, so the leader can't read as data */}
 					{endLabels.map((e) =>
 						e.value === null ? null : (
 							<g key={`end-${String(e.i)}`}>
@@ -314,8 +315,9 @@ export function LineChart({
 									x2={px(width - right + 10)}
 									y1={px(y(e.value))}
 									y2={px(y(e.value))}
-									stroke={seriesColor(e.i)}
+									stroke={MUTED}
 									strokeWidth="1"
+									strokeDasharray="1 3"
 								/>
 								<text
 									x={px(width - right + 14)}
