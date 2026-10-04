@@ -21,14 +21,14 @@ bun run dev      # start the site
 
 Run from the repo root.
 
-| Script           | Does                                                                                |
-| ---------------- | ----------------------------------------------------------------------------------- |
-| `bun run dev`    | Starts the site                                                                     |
-| `bun run fig`    | `fig new <post> <title>` starts a figure, `fig dev` opens the workbench, `fig list` |
-| `bun run build`  | Builds every app                                                                    |
-| `bun run test`   | Runs every package's tests (including the design system's contrast checks)          |
-| `bun run lint`   | Lints the whole repo                                                                |
-| `bun run format` | Formats the whole repo                                                              |
+| Script           | Does                                                                                                                                                 |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bun run dev`    | Starts the site                                                                                                                                      |
+| `bun run fig`    | `fig new <post> <title>` starts a figure, `fig dev` opens the workbench, `fig export <slug…\|all>` renders PNG, MP4 and GIF for Substack, `fig list` |
+| `bun run build`  | Builds every app                                                                                                                                     |
+| `bun run test`   | Runs every package's tests (including the design system's contrast checks)                                                                           |
+| `bun run lint`   | Lints the whole repo                                                                                                                                 |
+| `bun run format` | Formats the whole repo                                                                                                                               |
 
 To run a script in one workspace: `bun run --filter @fhudson/site <script>`.
 

@@ -77,7 +77,10 @@ export function Frame({
 			style={{ maxWidth: MAX_WIDTH }}
 			data-figure={meta.number}
 		>
-			<div className="flex flex-col border-[1.5px] border-ink bg-paper">
+			<div
+				data-figure-sheet
+				className="flex flex-col border-[1.5px] border-ink bg-paper"
+			>
 				<div ref={ref} className="drawing-grid">
 					<FigureWidthContext.Provider value={width}>
 						{typeof children === 'function'

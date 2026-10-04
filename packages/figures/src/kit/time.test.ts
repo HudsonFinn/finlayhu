@@ -1,5 +1,14 @@
 import { describe, expect, test } from 'bun:test';
-import { BEAT, HOLD, STEP, drawOn, flowOffset, progress, settle } from './time';
+import {
+	BEAT,
+	HOLD,
+	STEP,
+	drawOn,
+	flowOffset,
+	loopSpeed,
+	progress,
+	settle,
+} from './time';
 import { stillTime } from './useClock';
 
 describe('timing', () => {
@@ -31,6 +40,15 @@ describe('timing', () => {
 		expect(offset).toBeLessThanOrEqual(0);
 		expect(offset).toBeGreaterThan(-16);
 		expect(flowOffset(0, 50, 16)).toBe(-0);
+	});
+
+	test('loop speeds come back to the start of a dash at the loop point', () => {
+		for (const speed of [10, 21.5, 62.5, 0.1]) {
+			const s = loopSpeed(speed, 8000, 16);
+			expect(Math.abs(flowOffset(8000, s, 16))).toBeCloseTo(0, 9);
+			expect(s).toBeGreaterThan(0);
+		}
+		expect(loopSpeed(31, 8000, 16)).toBe(32);
 	});
 
 	test('the still is the finished build, or the start', () => {

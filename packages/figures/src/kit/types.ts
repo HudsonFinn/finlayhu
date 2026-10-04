@@ -13,6 +13,11 @@ export interface FigureMeta {
 	date: string;
 	/** Loop length in ms for builds. Omit for stills and continuous animations. */
 	duration?: number;
+	/**
+	 * For continuous animations: the length in ms after which every frame repeats exactly.
+	 * The exporter renders one loop of this length.
+	 */
+	loop?: number;
 }
 
 export interface FigureEntry extends FigureMeta {
@@ -26,3 +31,13 @@ export const slugOf = (meta: Pick<FigureMeta, 'number'>) =>
 
 export const interactiveUrl = (meta: Pick<FigureMeta, 'number'>) =>
 	`fhudson.com/f/${slugOf(meta)}`;
+
+declare global {
+	interface Window {
+		/**
+		 * Set by the workbench's export view, for the exporter (scripts/export.ts): moves the
+		 * figure's clock and resolves once that frame has painted.
+		 */
+		__figure?: { setTime: (time: number) => Promise<void> };
+	}
+}

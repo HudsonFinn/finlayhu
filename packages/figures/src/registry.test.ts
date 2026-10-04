@@ -29,6 +29,7 @@ describe('registry', () => {
 
 	test('builds that loop end on a whole beat', () => {
 		for (const f of figures)
-			if (f.duration) expect(f.duration % 400).toBe(0);
+			for (const ms of [f.duration, f.loop])
+				if (ms) expect(ms % 400).toBe(0);
 	});
 });

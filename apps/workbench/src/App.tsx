@@ -7,6 +7,7 @@ import {
 	type ComponentType,
 	type LazyExoticComponent,
 } from 'react';
+import { flushSync } from 'react-dom';
 import { ClockContext, figureBySlug, figures } from '@fhudson/figures';
 import { NodeMark } from '@fhudson/ui';
 
@@ -106,6 +107,37 @@ function Bare({ slug }: { slug: string }) {
 	);
 }
 
+/** One exact frame. The exporter moves the clock with window.__figure.setTime. */
+function ExportView({ slug, initial }: { slug: string; initial: number }) {
+	const [time, setTime] = useState(initial);
+
+	useEffect(() => {
+		window.__figure = {
+			setTime: (next) =>
+				new Promise((resolve) => {
+					flushSync(() => {
+						setTime(next);
+					});
+					// One frame for SVG to paint, a second for a 3D canvas to draw
+					requestAnimationFrame(() => {
+						requestAnimationFrame(() => {
+							resolve();
+						});
+					});
+				}),
+		};
+		return () => {
+			delete window.__figure;
+		};
+	}, []);
+
+	return (
+		<ClockContext.Provider value={{ fixedTime: time }}>
+			<Bare slug={slug} />
+		</ClockContext.Provider>
+	);
+}
+
 /** The bare view in an iframe at the chosen width, grown to fit the figure. */
 function Stage({
 	slug,
@@ -170,11 +202,7 @@ export default function App() {
 	}, [state]);
 
 	if (state.mode === 'export')
-		return (
-			<ClockContext.Provider value={{ fixedTime: state.time ?? 0 }}>
-				<Bare slug={state.slug} />
-			</ClockContext.Provider>
-		);
+		return <ExportView slug={state.slug} initial={state.time ?? 0} />;
 	if (state.mode === 'frame') return <Bare slug={state.slug} />;
 
 	const posts = [...new Set(figures.map((f) => f.number.slice(3, 5)))];

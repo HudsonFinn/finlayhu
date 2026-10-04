@@ -9,8 +9,8 @@ import { meta } from './meta';
 
 const BAYS = [-3, 0, 3];
 const BUS_Y = 3;
-/** One turn every 40 seconds: slow enough to read, constant so it never swoops. */
-const TURN = (2 * Math.PI) / 40000;
+/** One turn per loop (40 s): slow enough to read, constant so it never swoops. */
+const TURN = (2 * Math.PI) / (meta.loop ?? 40000);
 
 const ground = segments(
 	Array.from({ length: 15 }, (_, i) => i - 7).flatMap((n): Point[][] => [

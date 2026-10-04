@@ -22,4 +22,5 @@ export const meta: FigureMeta = {
 	alt: `Power flowing through a boundary node: ${list(SOURCES)} combine to ${mw(TOTAL)}, which leaves on ${list(LOADS)}. Faster dashes mean more power.`,
 	source: 'Illustrative',
 	date: '04.10.26',
+	loop: 8000,
 };

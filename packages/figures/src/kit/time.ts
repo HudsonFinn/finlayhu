@@ -33,3 +33,12 @@ export const drawOn = (p: number) => ({
  */
 export const flowOffset = (time: number, speed: number, period: number) =>
 	-(((time / 1000) * speed) % period);
+
+/**
+ * The nearest speed (px/s) at which a dash pattern of `period` px comes back to where it
+ * started after exactly `loop` ms, so an exported loop has no seam. Never rounds to zero.
+ */
+export const loopSpeed = (speed: number, loop: number, period: number) => {
+	const cycles = Math.max(1, Math.round((speed * loop) / 1000 / period));
+	return (cycles * period * 1000) / loop;
+};

@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Figure exports (bun run fig export)
+packages/figures/exports

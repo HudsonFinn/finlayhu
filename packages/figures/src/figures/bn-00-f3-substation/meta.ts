@@ -6,4 +6,6 @@ export const meta: FigureMeta = {
 	alt: 'A three-dimensional line drawing of a 33/11 kV substation, turning slowly: a transformer feeds a busbar between two posts, and three bays each run through a breaker to a cable.',
 	source: 'Illustrative',
 	date: '04.10.26',
+	// One full turn
+	loop: 40000,
 };

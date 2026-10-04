@@ -2,6 +2,7 @@
  * bun run fig new <post> <title…>   start a figure: next drawing number, a still to edit
  * bun run fig dev                   open the workbench
  * bun run fig list                  every figure, by drawing number
+ * bun run fig export <slug…|all>    PNG, MP4 and GIF in both themes (see scripts/export.ts)
  */
 import {
 	existsSync,
@@ -140,6 +141,34 @@ if (command === 'new') create(args[0], args.slice(1));
 else if (command === 'list') {
 	const { figures } = await import('../src/registry');
 	for (const f of figures) console.log(`${f.number.padEnd(10)} ${f.title}`);
+} else if (command === 'export') {
+	const { figures, figureBySlug } = await import('../src/registry');
+	const { exportFigures } = await import('./export');
+	const option = (flag: string) => {
+		const i = args.indexOf(flag);
+		return i === -1 ? undefined : args.splice(i, 2)[1];
+	};
+	const out = option('--out') ?? join(root, 'exports');
+	const theme = option('--theme');
+	const chosen = args.includes('all')
+		? figures
+		: args.map((slug) => {
+				const figure = figureBySlug(slug.toLowerCase());
+				if (!figure)
+					throw new Error(`No figure ${slug}. Try: bun run fig list`);
+				return figure;
+			});
+	if (!chosen.length) {
+		console.error(
+			'usage: bun run fig export <slug…|all> [--out dir] [--theme dark|light]'
+		);
+		process.exit(1);
+	}
+	await exportFigures(chosen, {
+		out,
+		themes:
+			theme === 'dark' || theme === 'light' ? [theme] : ['dark', 'light'],
+	});
 } else if (command === 'dev') {
 	const child = Bun.spawn(
 		['bun', 'run', '--filter', '@fhudson/workbench', 'dev'],
@@ -149,6 +178,8 @@ else if (command === 'list') {
 	);
 	process.exit(await child.exited);
 } else {
-	console.error('usage: bun run fig <new <post> <title…> | dev | list>');
+	console.error(
+		'usage: bun run fig <new <post> <title…> | dev | list | export <slug…|all>>'
+	);
 	process.exit(1);
 }

@@ -1,10 +1,13 @@
 import { Frame } from '../../kit/Frame';
 import { Label, Node, Sheet } from '../../kit/Sheet';
-import { flowOffset } from '../../kit/time';
+import { flowOffset, loopSpeed } from '../../kit/time';
 import { useClock } from '../../kit/useClock';
 import { LOADS, SOURCES, TOTAL, meta, mw } from './meta';
 
-/** px per second per MW. Constant along a line; faster means more power. */
+/**
+ * px per second per MW. Constant along a line; faster means more power. Rounded per line so
+ * the dashes repeat exactly every meta.loop ms.
+ */
 const SPEED = 1 / 40;
 const DASH = '6 10';
 const PERIOD = 16;
@@ -24,7 +27,11 @@ function Flow({ d, power, time }: { d: string; power: number; time: number }) {
 				strokeWidth={1.5}
 				fill="none"
 				strokeDasharray={DASH}
-				strokeDashoffset={flowOffset(time, power * SPEED, PERIOD)}
+				strokeDashoffset={flowOffset(
+					time,
+					loopSpeed(power * SPEED, meta.loop ?? 8000, PERIOD),
+					PERIOD
+				)}
 			/>
 		</>
 	);
