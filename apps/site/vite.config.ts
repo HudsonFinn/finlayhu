@@ -19,4 +19,6 @@ export default defineConfig({
 	assetsInclude: ['**/*.md', '88/*.webp'],
 	// One React for the app and the workspace packages it imports
 	resolve: { dedupe: ['react', 'react-dom'] },
+	// Only lazy routes import these; pre-bundle them so the dev server doesn't re-optimise mid-visit
+	optimizeDeps: { include: ['three', '@react-three/fiber'] },
 });

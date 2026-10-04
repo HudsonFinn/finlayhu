@@ -17,6 +17,7 @@ import { Structure } from './system/Structure';
 import { Data } from './system/Data';
 import { Symbols } from './system/Symbols';
 import { Charts } from './system/Charts';
+import { Figures } from './system/Figures';
 
 const themeChoices: { value: ThemeChoice; label: string }[] = [
 	{ value: 'system', label: 'System' },
@@ -405,6 +406,19 @@ function SystemPage() {
 					<Charts />
 					<Symbols />
 				</section>
+
+				<Section
+					id="figures"
+					label="Figures · Boundary Node"
+					title="Single Line in motion"
+				>
+					<p className="max-w-[60ch] text-body text-ink-muted">
+						How animated, interactive and 3D figures look. Each one
+						carries a title block strip, and exports to Substack in
+						both themes.
+					</p>
+					<Figures />
+				</Section>
 
 				<TitleBlock
 					fields={[

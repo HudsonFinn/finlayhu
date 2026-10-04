@@ -39,5 +39,10 @@ export default tseslint.config(
 			...react.configs.recommended.rules,
 			...react.configs['jsx-runtime'].rules,
 		},
+	},
+	{
+		// react-three-fiber JSX takes three.js props, which TypeScript already checks
+		files: ['**/figures/**/*.tsx'],
+		rules: { 'react/no-unknown-property': 'off' },
 	}
 );
