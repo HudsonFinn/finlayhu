@@ -18,6 +18,7 @@ import { join, relative } from 'node:path';
 import { chromium, type Page } from 'playwright';
 import { stillTime } from '../src/kit/useClock';
 import { interactiveUrl, type FigureEntry } from '../src/kit/types';
+import { GIF_MAX_MS } from './postRegistry';
 
 export type Theme = 'dark' | 'light';
 
@@ -26,8 +27,6 @@ const WIDTH = 728;
 const SCALE = 2;
 const FPS = 30;
 const GIF_FPS = 20;
-/** Longer animations only get an MP4: GIFs that long are too big for email. */
-const GIF_MAX_MS = 12_000;
 const PORT = 5181;
 const workbenchDir = join(
 	import.meta.dir,
@@ -82,6 +81,12 @@ async function setTime(page: Page, time: number) {
 		await window.__figure.setTime(t);
 	}, time);
 }
+
+/** A path from where the command was run, unless it's outside it. */
+const shown = (path: string) => {
+	const rel = relative(process.cwd(), path);
+	return rel.startsWith('..') ? path : rel;
+};
 
 const size = (path: string) =>
 	`${(statSync(path).size / 1024 / 1024).toFixed(1)} MB`;
@@ -195,6 +200,7 @@ export async function exportFigures(
 	const browser = await chromium.launch({
 		args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
 	});
+	const results: { figure: FigureEntry; files: string[] }[] = [];
 	try {
 		for (const figure of figures) {
 			const started = Date.now();
@@ -228,15 +234,13 @@ export async function exportFigures(
 			const seconds = ((Date.now() - started) / 1000).toFixed(0);
 			console.log(`${figure.number}  ${figure.title}  (${seconds} s)`);
 			for (const file of files)
-				console.log(
-					`  ${size(file).padStart(7)}  ${relative(process.cwd(), file)}`
-				);
-			console.log(
-				`           ${relative(process.cwd(), join(dir, 'caption.txt'))}`
-			);
+				console.log(`  ${size(file).padStart(7)}  ${shown(file)}`);
+			console.log(`           ${shown(join(dir, 'caption.txt'))}`);
+			results.push({ figure, files });
 		}
 	} finally {
 		await browser.close();
 		workbench.stop();
 	}
+	return results;
 }

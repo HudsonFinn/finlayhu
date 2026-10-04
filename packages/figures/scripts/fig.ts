@@ -2,7 +2,8 @@
  * bun run fig new <post> <title…>   start a figure: next drawing number, a still to edit
  * bun run fig dev                   open the workbench
  * bun run fig list                  every figure, by drawing number
- * bun run fig export <slug…|all>    PNG, MP4 and GIF in both themes (see scripts/export.ts)
+ * bun run fig export <slug…|all>    PNG, MP4 and GIF in both themes (see scripts/export.ts);
+ *                                   --post <boundary-node post folder> files them there
  */
 import {
 	existsSync,
@@ -148,7 +149,11 @@ else if (command === 'list') {
 		const i = args.indexOf(flag);
 		return i === -1 ? undefined : args.splice(i, 2)[1];
 	};
-	const out = option('--out') ?? join(root, 'exports');
+	// --post <boundary-node post folder>: export into <post>/figures and record in figures.json
+	const post = option('--post');
+	const out = post
+		? join(post, 'figures')
+		: (option('--out') ?? join(root, 'exports'));
 	const theme = option('--theme');
 	const chosen = args.includes('all')
 		? figures
@@ -160,15 +165,24 @@ else if (command === 'list') {
 			});
 	if (!chosen.length) {
 		console.error(
-			'usage: bun run fig export <slug…|all> [--out dir] [--theme dark|light]'
+			'usage: bun run fig export <slug…|all> [--post folder | --out dir] [--theme dark|light]'
 		);
 		process.exit(1);
 	}
-	await exportFigures(chosen, {
+	const results = await exportFigures(chosen, {
 		out,
 		themes:
 			theme === 'dark' || theme === 'light' ? [theme] : ['dark', 'light'],
 	});
+	if (post) {
+		const { recordFigures, toRecord } = await import('./postRegistry');
+		const records = results.map((r) => toRecord(r.figure, r.files, post));
+		console.log(
+			`\nRecorded in ${recordFigures(post, records)}. Upload to Substack:`
+		);
+		for (const r of records)
+			console.log(`  ${r.number}  ${r.upload.join(' then ')}`);
+	}
 } else if (command === 'dev') {
 	const child = Bun.spawn(
 		['bun', 'run', '--filter', '@fhudson/workbench', 'dev'],
