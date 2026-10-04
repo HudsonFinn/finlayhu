@@ -20,5 +20,10 @@ export default defineConfig({
 	// One React for the app and the workspace packages it imports
 	resolve: { dedupe: ['react', 'react-dom'] },
 	// Only lazy routes import these; pre-bundle them so the dev server doesn't re-optimise mid-visit
-	optimizeDeps: { include: ['three', '@react-three/fiber'] },
+	optimizeDeps: {
+		include: [
+			'@fhudson/figures > three',
+			'@fhudson/figures > @react-three/fiber',
+		],
+	},
 });

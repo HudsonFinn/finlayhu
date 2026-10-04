@@ -1,6 +1,6 @@
 # Plan: Figures, the visuals behind Boundary Node
 
-Status: approved · 4 October 2026 · Phase 1 done (look approved); Phase 2 next
+Status: approved · 4 October 2026 · Phases 1–2 done; Phase 3 (export) next
 
 ## Goal
 

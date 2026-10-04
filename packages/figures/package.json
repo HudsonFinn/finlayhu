@@ -1,0 +1,33 @@
+{
+	"name": "@fhudson/figures",
+	"private": true,
+	"version": "0.0.0",
+	"description": "Boundary Node figures: the kit, and every figure, on Single Line",
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": "./src/index.ts",
+		"./three": "./src/kit/three.tsx",
+		"./geometry": "./src/kit/geometry.ts"
+	},
+	"scripts": {
+		"test": "bun test",
+		"typecheck": "tsc --noEmit -p ."
+	},
+	"dependencies": {
+		"@fhudson/ui": "workspace:*",
+		"@react-three/fiber": "^8.18",
+		"three": "^0.180"
+	},
+	"peerDependencies": {
+		"react": "^18.3.1"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.4.2",
+		"@types/react": "^18.3.27",
+		"@types/three": "^0.180",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"typescript": "^5.9.3"
+	}
+}

@@ -8,6 +8,7 @@
 	],
 	"scripts": {
 		"dev": "bun run --filter @fhudson/site dev",
+		"fig": "bun packages/figures/scripts/fig.ts",
 		"build": "bun run --filter './apps/*' build",
 		"test": "bun run --filter './packages/*' test",
 		"typecheck": "bun run --filter './packages/*' typecheck",
