@@ -1,6 +1,6 @@
 # Plan: Figures, the visuals behind Boundary Node
 
-Status: approved · 4 October 2026 · Phases 1–4 built; Phase 3 awaits a Substack upload check; Phase 5 (3D) next
+Status: approved · 4 October 2026 · Phases 1–5 built; Phase 3 awaits a Substack upload check; Phase 6 (skill) next
 
 ## Goal
 
@@ -106,14 +106,14 @@ finlayhu/
 
 ### The kit (`packages/figures/src/kit`)
 
-| Piece          | Does                                                                                                                        |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `Frame`        | Sizes the figure (responsive, with fixed export sizes), draws the title block strip, sets theme, handles reduced motion     |
-| `useClock`     | One clock per figure. Real time in the browser; stepped frame by frame by the exporter, so video exports are deterministic  |
-| `draw`, `flow` | The plotter motion rules above as helpers: draw-on paths, travelling dashes, staged builds                                  |
-| d3             | `d3-scale`, `d3-shape`, `d3-geo`, `d3-force`, `d3-hierarchy` for maths only; React renders the SVG, like the current charts |
-| `Scene3D`      | three.js via react-three-fiber: orthographic iso camera, line-edge material, token colours, render-on-demand for export     |
-| `Symbols`      | Re-exports `Busbar`, `Breaker`, `Transformer`, `NodeMark`, plus 3D extrusions of them                                       |
+| Piece          | Does                                                                                                                                                                                                                               |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Frame`        | Sizes the figure (responsive, with fixed export sizes), draws the title block strip, sets theme, handles reduced motion                                                                                                            |
+| `useClock`     | One clock per figure. Real time in the browser; stepped frame by frame by the exporter, so video exports are deterministic                                                                                                         |
+| `draw`, `flow` | The plotter motion rules above as helpers: draw-on paths, travelling dashes, staged builds                                                                                                                                         |
+| d3             | `d3-scale`, `d3-shape`, `d3-geo`, `d3-force`, `d3-hierarchy` for maths only; React renders the SVG, like the current charts                                                                                                        |
+| `IsoCanvas`    | Plain three.js: orthographic iso camera, paper faces with ink edges, token colours, redraws inside React's commit so exports are frame-exact; `createDraw` gives `solid`, `lines`, `ground` and extruded `breaker` / `transformer` |
+| `Symbols`      | Re-exports `Busbar`, `Breaker`, `Transformer`, `NodeMark`, plus 3D extrusions of them                                                                                                                                              |
 
 Libraries are only imported by the figures that use them, and figure routes are lazy, so
 three.js never reaches a page that doesn't need it.
@@ -203,6 +203,8 @@ Settled on 4 October 2026:
    writing, data sources and each post's `figures.json`.
 2. **Exports in both themes.** Every rendered output is made dark and light; the dark one goes
    into Substack.
-3. **3D uses react-three-fiber.**
+3. **3D uses plain three.js** (changed 4 October 2026). react-three-fiber always bundles all of
+   three.js: 839 KB on v8, 881 KB on v9 with React 19. Plain three.js with only the classes the
+   kit uses is 477 KB (121 KB gzipped). Scenes are built with `createDraw` helpers instead of JSX.
 4. **`model_diagram.py` is ported into the kit eventually.** Until then, only its colours are
    aligned with the tokens.

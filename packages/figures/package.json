@@ -16,7 +16,6 @@
 	},
 	"dependencies": {
 		"@fhudson/ui": "workspace:*",
-		"@react-three/fiber": "^8.18",
 		"three": "^0.180"
 	},
 	"peerDependencies": {

@@ -8,9 +8,6 @@ export default defineConfig({
 	resolve: { dedupe: ['react', 'react-dom'] },
 	// Figures load lazily; pre-bundle three.js so the dev server doesn't re-optimise mid-visit
 	optimizeDeps: {
-		include: [
-			'@fhudson/figures > three',
-			'@fhudson/figures > @react-three/fiber',
-		],
+		include: ['@fhudson/figures > three'],
 	},
 });

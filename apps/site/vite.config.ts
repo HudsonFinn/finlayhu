@@ -21,9 +21,6 @@ export default defineConfig({
 	resolve: { dedupe: ['react', 'react-dom'] },
 	// Only lazy routes import these; pre-bundle them so the dev server doesn't re-optimise mid-visit
 	optimizeDeps: {
-		include: [
-			'@fhudson/figures > three',
-			'@fhudson/figures > @react-three/fiber',
-		],
+		include: ['@fhudson/figures > three'],
 	},
 });

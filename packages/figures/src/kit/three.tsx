@@ -1,112 +1,129 @@
 /*
- * 3D for figures: drawn, not rendered. An orthographic iso camera, paper faces that hide what's
- * behind them, and ink edges. Imported as @fhudson/figures/three, so three.js only loads with
- * the figures that use it.
+ * 3D for figures: an orthographic iso camera over a scene built with createDraw (geometry.ts).
+ * Imported as @fhudson/figures/three, so three.js only loads with the figures that use it.
  */
-import { useEffect, useMemo, type ReactNode } from 'react';
-import { Canvas, useThree } from '@react-three/fiber';
-import { EdgesGeometry, type BufferGeometry } from 'three';
-import type { Point } from './geometry';
-import { useTokenColours, type TokenColours } from './useTokenColours';
-
-/** A solid: paper faces, coloured edges (ink unless it's the one verdigris thing). */
-export function Solid({
-	geometry,
-	position,
-	edge,
-	face,
-}: {
-	geometry: BufferGeometry;
-	position: Point;
-	edge: string;
-	face: string;
-}) {
-	const edges = useMemo(() => new EdgesGeometry(geometry, 20), [geometry]);
-	useEffect(
-		() => () => {
-			edges.dispose();
-		},
-		[edges]
-	);
-	return (
-		<group position={position}>
-			<mesh geometry={geometry}>
-				{/* Pushed back slightly, so edges on the faces always win the depth test */}
-				<meshBasicMaterial
-					color={face}
-					polygonOffset
-					polygonOffsetFactor={1}
-					polygonOffsetUnits={1}
-				/>
-			</mesh>
-			<lineSegments geometry={edges}>
-				<lineBasicMaterial color={edge} />
-			</lineSegments>
-		</group>
-	);
-}
-
-/** Lines only, e.g. conductors or a ground grid. */
-export function Lines({
-	geometry,
-	color,
-}: {
-	geometry: BufferGeometry;
-	color: string;
-}) {
-	return (
-		<lineSegments geometry={geometry}>
-			<lineBasicMaterial color={color} />
-		</lineSegments>
-	);
-}
-
-/** Keeps `span` world units across the canvas, whatever its width. */
-function FitZoom({ span }: { span: number }) {
-	const { camera, size, invalidate } = useThree();
-	useEffect(() => {
-		camera.zoom = size.width / span;
-		camera.updateProjectionMatrix();
-		invalidate();
-	}, [camera, size.width, span, invalidate]);
-	return null;
-}
+import { useLayoutEffect, useRef } from 'react';
+import {
+	Group,
+	OrthographicCamera,
+	Scene,
+	WebGLRenderer,
+	type Object3D,
+} from 'three';
+import { createDraw, type Draw } from './geometry';
+import { useTokenColours } from './useTokenColours';
 
 /**
- * An iso drawing in a Frame. Renders on demand: only when props change, which for an
- * animated figure is once per clock tick, and for an export is once per frame.
+ * An iso drawing in a Frame. `scene` is read when the canvas mounts and again when the theme
+ * changes; `angle` turns the drawing about its vertical axis and redraws straight away, inside
+ * React's commit, so the exporter's frame is always the one it asked for.
  */
 export function IsoCanvas({
 	alt,
 	span,
 	aspect = 3 / 2,
-	children,
+	angle = 0,
+	lift = 0,
+	scene,
 }: {
 	alt: string;
 	/** World units visible across the width. */
 	span: number;
 	aspect?: number;
-	children: (colours: TokenColours) => ReactNode;
+	/** Turn about the vertical axis, in radians. */
+	angle?: number;
+	/** Moves the drawing down (positive) to centre it in the frame. */
+	lift?: number;
+	scene: (draw: Draw) => Object3D[];
 }) {
+	const container = useRef<HTMLDivElement>(null);
+	const sceneRef = useRef(scene);
+	sceneRef.current = scene;
 	const colours = useTokenColours();
+	const view = useRef<{
+		renderer: WebGLRenderer;
+		camera: OrthographicCamera;
+		root: Group;
+		draw: () => void;
+	} | null>(null);
+
+	// The renderer, camera and sizing: once per mount. A layout effect, declared first, so it
+	// exists before the drawing below is built
+	useLayoutEffect(() => {
+		const element = container.current;
+		if (!element) return;
+		const renderer = new WebGLRenderer({
+			antialias: true,
+			alpha: true,
+			// Keeps the last frame readable, for export screenshots
+			preserveDrawingBuffer: true,
+		});
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		renderer.domElement.style.display = 'block';
+		element.append(renderer.domElement);
+
+		const camera = new OrthographicCamera();
+		camera.position.set(10, 10, 10);
+		camera.lookAt(0, 0, 0);
+		camera.near = 0.1;
+		camera.far = 100;
+		const world = new Scene();
+		const root = new Group();
+		world.add(root);
+		const draw = () => {
+			renderer.render(world, camera);
+		};
+		view.current = { renderer, camera, root, draw };
+
+		const observer = new ResizeObserver(([entry]) => {
+			const { width, height } = entry.contentRect;
+			renderer.setSize(width, height);
+			camera.left = -width / 2;
+			camera.right = width / 2;
+			camera.top = height / 2;
+			camera.bottom = -height / 2;
+			camera.zoom = width / span;
+			camera.updateProjectionMatrix();
+			draw();
+		});
+		observer.observe(element);
+
+		return () => {
+			observer.disconnect();
+			renderer.dispose();
+			renderer.domElement.remove();
+			view.current = null;
+		};
+	}, [span]);
+
+	// The drawing itself: rebuilt when the theme changes
+	useLayoutEffect(() => {
+		const current = view.current;
+		if (!current) return;
+		const tools = createDraw(colours);
+		current.root.add(...sceneRef.current(tools));
+		current.draw();
+		return () => {
+			current.root.clear();
+			tools.dispose();
+		};
+	}, [colours, span]);
+
+	// The turn, and the lift: every frame
+	useLayoutEffect(() => {
+		const current = view.current;
+		if (!current) return;
+		current.root.rotation.y = angle;
+		current.root.position.y = -lift;
+		current.draw();
+	}, [angle, lift, colours, span]);
+
 	return (
-		<div role="img" aria-label={alt} style={{ aspectRatio: aspect }}>
-			<Canvas
-				orthographic
-				flat
-				frameloop="demand"
-				dpr={[1, 2]}
-				gl={{ preserveDrawingBuffer: true }}
-				camera={{
-					position: [10, 10, 10],
-					zoom: 30,
-					near: 0.1,
-					far: 100,
-				}}
-			>
-				<FitZoom span={span} />
-				{children(colours)}
-			</Canvas>
-		</div>
+		<div
+			ref={container}
+			role="img"
+			aria-label={alt}
+			style={{ aspectRatio: aspect }}
+		/>
 	);
 }
