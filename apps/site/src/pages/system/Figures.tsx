@@ -1,5 +1,5 @@
-import { lazy, Suspense } from 'react';
-import { figures } from '@fhudson/figures';
+import { Suspense } from 'react';
+import { figures, lazyFigure } from '@fhudson/figures';
 import { Text } from '@fhudson/ui';
 
 /*
@@ -9,7 +9,7 @@ import { Text } from '@fhudson/ui';
 
 const sheet = figures
 	.filter((f) => f.number.startsWith('BN-00-'))
-	.map((f) => ({ ...f, Figure: lazy(f.load) }));
+	.map((f) => ({ ...f, Figure: lazyFigure(f) }));
 
 const rules = [
 	[

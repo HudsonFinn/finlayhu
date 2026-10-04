@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import { getPostBySlug, posts } from '../../data/posts';
+import { PostFigure } from '../../figures/PostFigure';
+import { remarkFigure } from '../../figures/remarkFigure';
 import OpenCircuitPage from '../faults/OpenCircuitPage';
 
 const dateFormat = new Intl.DateTimeFormat('en-GB', {
@@ -72,7 +74,17 @@ function LogEntryPage() {
 			{/* Full width, so the text lines up with the title block above it */}
 			<Prose className="max-w-none">
 				<ReactMarkdown
+					remarkPlugins={[remarkFigure]}
 					components={{
+						// ::figure{slug="…"} paragraphs (see remarkFigure)
+						figure: ({ node, children }) => {
+							const slug = node?.properties.dataSlug;
+							return typeof slug === 'string' ? (
+								<PostFigure slug={slug} />
+							) : (
+								<figure>{children}</figure>
+							);
+						},
 						// Fenced code goes through CodeBlock for highlighting; inline code stays as <code>
 						pre: ({ children }) => <>{children}</>,
 						code: ({ className, children }) => {

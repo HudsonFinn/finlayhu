@@ -22,6 +22,11 @@ const router = createBrowserRouter([
 				path: '/system',
 				lazy: page(() => import('./pages/SystemPage.tsx')),
 			},
+			// A figure alone, for iframes
+			{
+				path: '/f/:slug/embed',
+				lazy: page(() => import('./pages/figures/FigureEmbedPage.tsx')),
+			},
 			{
 				element: <ControlRoomLayout />,
 				errorElement: <TripPage />,
@@ -35,6 +40,18 @@ const router = createBrowserRouter([
 						path: '/vault/:slug',
 						lazy: page(
 							() => import('./pages/log/LogEntryPage.tsx')
+						),
+					},
+					{
+						path: '/f',
+						lazy: page(
+							() => import('./pages/figures/FiguresPage.tsx')
+						),
+					},
+					{
+						path: '/f/:slug',
+						lazy: page(
+							() => import('./pages/figures/FigurePage.tsx')
 						),
 					},
 					{

@@ -1,6 +1,6 @@
 # Plan: Figures, the visuals behind Boundary Node
 
-Status: approved · 4 October 2026 · Phases 1–3 built; Phase 3 awaits a Substack upload check
+Status: approved · 4 October 2026 · Phases 1–4 built; Phase 3 awaits a Substack upload check; Phase 5 (3D) next
 
 ## Goal
 
@@ -120,13 +120,13 @@ three.js never reaches a page that doesn't need it.
 
 ### Three outputs from one source
 
-| Output                  | How                                                                                                                                | Used by                                    |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| Interactive, standalone | `fhudson.com/f/<slug>`: a bare route outside the site shell, `?theme=dark` and `?embed=1` supported. Iframe-able                   | Linked from Substack captions; other sites |
-| Interactive, in a post  | A `figure` directive in post markdown (`::figure{slug="bn-03-f2"}`) that lazy-loads the component inline                           | fhudson.com posts                          |
-| Rendered                | `bun run fig export <slug>`: Playwright opens the workbench, steps the clock, writes PNG @2×, GIF and MP4 (ffmpeg), dark and light | Substack upload                            |
+| Output                  | How                                                                                                                                                               | Used by                                    |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| Interactive, standalone | `fhudson.com/f/<slug>` inside the site shell, so Substack readers land on the site; `/f/<slug>/embed` is the bare, iframe-able version, with `?theme=dark\|light` | Linked from Substack captions; other sites |
+| Interactive, in a post  | A `figure` directive in post markdown (`::figure{slug="bn-03-f2"}`) that lazy-loads the component inline                                                          | fhudson.com posts                          |
+| Rendered                | `bun run fig export <slug>`: Playwright opens the workbench, steps the clock, writes PNG @2×, GIF and MP4 (ffmpeg), dark and light                                | Substack upload                            |
 
-No infrastructure change: `/f/:slug` is a normal SPA route, so it ships with the existing
+No infrastructure change: `/f/:slug` and `/f/:slug/embed` are normal SPA routes, so it ships with the existing
 deploy. (Static files under `/f/slug/` would have needed a CloudFront function for directory
 indexes; serving them as routes avoids that.)
 

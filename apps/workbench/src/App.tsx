@@ -1,14 +1,11 @@
-import {
-	lazy,
-	Suspense,
-	useEffect,
-	useRef,
-	useState,
-	type ComponentType,
-	type LazyExoticComponent,
-} from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { ClockContext, figureBySlug, figures } from '@fhudson/figures';
+import {
+	ClockContext,
+	figureBySlug,
+	figures,
+	lazyFigure,
+} from '@fhudson/figures';
 import { NodeMark } from '@fhudson/ui';
 
 /*
@@ -27,10 +24,6 @@ const WIDTHS = [
 ];
 const THEMES = ['dark', 'light'] as const;
 type Theme = (typeof THEMES)[number];
-
-const components = new Map<string, LazyExoticComponent<ComponentType>>(
-	figures.map((f) => [f.slug, lazy(f.load)])
-);
 
 function readParams() {
 	const params = new URLSearchParams(window.location.search);
@@ -95,11 +88,12 @@ function Segmented<T extends string | number>({
 
 /** The figure alone, filling the window. */
 function Bare({ slug }: { slug: string }) {
-	const Figure = components.get(slug);
-	if (!Figure)
+	const figure = figureBySlug(slug);
+	if (!figure)
 		return (
 			<p className="font-data text-small text-fault">No figure {slug}</p>
 		);
+	const Figure = lazyFigure(figure);
 	return (
 		<Suspense fallback={null}>
 			<Figure />

@@ -10,6 +10,10 @@
 	.sl-prose :where(* + *) {
 		margin-top: 1em;
 	}
+	/* A figure sets out its own insides (@fhudson/figures); only the figure itself is spaced */
+	.sl-prose :where([data-figure] *) {
+		margin-top: 0;
+	}
 	.sl-prose :where(h1, h2) {
 		font-family: var(--sl-font-display);
 		text-transform: uppercase;

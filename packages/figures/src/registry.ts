@@ -2,6 +2,7 @@
  * Every figure, in drawing-number order. `bun run fig new` adds to both lists; the markers
  * below are where it writes, so keep them.
  */
+import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 import { slugOf, type FigureEntry, type FigureMeta } from './kit/types';
 import { meta as bn00f1 } from './figures/bn-00-f1-plotter/meta';
 import { meta as bn00f2 } from './figures/bn-00-f2-flow/meta';
@@ -28,3 +29,15 @@ export const figures: FigureEntry[] = [
 
 export const figureBySlug = (slug: string) =>
 	figures.find((f) => f.slug === slug);
+
+const components = new Map<string, LazyExoticComponent<ComponentType>>();
+
+/** A figure's component, loaded on first render. One per figure, so React keeps its state. */
+export function lazyFigure(figure: FigureEntry) {
+	let component = components.get(figure.slug);
+	if (!component) {
+		component = lazy(figure.load);
+		components.set(figure.slug, component);
+	}
+	return component;
+}
