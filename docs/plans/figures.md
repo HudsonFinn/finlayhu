@@ -1,6 +1,6 @@
 # Plan: Figures, the visuals behind Boundary Node
 
-Status: approved · 4 October 2026 · Phases 1–6 built; Phase 3 awaits a Substack upload check; Phase 7 (post 3 figures) next
+Status: approved · 4 October 2026 · Phases 1–7 built; Phase 3 awaits a Substack upload check; post 3 figures await review
 
 ## Goal
 

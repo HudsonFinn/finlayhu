@@ -1,0 +1,47 @@
+id,name,colour,isIn,clean
+g01,White Oxford,white,p02,no
+g02,White Oxford,white,p01,yes
+g03,Blue Oxford,blue,p01,yes
+g04,Blue check shirt,blue,p03,no
+g05,White linen shirt,white,p01,yes
+g06,Denim shirt,blue,p01,yes
+g07,Black polo,black,p01,yes
+g08,Black polo,black,p02,no
+g09,White tee,white,p01,yes
+g10,White tee,white,p01,yes
+g11,White tee,white,p02,no
+g12,White tee,white,p05,no
+g13,Black tee,black,p01,yes
+g14,Black tee,black,p02,no
+g15,Black tee,black,p05,no
+g16,Grey marl tee,grey,p01,yes
+g17,Navy tee,navy,p01,yes
+g18,Navy tee,navy,p02,no
+g19,Navy lambswool jumper,navy,p01,yes
+g20,Grey cable knit jumper,grey,p01,yes
+g21,Black merino jumper,black,p01,yes
+g22,Oatmeal cardigan,oatmeal,p01,yes
+g23,Green sweatshirt,green,p02,no
+g24,Blue jeans,blue,p04,yes
+g25,Black jeans,black,p01,yes
+g26,Grey chinos,grey,p01,yes
+g27,Navy chinos,navy,p03,no
+g28,Beige chinos,beige,p01,yes
+g29,Black trousers,black,p01,yes
+g30,Khaki shorts,khaki,p01,yes
+g31,Black sock,black,p01,yes
+g32,Black sock,black,p01,yes
+g33,Black sock,black,p02,no
+g34,Black sock,black,p02,no
+g35,Black sock,black,p05,no
+g36,Black sock,black,,yes
+g37,Navy sock,navy,p01,yes
+g38,Navy sock,navy,p01,yes
+g39,Navy sock,navy,p02,no
+g40,Navy sock,navy,p02,no
+g41,Grey wool sock,grey,p01,yes
+g42,Grey wool sock,grey,p01,yes
+g43,Navy wool coat,navy,p01,yes
+g44,Black rain jacket,black,p01,yes
+g45,Denim jacket,blue,p01,yes
+g46,Grey blazer,grey,p01,yes

@@ -8,11 +8,14 @@ import principleActionRaw from '../posts/principle-action.md?raw';
 import principleEnvironmentRaw from '../posts/principle-environment.md?raw';
 import principleDeliberatePracticeRaw from '../posts/principle-deliberate-practice.md?raw';
 import principleOpinionRaw from '../posts/principle-opinion.md?raw';
+import informationModelRaw from '../posts/build-an-information-model-of-your-wardrobe.md?raw';
 
 export type Post = {
 	slug: string;
 	title: string;
 	created: Date;
+	/** Where it was first published (Boundary Node posts live on Substack). */
+	canonical?: string;
 	tags: string[];
 	content: string;
 };
@@ -24,6 +27,7 @@ function parsePost(raw: string, slug: string): Post {
 		slug,
 		title: data.title,
 		created: new Date(data.created),
+		...(data.canonical ? { canonical: data.canonical } : {}),
 		tags,
 		content,
 	};
@@ -39,6 +43,11 @@ export const posts: Post[] = [
 	parsePost(principleEnvironmentRaw, 'principle-environment'),
 	parsePost(principleDeliberatePracticeRaw, 'principle-deliberate-practice'),
 	parsePost(principleOpinionRaw, 'principle-opinion'),
+	// Boundary Node post 1, first published on Substack
+	parsePost(
+		informationModelRaw,
+		'build-an-information-model-of-your-wardrobe'
+	),
 ].sort((a, b) => b.created.getTime() - a.created.getTime());
 
 export function getPostBySlug(slug: string): Post | undefined {

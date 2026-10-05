@@ -1,0 +1,79 @@
+{
+	"boxWidth": 230,
+	"gap": 60,
+	"classes": [
+		{
+			"name": "IdentifiedObject",
+			"attrs": ["mRID", "name"],
+			"parent": null
+		},
+		{
+			"name": "PowerSystemResource",
+			"attrs": [],
+			"parent": "IdentifiedObject"
+		},
+		{
+			"name": "Equipment",
+			"attrs": [],
+			"parent": "PowerSystemResource"
+		},
+		{
+			"name": "ConductingEquipment",
+			"attrs": [],
+			"parent": "Equipment"
+		},
+		{
+			"name": "ACLineSegment",
+			"attrs": ["r", "x", "length"],
+			"parent": "ConductingEquipment"
+		},
+		{
+			"name": "PowerTransformer",
+			"attrs": [],
+			"parent": "ConductingEquipment"
+		},
+		{
+			"name": "Breaker",
+			"attrs": ["normalOpen"],
+			"parent": "ConductingEquipment"
+		},
+		{
+			"name": "Substation",
+			"attrs": [],
+			"parent": "PowerSystemResource"
+		},
+		{
+			"name": "Terminal",
+			"attrs": [],
+			"parent": "IdentifiedObject"
+		},
+		{
+			"name": "ConnectivityNode",
+			"attrs": [],
+			"parent": "IdentifiedObject"
+		}
+	],
+	"associations": [
+		{
+			"from": "Equipment",
+			"to": "Substation",
+			"label": "EquipmentContainer",
+			"fromMult": "0..*",
+			"toMult": "0..1"
+		},
+		{
+			"from": "Terminal",
+			"to": "ConductingEquipment",
+			"label": "ConductingEquipment",
+			"fromMult": "0..*",
+			"toMult": "1"
+		},
+		{
+			"from": "Terminal",
+			"to": "ConnectivityNode",
+			"label": "ConnectivityNode",
+			"fromMult": "1..*",
+			"toMult": "1"
+		}
+	]
+}

@@ -1,0 +1,47 @@
+id,name,colour,what it is,size
+g01,White Oxford,white,oxford shirt,M
+g02,White Oxford,white,oxford shirt,M
+g03,Blue Oxford,blue,oxford shirt,M
+g04,Blue check shirt,blue,check shirt,M
+g05,White linen shirt,white,linen shirt,M
+g06,Denim shirt,blue,denim shirt,M
+g07,Black polo,black,polo shirt,M
+g08,Black polo,black,polo shirt,M
+g09,White tee,white,t-shirt,M
+g10,White tee,white,t-shirt,M
+g11,White tee,white,t-shirt,M
+g12,White tee,white,t-shirt,M
+g13,Black tee,black,t-shirt,M
+g14,Black tee,black,t-shirt,M
+g15,Black tee,black,t-shirt,M
+g16,Grey marl tee,grey,t-shirt,M
+g17,Navy tee,navy,t-shirt,M
+g18,Navy tee,navy,t-shirt,M
+g19,Navy lambswool jumper,navy,jumper,M
+g20,Grey cable knit jumper,grey,jumper,M
+g21,Black merino jumper,black,jumper,M
+g22,Oatmeal cardigan,oatmeal,cardigan,M
+g23,Green sweatshirt,green,sweatshirt,M
+g24,Blue jeans,blue,jeans,32/32
+g25,Black jeans,black,jeans,32/32
+g26,Grey chinos,grey,chinos,32/32
+g27,Navy chinos,navy,chinos,32/32
+g28,Beige chinos,beige,chinos,32/30
+g29,Black trousers,black,trousers,32/32
+g30,Khaki shorts,khaki,shorts,32
+g31,Black sock,black,sock,9
+g32,Black sock,black,sock,9
+g33,Black sock,black,sock,9
+g34,Black sock,black,sock,9
+g35,Black sock,black,sock,9
+g36,Black sock,black,sock,9
+g37,Navy sock,navy,sock,9
+g38,Navy sock,navy,sock,9
+g39,Navy sock,navy,sock,9
+g40,Navy sock,navy,sock,9
+g41,Grey wool sock,grey,sock,9
+g42,Grey wool sock,grey,sock,9
+g43,Navy wool coat,navy,coat,M
+g44,Black rain jacket,black,rain jacket,M
+g45,Denim jacket,blue,denim jacket,M
+g46,Grey blazer,grey,blazer,40

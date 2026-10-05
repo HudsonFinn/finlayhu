@@ -10,8 +10,8 @@
 	.sl-prose :where(* + *) {
 		margin-top: 1em;
 	}
-	/* A figure sets out its own insides (@fhudson/figures); only the figure itself is spaced */
-	.sl-prose :where([data-figure] *) {
+	/* Figures and other blocks (data-block) set out their own insides; only the block is spaced */
+	.sl-prose :where([data-figure] *, [data-block] *) {
 		margin-top: 0;
 	}
 	.sl-prose :where(h1, h2) {

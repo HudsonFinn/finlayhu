@@ -1,10 +1,11 @@
 import { CodeBlock, Heading, Link, Prose, Text, TitleBlock } from '@fhudson/ui';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import { getPostBySlug, posts } from '../../data/posts';
 import { PostFigure } from '../../figures/PostFigure';
-import { remarkFigure } from '../../figures/remarkFigure';
+import { PostTable } from '../../figures/PostTable';
+import { remarkBlocks } from '../../figures/remarkBlocks';
 import OpenCircuitPage from '../faults/OpenCircuitPage';
 
 const dateFormat = new Intl.DateTimeFormat('en-GB', {
@@ -29,6 +30,20 @@ const readingTime = (text: string) =>
 function LogEntryPage() {
 	const { slug } = useParams<{ slug: string }>();
 	const post = slug ? getPostBySlug(slug) : undefined;
+	const canonical = post?.canonical;
+
+	// A post first published elsewhere points search engines at the original
+	useEffect(() => {
+		if (!canonical) return;
+		const link = document.createElement('link');
+		link.rel = 'canonical';
+		link.href = canonical;
+		document.head.append(link);
+		return () => {
+			link.remove();
+		};
+	}, [canonical]);
+
 	if (!post) return <OpenCircuitPage />;
 
 	// posts is newest first
@@ -74,16 +89,31 @@ function LogEntryPage() {
 			{/* Full width, so the text lines up with the title block above it */}
 			<Prose className="max-w-none">
 				<ReactMarkdown
-					remarkPlugins={[remarkFigure]}
+					remarkPlugins={[remarkBlocks]}
 					components={{
-						// ::figure{slug="…"} paragraphs (see remarkFigure)
+						// ::figure and ::table paragraphs (see remarkBlocks)
 						figure: ({ node, children }) => {
-							const slug = node?.properties.dataSlug;
-							return typeof slug === 'string' ? (
-								<PostFigure slug={slug} />
-							) : (
-								<figure>{children}</figure>
-							);
+							const p = node?.properties ?? {};
+							const text = (key: string) =>
+								typeof p[key] === 'string' ? p[key] : undefined;
+							const slug = text('dataSlug');
+							const src = text('dataSrc');
+							if (text('dataBlock') === 'figure' && slug)
+								return (
+									<PostFigure
+										slug={slug}
+										caption={text('dataCaption')}
+									/>
+								);
+							if (text('dataBlock') === 'table' && src)
+								return (
+									<PostTable
+										src={src}
+										title={text('dataTitle')}
+										sort={text('dataSort')}
+									/>
+								);
+							return <figure>{children}</figure>;
 						},
 						// Fenced code goes through CodeBlock for highlighting; inline code stays as <code>
 						pre: ({ children }) => <>{children}</>,

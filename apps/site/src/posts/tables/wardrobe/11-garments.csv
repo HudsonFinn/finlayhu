@@ -1,0 +1,47 @@
+id,name,colour
+g01,White Oxford,white
+g02,White Oxford,white
+g03,Blue Oxford,blue
+g04,Blue check shirt,blue
+g05,White linen shirt,white
+g06,Denim shirt,blue
+g07,Black polo,black
+g08,Black polo,black
+g09,White tee,white
+g10,White tee,white
+g11,White tee,white
+g12,White tee,white
+g13,Black tee,black
+g14,Black tee,black
+g15,Black tee,black
+g16,Grey marl tee,grey
+g17,Navy tee,navy
+g18,Navy tee,navy
+g19,Navy lambswool jumper,navy
+g20,Grey cable knit jumper,grey
+g21,Black merino jumper,black
+g22,Oatmeal cardigan,oatmeal
+g23,Green sweatshirt,green
+g24,Blue jeans,blue
+g25,Black jeans,black
+g26,Grey chinos,grey
+g27,Navy chinos,navy
+g28,Beige chinos,beige
+g29,Black trousers,black
+g30,Khaki shorts,khaki
+g31,Black sock,black
+g32,Black sock,black
+g33,Black sock,black
+g34,Black sock,black
+g35,Black sock,black
+g36,Black sock,black
+g37,Navy sock,navy
+g38,Navy sock,navy
+g39,Navy sock,navy
+g40,Navy sock,navy
+g41,Grey wool sock,grey
+g42,Grey wool sock,grey
+g43,Navy wool coat,navy
+g44,Black rain jacket,black
+g45,Denim jacket,blue
+g46,Grey blazer,grey

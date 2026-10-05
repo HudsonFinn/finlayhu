@@ -7,11 +7,28 @@ import {
 	Group,
 	OrthographicCamera,
 	Scene,
+	Vector3,
 	WebGLRenderer,
 	type Object3D,
 } from 'three';
-import { createDraw, type Draw } from './geometry';
+import { createDraw, type Draw, type Point } from './geometry';
 import { useTokenColours } from './useTokenColours';
+
+/** A label pinned to a point in the drawing; it follows the turn. Mono, 11px, like Label. */
+export interface IsoLabel {
+	at: Point;
+	text: string;
+	tone?: 'muted' | 'ink' | 'verdigris';
+	/** Which end of the text sits on the point. */
+	anchor?: 'start' | 'middle' | 'end';
+}
+
+const toneColour = {
+	muted: 'var(--sl-ink-muted)',
+	ink: 'var(--sl-ink)',
+	verdigris: 'var(--sl-verdigris)',
+};
+const anchorShift = { start: '0', middle: '-50%', end: '-100%' };
 
 /**
  * An iso drawing in a Frame. `scene` is read when the canvas mounts and again when the theme
@@ -24,6 +41,7 @@ export function IsoCanvas({
 	aspect = 3 / 2,
 	angle = 0,
 	lift = 0,
+	labels = [],
 	scene,
 }: {
 	alt: string;
@@ -34,9 +52,15 @@ export function IsoCanvas({
 	angle?: number;
 	/** Moves the drawing down (positive) to centre it in the frame. */
 	lift?: number;
+	/** Text in the drawing, kept in place on every redraw. */
+	labels?: IsoLabel[];
 	scene: (draw: Draw) => Object3D[];
 }) {
 	const container = useRef<HTMLDivElement>(null);
+	const canvasHost = useRef<HTMLDivElement>(null);
+	const labelEls = useRef<(HTMLSpanElement | null)[]>([]);
+	const labelsRef = useRef(labels);
+	labelsRef.current = labels;
 	const sceneRef = useRef(scene);
 	sceneRef.current = scene;
 	const colours = useTokenColours();
@@ -51,7 +75,8 @@ export function IsoCanvas({
 	// exists before the drawing below is built
 	useLayoutEffect(() => {
 		const element = container.current;
-		if (!element) return;
+		const host = canvasHost.current;
+		if (!element || !host) return;
 		const renderer = new WebGLRenderer({
 			antialias: true,
 			alpha: true,
@@ -60,7 +85,7 @@ export function IsoCanvas({
 		});
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 		renderer.domElement.style.display = 'block';
-		element.append(renderer.domElement);
+		host.append(renderer.domElement);
 
 		const camera = new OrthographicCamera();
 		camera.position.set(10, 10, 10);
@@ -70,13 +95,29 @@ export function IsoCanvas({
 		const world = new Scene();
 		const root = new Group();
 		world.add(root);
+		const size = { width: 0, height: 0 };
+		const point = new Vector3();
 		const draw = () => {
 			renderer.render(world, camera);
+			// Labels: each point through the turn and the camera, to CSS px
+			root.updateMatrixWorld();
+			labelsRef.current.forEach((label, i) => {
+				const el = labelEls.current[i];
+				if (!el) return;
+				point
+					.set(...label.at)
+					.applyMatrix4(root.matrixWorld)
+					.project(camera);
+				el.style.left = `${String(((point.x + 1) / 2) * size.width)}px`;
+				el.style.top = `${String(((1 - point.y) / 2) * size.height)}px`;
+			});
 		};
 		view.current = { renderer, camera, root, draw };
 
 		const observer = new ResizeObserver(([entry]) => {
 			const { width, height } = entry.contentRect;
+			size.width = width;
+			size.height = height;
 			renderer.setSize(width, height);
 			camera.left = -width / 2;
 			camera.right = width / 2;
@@ -123,7 +164,29 @@ export function IsoCanvas({
 			ref={container}
 			role="img"
 			aria-label={alt}
-			style={{ aspectRatio: aspect }}
-		/>
+			style={{ aspectRatio: aspect, position: 'relative' }}
+		>
+			<div ref={canvasHost} />
+			{labels.map((label, i) => (
+				<span
+					key={`${label.text}-${String(i)}`}
+					ref={(el) => {
+						labelEls.current[i] = el;
+					}}
+					aria-hidden="true"
+					style={{
+						position: 'absolute',
+						transform: `translate(${anchorShift[label.anchor ?? 'start']}, -50%)`,
+						font: '11px var(--sl-font-data)',
+						letterSpacing: '0.08em',
+						whiteSpace: 'nowrap',
+						pointerEvents: 'none',
+						color: toneColour[label.tone ?? 'muted'],
+					}}
+				>
+					{label.text}
+				</span>
+			))}
+		</div>
 	);
 }

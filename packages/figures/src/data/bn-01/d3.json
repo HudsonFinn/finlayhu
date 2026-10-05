@@ -1,0 +1,18 @@
+{
+	"classes": [
+		{
+			"name": "Garment",
+			"attrs": [
+				"id",
+				"name",
+				"colour",
+				"what it is",
+				"size",
+				"waist",
+				"leg",
+				"shoeSize"
+			],
+			"parent": null
+		}
+	]
+}

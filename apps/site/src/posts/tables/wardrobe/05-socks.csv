@@ -1,0 +1,13 @@
+id,name,colour,shoeSize,pairedWith
+g31,Black sock,black,9,g32
+g32,Black sock,black,9,g31
+g33,Black sock,black,9,g34
+g34,Black sock,black,9,g33
+g35,Black sock,black,9,g36
+g36,Black sock,black,9,g35
+g37,Navy sock,navy,9,g38
+g38,Navy sock,navy,9,g37
+g39,Navy sock,navy,9,g40
+g40,Navy sock,navy,9,g39
+g41,Grey wool sock,grey,9,g42
+g42,Grey wool sock,grey,9,g41

@@ -1,0 +1,47 @@
+id,name,colour,isIn
+g01,White Oxford,white,p02
+g02,White Oxford,white,p01
+g03,Blue Oxford,blue,p01
+g04,Blue check shirt,blue,p03
+g05,White linen shirt,white,p01
+g06,Denim shirt,blue,p01
+g07,Black polo,black,p01
+g08,Black polo,black,p02
+g09,White tee,white,p01
+g10,White tee,white,p01
+g11,White tee,white,p02
+g12,White tee,white,p05
+g13,Black tee,black,p01
+g14,Black tee,black,p02
+g15,Black tee,black,p05
+g16,Grey marl tee,grey,p01
+g17,Navy tee,navy,p01
+g18,Navy tee,navy,p02
+g19,Navy lambswool jumper,navy,p01
+g20,Grey cable knit jumper,grey,p01
+g21,Black merino jumper,black,p01
+g22,Oatmeal cardigan,oatmeal,p01
+g23,Green sweatshirt,green,p02
+g24,Blue jeans,blue,p04
+g25,Black jeans,black,p01
+g26,Grey chinos,grey,p01
+g27,Navy chinos,navy,p03
+g28,Beige chinos,beige,p01
+g29,Black trousers,black,p01
+g30,Khaki shorts,khaki,p01
+g31,Black sock,black,p01
+g32,Black sock,black,p01
+g33,Black sock,black,p02
+g34,Black sock,black,p02
+g35,Black sock,black,p05
+g36,Black sock,black,
+g37,Navy sock,navy,p01
+g38,Navy sock,navy,p01
+g39,Navy sock,navy,p02
+g40,Navy sock,navy,p02
+g41,Grey wool sock,grey,p01
+g42,Grey wool sock,grey,p01
+g43,Navy wool coat,navy,p01
+g44,Black rain jacket,black,p01
+g45,Denim jacket,blue,p01
+g46,Grey blazer,grey,p01

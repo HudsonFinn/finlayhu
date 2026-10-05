@@ -14,5 +14,11 @@ export function useFigureSize() {
 	return { width, compact: width > 0 && width < COMPACT_BELOW };
 }
 
+/**
+ * How wide a figure may grow, in CSS px. Substack's column (728) by default, so the site
+ * matches the exports; a post on the site can let figures fill its text column (Infinity).
+ */
+export const FigureMaxWidthContext = createContext(728);
+
 /** CSS px per viewBox unit for the Sheet being drawn. Labels divide by it to stay true size. */
 export const SheetScaleContext = createContext(1);

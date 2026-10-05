@@ -49,6 +49,15 @@ Read an existing figure first; they are the reference:
 -   **3D** (`kit/three` `IsoCanvas`, `kit/geometry`): plain three.js, never react-three-fiber.
     `scene={({ c, solid, lines, ground, breaker, transformer }) => [...]}` with `box`, `prism`,
     `segments` for geometry made once at module level; `angle={… + clock.time * TURN}`.
+-   **Builds that play once** (`useClock(meta.duration, { once: true })`): wait until the reader
+    scrolls to them, draw once, stop on the finished frame, and offer Replay. Use for builds that
+    sit in a post's text; keep looping for figures that are about rhythm or continuous motion.
+-   **UML class diagrams** (`kit/UmlFigure`, `kit/uml`): a model_diagram.py spec draws itself;
+    pass `previous` (the last diagram's spec) and only what changed draws on, in verdigris. See
+    `bn-01-f*` and the specs in `src/data/bn-01`.
+-   **In a site post**: `::figure{slug="…" caption="…"}` and `::table{src="<folder>/<csv>"
+title="…" sort="none"}` (CSVs in `apps/site/src/posts/tables`). Figures fill the text column
+    there; exports stay 728 wide.
 -   Colours: `var(--sl-ink)`, `--sl-ink-muted`, `--sl-hairline`, `--sl-paper`, `--sl-verdigris`;
     data series `--sl-series-1…6` in slot order, `--sl-seq-*`, `--sl-div-*`. Amber and fault are
     states only.

@@ -1,0 +1,9 @@
+{
+	"classes": [
+		{
+			"name": "Garment",
+			"attrs": ["id", "name", "colour", "what it is", "size"],
+			"parent": null
+		}
+	]
+}

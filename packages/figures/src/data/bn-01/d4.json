@@ -1,0 +1,27 @@
+{
+	"classes": [
+		{
+			"name": "Garment",
+			"attrs": [
+				"id",
+				"name",
+				"colour",
+				"what it is",
+				"size",
+				"waist",
+				"leg",
+				"shoeSize"
+			],
+			"parent": null
+		}
+	],
+	"associations": [
+		{
+			"from": "Garment",
+			"to": "Garment",
+			"label": "pairedWith",
+			"fromMult": "0..1",
+			"toMult": "0..1"
+		}
+	]
+}

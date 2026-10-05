@@ -1,0 +1,7 @@
+kind,id,name,colour,size,waist,leg,shoeSize,pairedWith
+Shirt,✓,✓,✓,✓,,,,
+TShirt,✓,✓,✓,✓,,,,
+Jumper,✓,✓,✓,✓,,,,
+Trousers,✓,✓,✓,,✓,✓,,
+Sock,✓,✓,✓,,,,✓,✓
+Jacket,✓,✓,✓,✓,,,,

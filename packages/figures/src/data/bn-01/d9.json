@@ -1,0 +1,65 @@
+{
+	"classes": [
+		{
+			"name": "Thing",
+			"attrs": ["id", "name"],
+			"parent": null
+		},
+		{
+			"name": "Garment",
+			"attrs": ["colour", "clean"],
+			"parent": "Thing"
+		},
+		{
+			"name": "Shirt",
+			"attrs": ["size"],
+			"parent": "Garment"
+		},
+		{
+			"name": "TShirt",
+			"attrs": ["size"],
+			"parent": "Garment"
+		},
+		{
+			"name": "Jumper",
+			"attrs": ["size"],
+			"parent": "Garment"
+		},
+		{
+			"name": "Trousers",
+			"attrs": ["waist", "leg"],
+			"parent": "Garment"
+		},
+		{
+			"name": "Sock",
+			"attrs": ["shoeSize"],
+			"parent": "Garment"
+		},
+		{
+			"name": "Jacket",
+			"attrs": ["size"],
+			"parent": "Garment"
+		},
+		{
+			"name": "Place",
+			"attrs": [],
+			"parent": "Thing"
+		}
+	],
+	"associations": [
+		{
+			"from": "Sock",
+			"to": "Sock",
+			"label": "pairedWith",
+			"fromMult": "0..1",
+			"toMult": "0..1"
+		},
+		{
+			"from": "Garment",
+			"to": "Place",
+			"label": "isIn",
+			"fromMult": "0..*",
+			"toMult": "0..1"
+		}
+	]
+}

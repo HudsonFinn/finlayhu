@@ -1,14 +1,29 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { Button, TitleBlock } from '@fhudson/ui';
-import { COMPACT_BELOW, FigureWidthContext } from './context';
+import {
+	COMPACT_BELOW,
+	FigureMaxWidthContext,
+	FigureWidthContext,
+} from './context';
 import { BEAT } from './time';
 import { interactiveUrl, type FigureMeta } from './types';
 import type { Clock } from './useClock';
 
-/** Substack's post column. Figures never grow past it, so the site matches the exports. */
-export const MAX_WIDTH = 728;
-
 function Controls({ clock }: { clock: Clock }) {
+	// A once-through build only needs a way to see it again
+	if (clock.once)
+		return (
+			<div className="flex flex-wrap items-center gap-3">
+				<Button
+					variant="ghost"
+					size="sm"
+					onPress={clock.restart}
+					isDisabled={!clock.started}
+				>
+					Replay
+				</Button>
+			</div>
+		);
 	return (
 		<div className="flex flex-wrap items-center gap-3">
 			<Button variant="ghost" size="sm" onPress={clock.toggle}>
@@ -58,6 +73,24 @@ export function Frame({
 }) {
 	const ref = useRef<HTMLDivElement>(null);
 	const [width, setWidth] = useState(0);
+	const maxWidth = useContext(FigureMaxWidthContext);
+	const waiting = clock?.once && !clock.started ? clock.start : undefined;
+
+	// A once-through build starts when half of it has scrolled into view
+	useEffect(() => {
+		const element = ref.current;
+		if (!element || !waiting) return;
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) waiting();
+			},
+			{ threshold: 0.5 }
+		);
+		observer.observe(element);
+		return () => {
+			observer.disconnect();
+		};
+	}, [waiting]);
 
 	useEffect(() => {
 		const element = ref.current;
@@ -74,7 +107,9 @@ export function Frame({
 	return (
 		<figure
 			className="flex w-full flex-col gap-3"
-			style={{ maxWidth: MAX_WIDTH }}
+			style={{
+				maxWidth: Number.isFinite(maxWidth) ? maxWidth : undefined,
+			}}
 			data-figure={meta.number}
 		>
 			<div

@@ -1,0 +1,43 @@
+{
+	"classes": [
+		{
+			"name": "Shirt",
+			"attrs": ["id", "name", "colour", "size"],
+			"parent": null
+		},
+		{
+			"name": "TShirt",
+			"attrs": ["id", "name", "colour", "size"],
+			"parent": null
+		},
+		{
+			"name": "Jumper",
+			"attrs": ["id", "name", "colour", "size"],
+			"parent": null
+		},
+		{
+			"name": "Trousers",
+			"attrs": ["id", "name", "colour", "waist", "leg"],
+			"parent": null
+		},
+		{
+			"name": "Sock",
+			"attrs": ["id", "name", "colour", "shoeSize"],
+			"parent": null
+		},
+		{
+			"name": "Jacket",
+			"attrs": ["id", "name", "colour", "size"],
+			"parent": null
+		}
+	],
+	"associations": [
+		{
+			"from": "Sock",
+			"to": "Sock",
+			"label": "pairedWith",
+			"fromMult": "0..1",
+			"toMult": "0..1"
+		}
+	]
+}

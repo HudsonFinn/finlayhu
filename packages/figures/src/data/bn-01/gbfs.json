@@ -1,0 +1,58 @@
+{
+	"boxWidth": 210,
+	"gap": 70,
+	"classes": [
+		{
+			"name": "Region",
+			"attrs": ["region_id", "name"],
+			"parent": null
+		},
+		{
+			"name": "Station",
+			"attrs": [
+				"station_id",
+				"name",
+				"lat",
+				"lon",
+				"capacity",
+				"num_bikes_available",
+				"num_docks_available",
+				"last_reported"
+			],
+			"parent": null
+		},
+		{
+			"name": "Vehicle",
+			"attrs": ["bike_id", "lat", "lon", "is_reserved", "is_disabled"],
+			"parent": null
+		},
+		{
+			"name": "VehicleType",
+			"attrs": ["vehicle_type_id", "form_factor", "propulsion_type"],
+			"parent": null
+		}
+	],
+	"associations": [
+		{
+			"from": "Station",
+			"to": "Region",
+			"label": "region_id",
+			"fromMult": "0..*",
+			"toMult": "0..1"
+		},
+		{
+			"from": "Vehicle",
+			"to": "Station",
+			"label": "station_id",
+			"fromMult": "0..*",
+			"toMult": "0..1"
+		},
+		{
+			"from": "Vehicle",
+			"to": "VehicleType",
+			"label": "vehicle_type_id",
+			"fromMult": "0..*",
+			"toMult": "1"
+		}
+	]
+}

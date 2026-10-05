@@ -3,6 +3,8 @@ type Frontmatter = {
 	created: string;
 	updated?: string;
 	tags?: string;
+	/** Where the post was first published, for posts written elsewhere. */
+	canonical?: string;
 };
 
 type ParsedMarkdown = {
