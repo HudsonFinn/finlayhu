@@ -49,6 +49,15 @@ const projects: Project[] = [
 		status: 'In service',
 	},
 	{
+		id: 'hold-50-hz',
+		name: 'Hold 50 Hz',
+		description:
+			'A game: keep GB grid frequency in band through an evening shift',
+		href: '/play',
+		state: 'in-service',
+		status: 'In service',
+	},
+	{
 		id: 'chalkboard',
 		name: 'Chalkboard UI',
 		description: 'A React component library with interactive documentation',

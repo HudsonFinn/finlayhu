@@ -22,6 +22,11 @@ const router = createBrowserRouter([
 				path: '/system',
 				lazy: page(() => import('./pages/SystemPage.tsx')),
 			},
+			// Hold 50 Hz takes the whole screen
+			{
+				path: '/play',
+				lazy: page(() => import('./pages/play/PlayPage.tsx')),
+			},
 			// A figure alone, for iframes
 			{
 				path: '/f/:slug/embed',
