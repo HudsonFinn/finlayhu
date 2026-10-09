@@ -617,6 +617,26 @@ interface SwitchProps extends RACSwitchProps {
 
 -   Drawn as a knife switch: a hinged bar that closes onto a contact when on.
 
+#### Slider
+
+Picks one number from a range by dragging. Built for the dispatch controls in Hold 50 Hz (`/play`).
+
+-   **Use** when the value is approximate and the range matters more than the exact number. To
+    type an exact value, use a number field.
+-   **Built on** React Aria `Slider`, `SliderTrack`, `SliderThumb` and `SliderOutput`.
+
+```ts
+interface SliderProps extends Omit<RACSliderProps<number>, 'children'> {
+	label: ReactNode; // required: every slider has a visible label
+	unit?: string; // shown after the value
+	origin?: number; // where the fill starts; defaults to the minimum
+}
+```
+
+-   Drawn as a hairline rule with a verdigris fill and a square thumb. With `origin`, the fill
+    runs from that value either way and a tick marks it, for ranges that go negative.
+-   Arrow keys step; Page Up and Page Down take large steps; Home and End jump to the ends.
+
 #### Select
 
 One choice from a longer list, in a dropdown.
@@ -841,7 +861,7 @@ interface DrawingSheetProps extends ComponentPropsWithoutRef<'section'> {
 
 ## Tier 3 · not specified
 
-Build only when a real need comes up: Combobox, Slider, DatePicker, Toast, Popover (on its
+Build only when a real need comes up: Combobox, DatePicker, Toast, Popover (on its
 own), Drawer, TagGroup, Sparkline, HazardBand, Plate.
 
 ## Build order

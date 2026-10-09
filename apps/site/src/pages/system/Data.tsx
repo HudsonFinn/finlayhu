@@ -11,6 +11,7 @@ import {
 	ListItem,
 	ResizableTableContainer,
 	Row,
+	Slider,
 	Spinner,
 	Stat,
 	Status,
@@ -345,6 +346,37 @@ export function Data() {
 					<Checkbox value="cim">CIM</Checkbox>
 					<Checkbox value="connections">Connections reform</Checkbox>
 				</CheckboxGroup>
+			</Demo>
+
+			<Demo
+				name="Slider"
+				summary="Picks one number from a range. The fill runs from the minimum, or from an origin."
+			>
+				<div className="grid max-w-xl gap-6">
+					<Slider
+						label="Gas setpoint"
+						unit="MW"
+						minValue={0}
+						maxValue={2000}
+						step={50}
+						defaultValue={1200}
+					/>
+					<Slider
+						label="Battery"
+						unit="MW"
+						minValue={-500}
+						maxValue={500}
+						step={10}
+						origin={0}
+						defaultValue={-150}
+					/>
+					<Slider
+						label="Disabled"
+						unit="MW"
+						defaultValue={40}
+						isDisabled
+					/>
+				</div>
 			</Demo>
 
 			<Demo
