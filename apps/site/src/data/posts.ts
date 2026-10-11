@@ -8,6 +8,7 @@ import principleActionRaw from '../posts/principle-action.md?raw';
 import principleEnvironmentRaw from '../posts/principle-environment.md?raw';
 import principleDeliberatePracticeRaw from '../posts/principle-deliberate-practice.md?raw';
 import principleOpinionRaw from '../posts/principle-opinion.md?raw';
+import investigationsOfADogRaw from '../posts/investigations-of-a-dog.md?raw';
 import informationModelRaw from '../posts/build-an-information-model-of-your-wardrobe.md?raw';
 
 export type Post = {
@@ -43,6 +44,7 @@ export const posts: Post[] = [
 	parsePost(principleEnvironmentRaw, 'principle-environment'),
 	parsePost(principleDeliberatePracticeRaw, 'principle-deliberate-practice'),
 	parsePost(principleOpinionRaw, 'principle-opinion'),
+	parsePost(investigationsOfADogRaw, 'investigations-of-a-dog'),
 	// Boundary Node post 1, first published on Substack
 	parsePost(
 		informationModelRaw,
