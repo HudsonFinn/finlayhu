@@ -33,3 +33,5 @@ export * from './components/Symbols';
 export * from './components/ThemeSwitch';
 export * from './components/Chip';
 export * from './components/Slider';
+export * from './components/TextField';
+export * from './components/TextArea';

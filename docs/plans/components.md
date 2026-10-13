@@ -560,9 +560,19 @@ interface TextAreaProps extends RACTextFieldProps {
 	label: ReactNode;
 	description?: ReactNode;
 	errorMessage?: ReactNode | ((v: ValidationResult) => ReactNode);
-	rows?: number;
+	placeholder?: string;
+	rows?: number; // default 4
+	textAreaClassName?: string; // classes for the box itself, e.g. to fill a pane
+	highlights?: TextAreaHighlight[]; // { start, end, id?, className? }, drawn behind the text
 }
 ```
+
+-   Built for the post editor (`apps/editor`), with TextField. The two share their field styles
+    in `TextField/fieldStyles.ts`. `textAreaClassName` was added so the editor's draft box can
+    fill its pane.
+-   `highlights` marks ranges of the value, like spelling marks, for the editor's live flags. A
+    copy of the text sits behind a see-through box, so it needs a controlled `value`, and the box
+    grows to fit its text rather than scrolling, which keeps the two lined up.
 
 #### Checkbox
 

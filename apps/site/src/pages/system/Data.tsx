@@ -21,6 +21,8 @@ import {
 	TableHeader,
 	Tag,
 	Text,
+	TextArea,
+	TextField,
 	type Selection,
 	type SortDescriptor,
 } from '@fhudson/ui';
@@ -346,6 +348,35 @@ export function Data() {
 					<Checkbox value="cim">CIM</Checkbox>
 					<Checkbox value="connections">Connections reform</Checkbox>
 				</CheckboxGroup>
+			</Demo>
+
+			<Demo
+				name="TextField and TextArea"
+				summary="One line of text, or several. Label above, description under it, error below."
+			>
+				<div className="grid max-w-xl gap-6">
+					<TextField
+						label="Title"
+						description="Shown at the top of the post."
+						placeholder="On - Investigations of a Dog"
+					/>
+					<TextField
+						label="Slug"
+						defaultValue="Investigations Of A Dog"
+						isInvalid
+						errorMessage="Use lower case and hyphens"
+					/>
+					<TextArea
+						label="Summary"
+						rows={3}
+						defaultValue="Kafka’s narrator investigates a world run by people he can’t see."
+					/>
+					<TextField
+						label="Disabled"
+						defaultValue="Read only"
+						isDisabled
+					/>
+				</div>
 			</Demo>
 
 			<Demo
