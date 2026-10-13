@@ -27,3 +27,4 @@ dist-ssr
 
 # Figure exports (bun run fig export)
 packages/figures/exports
+apps/editor/reviews.json

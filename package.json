@@ -9,8 +9,9 @@
 	"scripts": {
 		"dev": "bun run --filter @fhudson/site dev",
 		"fig": "bun packages/figures/scripts/fig.ts",
+		"editor": "bun run --filter @fhudson/editor dev",
 		"build": "bun run --filter './apps/*' build",
-		"test": "bun run --filter './packages/*' --filter @fhudson/site test",
+		"test": "bun run --filter './packages/*' --filter @fhudson/site --filter @fhudson/editor test",
 		"typecheck": "bun run --filter './packages/*' typecheck",
 		"preview": "bun run --filter @fhudson/site preview",
 		"lint": "eslint . --fix --max-warnings=0",

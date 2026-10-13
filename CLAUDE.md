@@ -5,6 +5,9 @@
 This is a Bun workspaces monorepo. See README.md for scripts.
 
 -   `apps/site` — fhudson.com
+-   `apps/editor` — local only (`bun run editor`): write posts and practise review passes. Each
+    pass is a writing rule in `apps/editor/src/rules/`. When reviewing Finn's writing turns up a
+    habit, add it there as a rule, with an example from his own post
 -   `packages/` — shared packages (the Single Line design system will be `packages/ui`)
 -   `docs/plans/design-system.md` — the plan for the monorepo and design system
 
